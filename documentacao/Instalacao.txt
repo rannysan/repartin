@@ -1,0 +1,54 @@
+***** Esta classe requer que a classe ABNTEX2 versão 1.96 ou superior esteja instalada
+
+--- Instalação 1 ----
+
+1 - Extrair o conteudo do arquivo utfprcptex2.zip
+
+2 - Copiar os diretorios: 
+      - doc, 
+      - makeindex e 
+      - tex 
+    para a raiz do diretorio de instalação do latex.
+
+3 - Atualizar a base de dados do latex.
+
+4 - Extrair o conteudo do arquivo Modelo_TEX.zip
+
+5 - Copiar o diretorio dissertação para qualquer lugar desejado dentro a area do usuario. 
+    Recomenda-se manter o menor caminho possivel entre a raiz (C:) e o arquivo .tex.
+
+6 - Renomear, se desejado, o diretorio dissertação e seus arquivos. Ao renomear verificar os caminhos nos arquivos do modelo.
+
+7 - A sequencia de compilação do arquivo .tex é:
+       - pdflatex
+       - bibtex
+       - pdflatex
+       - pdflatex
+
+
+
+--- Instalação 2 ---
+
+1 - Extrair o conteudo do arquivo utfprcptex2.zip
+
+2 - Copiar os diretorios: 
+      - doc, 
+      - makeindex e 
+      - tex 
+    para o diretorio desejado, que deve estar configurado como path no roots do latex.
+    
+
+3 - Atualizar a base de dados do latex.
+
+4 - Extrair o conteudo do arquivo Modelo_TEX.zip
+
+5 - Copiar o diretorio dissertação para qualquer lugar desejado dentro a area do usuario. 
+    Recomenda-se manter o menor caminho possivel entre a raiz (C:) e o arquivo .tex.
+
+6 - Renomear, se desejado, o diretorio dissertação e seus arquivos. Ao renomear verificar os caminhos nos arquivos do modelo.
+
+7 - A sequencia de compilação do arquivo .tex é:
+       - pdflatex
+       - bibtex
+       - pdflatex
+       - pdflatex
