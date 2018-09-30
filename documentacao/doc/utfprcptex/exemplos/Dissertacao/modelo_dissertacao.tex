@@ -1,20 +1,25 @@
 %% Exemplo de Utilizacao do Estilo de formatacao utfprcptex2  (http: )
-%% para elaboraï¿½ï¿½o de Teses, Dissertaï¿½ï¿½es, etc...
+%% para elaboração de Teses, Dissertações, etc...
 %% Autores: Rodrigo Rodrigues Sumar (sumar@utfpr.edu.br)
-%%          Bruno Augusto Angï¿½lico (bangelico@utfpr.edu.br)
+%%          Bruno Augusto Angélico (bangelico@utfpr.edu.br)
 %% Colaboradores:
 %%
 %%
-\documentclass[oneside,       % para impressï¿½o somente na frante. Oposto a twoside
-               openright,     % capï¿½tulos comeï¿½am em pï¿½g ï¿½mpar (insere pï¿½gina vazia caso preciso)
+\documentclass[oneside,       % para impressão somente na frante. Oposto a twoside
+               openright,     % capítulos começam em pág ímpar (insere página vazia caso preciso)
                a4paper,       % tamanho do papel.
                12pt,          % tamanho da fonte
-               english,		  % idioma adicional para hifenizaï¿½ï¿½o
-%               french,		  % idioma adicional para hifenizaï¿½ï¿½o
-               spanish,		  % idioma adicional para hifenizaï¿½ï¿½o
-               brazil		  % o ï¿½ltimo idioma ï¿½ o principal do documento
-              ]{utfprcptex2}
+               english,		  % idioma adicional para hifenização
+%               french,		  % idioma adicional para hifenização
+               spanish,		  % idioma adicional para hifenização
+               brazil		  % o último idioma é o principal do documento
+               ]{utfprcptex2}
 
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=3, abnt-etal-list=0]{abntex2cite}	% Citações padrão ABNT
 % ------
 %%% Pacotes diversos
 % ------
@@ -27,23 +32,23 @@
 
 
 % ---
-% Pacotes adicionais, usados apenas no ï¿½mbito do Modelo Canï¿½nico do abnteX2
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
 % ---
-\usepackage{lipsum}				% para geraï¿½ï¿½o de dummy text
+\usepackage{lipsum}				% para geração de dummy text
 % ---
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Ambientes para definiï¿½ï¿½es, exemplos e teoremas
+% Ambientes para definições, exemplos e teoremas
 \newtheorem{problema}{Problema}
-\newtheorem{definicao}{Definiï¿½ï¿½o}
-\newtheorem{proposicao}{Proposiï¿½ï¿½o}
+\newtheorem{definicao}{Definição}
+\newtheorem{proposicao}{Proposição}
 \newtheorem{teorema}{Teorema}[chapter]
 \newtheorem{lema}{Lema}
-\newtheorem{corolario}{Corolï¿½rio}
+\newtheorem{corolario}{Corolário}
 \newtheorem{exemplo}{Exemplo}
-\newtheorem*{observacao}{Observaï¿½ï¿½o}
+\newtheorem*{observacao}{Observação}
 \newenvironment{prova}
-{\noindent {\textit{Demonstraï¿½ï¿½o}.}} {{\par\hfill$\Box$ \\}}
+{\noindent {\textit{Demonstração}.}} {{\par\hfill$\Box$ \\}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Para fonte Times (Nimbus Roman) descomente linha abaixo
@@ -52,36 +57,40 @@
 % Para fonte Helvetica (Nimbus Sans) descomente linhas abaixo
 \fontetipo{arial}
 
-
+%Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
+%\usepackage[ left=3.0cm,right=2cm,top=3cm,bottom=2cm,a4paper,
+%            showframe
+%            ]{geometry}
+%\usepackage{showframe}
 
 
 %O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
-\fazlistasiglas[Lista de Siglas] % Parï¿½metro opcional ï¿½ o tï¿½tulo da lista.
+\fazlistasiglas[Lista de Siglas] % Parâmetro opcional é o título da lista.
 
-%%%% Ferramenta para criaï¿½ï¿½o de glossï¿½rios
-\makeglossaries%% Nï¿½o comente esta linha se estivar usando glossario
-\include{entradas_glossario}%% Entradas do glossï¿½rio - Comente para remover este item
+%%%% Ferramenta para criação de glossários
+\makeglossaries%% Não comente esta linha se estivar usando glossario
+\include{entradas_glossario}%% Entradas do glossário - Comente para remover este item
 %%%%
 
 % ---------- Preambulo ----------
 %%%%%%%% Dados para Capa e outros elementos pretextuais
 \instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
-\unidade{Cï¿½mpus Cornï¿½lio Procï¿½pio}
-\diretoria{Diretoria de Pesquisa e Pï¿½s-Graduaï¿½ï¿½o}
-\coordenacao{Programa de Pï¿½s-Graduaï¿½ï¿½o em Engenharia Elï¿½trica}
-\curso{Mestrado em Engenharia Elï¿½trica}
-\documento{Dissertaï¿½ï¿½o}
+\unidade{Câmpus Cornélio Procópio}
+\diretoria{Diretoria de Pesquisa e Pós-Graduação}
+\coordenacao{Programa de Pós-Graduação em Engenharia Elétrica}
+\curso{Mestrado em Engenharia Elétrica}
+\documento{Dissertação}
 \nivel{Mestrado}
 \titulacao{Mestre}
-\area{Engenharia Elï¿½trica}
-\titulo{T\'itulo em Portugu\^es} % titulo do trabalho em portuguï¿½s
-\title{Title in English} % titulo do trabalho em inglï¿½s
-\autor{Breno Angelotti Gabriel Romero Jean Carlos Gonaï¿½alves Joï¿½o Goulart Renan Batel  } % autor do trabalho
-\cita{SOBRENOME, Nome} % sobrenome (maiï¿½sculas), nome do autor do trabalho
+\area{Engenharia Elétrica}
+\titulo{T\'itulo em Portugu\^es} % titulo do trabalho em português
+\title{Title in English} % titulo do trabalho em inglês
+\autor{Nome do Autor} % autor do trabalho
+\cita{SOBRENOME, Nome} % sobrenome (maiúsculas), nome do autor do trabalho
 
 \palavraschave{Palavra-chave 1. Palavra-chave 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho - Devem ser inseridas de 3 a 5 palavras chave
-\keywords{Keyword 1. Keyword 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho em inglï¿½s - Devem ser inseridas de 3 a 5 palavras chave
-\comentario{\UTFPRdocumentodata\ apresentada ao \UTFPRcoordenacaodata\ da \UTFPRinstituicaodata\ como requisito parcial para obten\c{c}\~ao do tï¿½tulo de ``\UTFPRtitulacaodata\ em \UTFPRareadata''.}
+\keywords{Keyword 1. Keyword 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho em inglês - Devem ser inseridas de 3 a 5 palavras chave
+\comentario{\UTFPRdocumentodata\ apresentada ao \UTFPRcoordenacaodata\ da \UTFPRinstituicaodata\ como requisito parcial para obten\c{c}\~ao do título de ``\UTFPRtitulacaodata\ em \UTFPRareadata''.}
 
 
 %%%%%%%%%% Dados de Orientador e Coorientador
@@ -93,36 +102,36 @@
 %\coorientadorb{}	% este comando inclui o nome do 2o co-orientador
 
 \coordenadorUTFPR[Coordenadora]{Grau}{Nome do coordenador} % Coordenador do PPGEEL
-\local{Cornï¿½lio Procï¿½pio} % cidade
+\local{Cornélio Procópio} % cidade
 \data{\UTFPRanodefesa} % Aqui deve ir o ano da defesa.
 
-%%%% Dados para Folha de Aprovaï¿½ï¿½o%
+%%%% Dados para Folha de Aprovação%
 \textoaprovacao{Esta \UTFPRdocumentodata\ foi julgada adequada para obten\c c\~ao do T\'itulo de ``\UTFPRtitulacaodata\ em \UTFPRareadata'' e aprovado em sua forma final pelo \UTFPRcoordenacaodata\ da \UTFPRinstituicaodata.}
-\numerodemembrosnabanca{5} % Isso decide se a lista de assinaturas serï¿½ colocada em duas colunas
+\numerodemembrosnabanca{5} % Isso decide se a lista de assinaturas será colocada em duas colunas
 \orientadornabanca{sim} % Se faz parte da banca definir como sim
 \coorientadornabanca{sim} % Se faz parte da banca definir como sim
-\primeiroassina[Tï¿½tulo \\ Universidade]{Primeiro Membro da Banca}
-\segundoassina[Tï¿½tulo \\Universidade]{Segundo Membro da Banca}
-\terceiroassina[Tï¿½tulo \\Universidade]{Terceiro Membro da Banca}
-%\quartoassina[Tï¿½tulo \\Universidade]{Quarto Membro da Banca}
-%\quintoassina[Tï¿½tulo \\Universidade]{Quinto Membro da Banca}
-%\sextoassina[Tï¿½tulo \\Universidade]{Sexto Membro da Banca}
-%\setimoassina[Tï¿½tulo \\Universidade]{Sï¿½timo Membro da Banca}
+\primeiroassina[Título \\ Universidade]{Primeiro Membro da Banca}
+\segundoassina[Título \\Universidade]{Segundo Membro da Banca}
+\terceiroassina[Título \\Universidade]{Terceiro Membro da Banca}
+%\quartoassina[Título \\Universidade]{Quarto Membro da Banca}
+%\quintoassina[Título \\Universidade]{Quinto Membro da Banca}
+%\sextoassina[Título \\Universidade]{Sexto Membro da Banca}
+%\setimoassina[Título \\Universidade]{Sétimo Membro da Banca}
 \datadefesaUTFPR{29}{07}{2012} %% A data deve ser inserida no formato dd/mm/aaaa
 %%%%% Comentar para versao impressa
-\versaoeletronica{``A Folha de Aprovaï¿½ï¿½o assinada encontra-se na Coordenaï¿½ï¿½o do Curso do Programa''}% Texto a ser inserido na versï¿½o eletronica do documento.
+\versaoeletronica{``A Folha de Aprovação assinada encontra-se na Coordenação do Curso do Programa''}% Texto a ser inserido na versão eletronica do documento.
 
 %---------- Inicio do Documento ----------
 \begin{document}
 %\hypersetup{pageanchor=false}
-\capa % geraï¿½ï¿½o automï¿½tica da capa
+\capa % geração automática da capa
 \pretextual
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Geracao automatica da folha de rosto
-%%%% Opï¿½ï¿½es da Folha de Rosto
+%%%% Opções da Folha de Rosto
 %%%%    - semficha
 %%%%    - comficha: modelo definido pela classe. Serve para contar paginas na
-%%%%                geraï¿½ï¿½o da ficha pela biblioteca.
+%%%%                geração da ficha pela biblioteca.
 %%%%    - pdf: informar o nome do arquivo pdf com a ficha fornecinada
 %%%%           pela bibliteca.
 \folhaderosto[Fichacatalografica]
@@ -134,7 +143,7 @@
 \include{errata}
 %%%
 
-%%%%% dedicatï¿½ria (opcional)
+%%%%% dedicatória (opcional)
 \begin{dedicatoria}
 Texto da dedicat\'oria.
 \end{dedicatoria}
@@ -156,7 +165,7 @@ Texto do resumo (m\'aximo de 500 palavras).
 %
 %%%%% abstract em ingles
 \begin{abstract}
-SOBRENOME, Nome. \textbf{\UTFPRtitledata.} \UTFPRanodefesa. \pageref{LastPage} f. Master Thesis -- Electrical Engineering Graduate Program, Federal University of Technology - Paranï¿½. Cornï¿½lio Procï¿½pio, \UTFPRdatadata.
+SOBRENOME, Nome. \textbf{\UTFPRtitledata.} \UTFPRanodefesa. \pageref{LastPage} f. Master Thesis -- Electrical Engineering Graduate Program, Federal University of Technology - Paraná. Cornélio Procópio, \UTFPRdatadata.
 
 This is the english abstract. (maximum of 500 words).
 
@@ -165,35 +174,35 @@ This is the english abstract. (maximum of 500 words).
 
 %%%%% abstract em frances
 \begin{resume}
-SOBRENOME, Nome. \textbf{Titre Franï¿½ais.} \UTFPRanodefesa. \pageref{LastPage} f. Mï¿½moire de Maï¿½trise -- Programme d'ï¿½tudes Supï¿½rieures en Gï¿½nie ï¿½lectrique, Universitï¿½ Technologique Fï¿½dï¿½rale - Paranï¿½. Cornï¿½lio Procï¿½pio, \UTFPRdatadata.
+SOBRENOME, Nome. \textbf{Titre Français.} \UTFPRanodefesa. \pageref{LastPage} f. Mémoire de Maîtrise -- Programme d'études Supérieures en Génie Électrique, Université Technologique Fédérale - Paraná. Cornélio Procópio, \UTFPRdatadata.
 
-Il s'agit d'un rï¿½sumï¿½ en franï¿½ais. (maximum de 500 mots).
+Il s'agit d'un résumé en français. (maximum de 500 mots).
 
-\textbf{Mots-clï¿½s:} mot-clï¿½ 1. mot-clï¿½ 2. (3 ï¿½ 5 mots)
+\textbf{Mots-clés:} mot-clé 1. mot-clé 2. (3 à 5 mots)
 \end{resume}
 
-%%%%%% Lista de Ilustraï¿½ï¿½es conforme ABNT
+%%%%%% Lista de Ilustrações conforme ABNT
 \listadeilustracoes
 %%% Para Gera lista individuais de comentar o comando acima e
 %%% descomentar das listas individuais
 %%%%%%%%%%%
 %%%% listas (opcionais, mas recomenda-se a partir de 5 elementos)
 %%%%
-\listadefiguras % geraï¿½ï¿½o automï¿½tica da lista de figuras
-\listadetabelas % geraï¿½ï¿½o automï¿½tica da lista de tabelas
-\listadequadros % geraï¿½ï¿½o automï¿½tica da lista de quadros
-\listadegraficos % geraï¿½ï¿½o automï¿½tica da lista de grï¿½ficos
-\listadefotos % geraï¿½ï¿½o automï¿½tica da lista de fotos
-\listadefluxogramas % geraï¿½ï¿½o automï¿½tica da lista de fluxogramas
-\listadesiglas  % geraï¿½ï¿½o automï¿½tica da lista de siglas
-\listadeabreviaturas  % geraï¿½ï¿½o automï¿½tica da lista de abreviaturas
-\listadeacronimos   % geraï¿½ï¿½o automï¿½tica da lista de acrï¿½nimos
-\listadesimbolos % geraï¿½ï¿½o automï¿½tica da lista de sï¿½mbolos
+\listadefiguras % geração automática da lista de figuras
+\listadetabelas % geração automática da lista de tabelas
+\listadequadros % geração automática da lista de quadros
+\listadegraficos % geração automática da lista de gráficos
+\listadefotos % geração automática da lista de fotos
+\listadefluxogramas % geração automática da lista de fluxogramas
+\listadesiglas  % geração automática da lista de siglas
+\listadeabreviaturas  % geração automática da lista de abreviaturas
+\listadeacronimos   % geração automática da lista de acrônimos
+\listadesimbolos % geração automática da lista de símbolos
 
 \listofalgorithms %%%%% EM FASE DE TESTES
 
 % sumario
-\sumario % geraï¿½ï¿½o automï¿½tica do sumario
+\sumario % geração automática do sumario
 
 %\cleardoublepage
 %\hypersetup{pageanchor=true}
@@ -206,29 +215,29 @@ Il s'agit d'un rï¿½sumï¿½ en franï¿½ais. (maximum de 500 mots).
 \input{capitulo3/cap3.tex}
 
 
-%% Formataï¿½ï¿½o de pï¿½ginas de elementos pï¿½s-textuais
-\postextual%% Nï¿½o comente esta linha
+%% Formatação de páginas de elementos pós-textuais
+\postextual%% Não comente esta linha
 %---------- Referencias ----------
 \bibliography{referencias/referencias} % geracao automatica das referencias a partir do arquivo reflatex.bib
 
-%% Glossï¿½rio
+%% Glossário
 \incluirglossario%% Comente para remover este item
 
 %---------- Apendices (opcionais) ----------
 \apendices
-% Imprime uma pï¿½gina indicando o inï¿½cio dos apï¿½ndices
+% Imprime uma página indicando o início dos apêndices
 \partapendices*
 
 \chapter{Nome do Ap\^endice}
 
 Use o comando {\ttfamily \textbackslash apendice} e depois comandos {\ttfamily \textbackslash chapter\{\}}
-para gerar t\'itulos de ap\^en-dices.
+para gerar t\'itulos de ap\^en-dices. 
 
-\section{Teste de Seï¿½ï¿½o em um Apï¿½ndice}
+\section{Teste de Seção em um Apêndice}
 
 % ---------- Anexos (opcionais) ----------
 \anexos
-% Imprime uma pï¿½gina indicando o inï¿½cio dos anexos
+% Imprime uma página indicando o início dos anexos
 \partanexos*
 
 
