@@ -58,14 +58,21 @@
 %O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
 \fazlistasiglas[Lista de Siglas] % Parï¿½metro opcional ï¿½ o tï¿½tulo da lista.
 
+<<<<<<< HEAD
 %%%% Ferramenta para criaï¿½ï¿½o de glossï¿½rios
 \makeglossaries%% Nï¿½o comente esta linha se estivar usando glossario
 \include{entradas_glossario}%% Entradas do glossï¿½rio - Comente para remover este item
+=======
+%%%% Ferramenta para criação de glossários
+\makeglossaries%% Não comente esta linha se estivar usando glossario
+\include{entradas_glossario}%% Entradas do glossário - Come=nte para remover este item
+>>>>>>> d5c4de45e13adb198ade22f968d0cd7c8db3e71e
 %%%%
 
 % ---------- Preambulo ----------
 %%%%%%%% Dados para Capa e outros elementos pretextuais
 \instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
+<<<<<<< HEAD
 \unidade{Cï¿½mpus Cornï¿½lio Procï¿½pio}
 \diretoria{Diretoria de Pesquisa e Pï¿½s-Graduaï¿½ï¿½o}
 \coordenacao{Programa de Pï¿½s-Graduaï¿½ï¿½o em Engenharia Elï¿½trica}
@@ -82,16 +89,26 @@
 \palavraschave{Palavra-chave 1. Palavra-chave 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho - Devem ser inseridas de 3 a 5 palavras chave
 \keywords{Keyword 1. Keyword 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho em inglï¿½s - Devem ser inseridas de 3 a 5 palavras chave
 \comentario{\UTFPRdocumentodata\ apresentada ao \UTFPRcoordenacaodata\ da \UTFPRinstituicaodata\ como requisito parcial para obten\c{c}\~ao do tï¿½tulo de ``\UTFPRtitulacaodata\ em \UTFPRareadata''.}
+=======
+\unidade{Câmpus Cornélio Procópio}
+\diretoria{Oficina de Integração 2 - IF66K-ES61}
+\coordenacao{Professor: André Luiz Przybyzs}
+\curso{Bacharelado em Engenharia de Software}
+\area{Engenharia de Software}
+\titulo{Repartin } % titulo do trabalho em português
+\autor{Breno Angelotti \protect\\ 
+	Gabriel Romero \protect\\ 
+	Jean Carlos Gonçalves \protect\\
+	João Victor Goulart \protect\\
+	Mateus Merscher \protect\\
+	Renan Batel} % autor do trabalho
+
+\palavraschave{Palavra-chave 1. Palavra-chave 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho - Devem ser inseridas de 3 a 5 palavras chave
+>>>>>>> d5c4de45e13adb198ade22f968d0cd7c8db3e71e
 
 
-%%%%%%%%%% Dados de Orientador e Coorientador
-\orientador[Orientador]{Prof. Dr.}{Nome do Orientador} % nome do orientador do trabalho
-%\orientador[Orientadora:]{Nome da Orientadora} % <- no caso de orientadora, usar esta sintaxe
-%\coorientador{Nome do Co-orientador} % nome do co-orientador do trabalho, caso exista
-\coorientador[Co-orientadora]{Profa. Dra.}{Nome da Co-orientadora} % <- no caso de co-orientadora, usar esta sintaxe
-%\coorientador[Co-orientadores:]{Nome do Co-orientador} % no caso de 2 co-orientadores, usar esta sintaxe
-%\coorientadorb{}	% este comando inclui o nome do 2o co-orientador
 
+<<<<<<< HEAD
 \coordenadorUTFPR[Coordenadora]{Grau}{Nome do coordenador} % Coordenador do PPGEEL
 \local{Cornï¿½lio Procï¿½pio} % cidade
 \data{\UTFPRanodefesa} % Aqui deve ir o ano da defesa.
@@ -194,18 +211,28 @@ Il s'agit d'un rï¿½sumï¿½ en franï¿½ais. (maximum de 500 mots).
 
 % sumario
 \sumario % geraï¿½ï¿½o automï¿½tica do sumario
+=======
 
-%\cleardoublepage
-%\hypersetup{pageanchor=true}
-\textual
+\local{Cornélio Procópio} % cidade
+\data{\today} % Aqui deve ir o ano da defesa.
 
-%---------- Inicio do Texto ----------
+
+\datadefesaUTFPR{18}{09}{2018} %% A data deve ser inserida no formato dd/mm/aaaa
+
+%---------- Inicio do Documento ----------
+\begin{document}
+>>>>>>> d5c4de45e13adb198ade22f968d0cd7c8db3e71e
+
+\capa
+
+\sumario % geração automática do sumario
 % recomenda-se a escrita de cada capitulo em um arquivo texto separado (exemplo: intro.tex, fund.tex, exper.tex, concl.tex, etc.) e a posterior inclusao dos mesmos no mestre do documento utilizando o comando \input{}, da seguinte forma:
 \input{capitulo1/cap1.tex}
 \input{capitulo2/cap2.tex}
 \input{capitulo3/cap3.tex}
 
 
+<<<<<<< HEAD
 %% Formataï¿½ï¿½o de pï¿½ginas de elementos pï¿½s-textuais
 \postextual%% Nï¿½o comente esta linha
 %---------- Referencias ----------
@@ -245,5 +272,9 @@ para gerar t\'itulos de anexos.
 \twocolindex  %% Para indice em duas colunas
 \indiceremissivo
 %---------------------------------------------------------------------
+=======
+\bibliography{referencias/referencias} % geracao automatica das referencias a partir do arquivo reflatex.bib
+
+>>>>>>> d5c4de45e13adb198ade22f968d0cd7c8db3e71e
 
 \end{document} 

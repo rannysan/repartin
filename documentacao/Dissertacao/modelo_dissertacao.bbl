@@ -1,0 +1,123 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.6 }
+
+\bibitem[abnTeX 2009]{abnTeX2009}
+\abntrefinfo{abnTeX}{ABNTEX}{2009}
+{ABNTEX. \textbf{Absurdas normas para \TeX}. 2009.
+Dispon{\'\i}vel em: \url{http://sourceforge.net/apps/
+  mediawiki/abntex/index.php}. Acesso em: 8 de novembro de 2009.}
+
+\bibitem[Associa{\c c}\~ao Brasileira de Normas T\'ecnicas 2002]{NBR10520:2002}
+\abntrefinfo{ABNT}{ABNT}{2002}
+{ASSOCIA{\c C}\~AO BRASILEIRA DE NORMAS T\'ECNICAS. \textbf{{NBR} 10520}:
+  Informa{\c c}\~ao e documenta{\c c}\~ao --- apresenta{\c c}\~ao de cita{\c
+  c}\~oes em documentos.
+Rio de Janeiro, 2002. 7~p.}
+
+\bibitem[Associa{\c c}\~ao Brasileira de Normas T\'ecnicas 2005]{NBR14724:2005}
+\abntrefinfo{ABNT}{ABNT}{2005}
+{\underline{\ \ \ \ \ \ \ \ }. \textbf{{NBR} 14724}: Informa{\c c}\~ao e
+  documenta{\c c}\~ao --- trabalhos acad\^emicos --- apresenta{\c c}\~ao.
+Rio de Janeiro, 2005. 9~p.}
+
+\bibitem[Associa{\c c}\~ao Brasileira de Normas T\'ecnicas 2011]{NBR14724:2011}
+\abntrefinfo{ABNT}{ABNT}{2011}
+{\underline{\ \ \ \ \ \ \ \ }. \underline{\ \ \ \ \ \ \ \ }.
+Rio de Janeiro, 2011. 15~p. Substitui a Ref.~\citeonline{NBR14724:2005}.}
+
+\bibitem[Atmel Corporation 2015]{ATmega8515:datasheet}
+\abntrefinfo{Atmel Corporation}{ATMEL CORPORATION}{2015}
+{ATMEL CORPORATION. \textbf{{ATmega8515} Data Sheet}. 2325 Orchard Parkway, San
+  Jose, CA 95131, 2015.}
+
+\bibitem[BibTeX 2009]{BibTeX2009}
+\abntrefinfo{BibTeX}{BIBTEX}{2009}
+{BIBTEX. \textbf{Bib\TeX.org}. 2009.
+Dispon{\'\i}vel em: \url{http://www.bibtex.org}. Acesso em: 8 de novembro de
+  2009.}
+
+\bibitem[Buerger 1989]{Buerger1989}
+\abntrefinfo{Buerger}{BUERGER}{1989}
+{BUERGER, David~John. \textbf{\LaTeX\ for scientists and engineers}. Singapura:
+  McGraw-Hill, 1989.}
+
+\bibitem[CTAN 2009]{CTAN2009}
+\abntrefinfo{CTAN}{CTAN}{2009}
+{CTAN. \textbf{The comprehensive \TeX\ archive network}. 2009.
+Dispon{\'\i}vel em: \url{http://www.ctan. org}. Acesso em: 8 de novembro de
+  2009.}
+
+\bibitem[Goossens et al. 2007]{Goossens2007}
+\abntrefinfo{Goossens et al.}{GOOSSENS et al.}{2007}
+{GOOSSENS, Michel et al. \textbf{The \LaTeX\ graphics companion}. 2. ed.
+  Boston: Addison-Wesley, 2007.}
+
+\bibitem[JabRef 2009]{JabRef2009}
+\abntrefinfo{JabRef}{JABREF}{2009}
+{JABREF. \textbf{JabRef reference manager}. 2009.
+Dispon{\'\i}vel em: \url{http://jabref.sourceforge.net}. Acesso em: 8 de
+  novembro de 2009.}
+
+\bibitem[Kopka e Daly 2003]{Kopka2003}
+\abntrefinfo{Kopka e Daly}{KOPKA; DALY}{2003}
+{KOPKA, Helmut; DALY, Patrick~W. \textbf{Guide to \LaTeX}. 4. ed. Boston:
+  Addison-Wesley, 2003.}
+
+\bibitem[Lamport 1986]{Lamport1986}
+\abntrefinfo{Lamport}{LAMPORT}{1986}
+{LAMPORT, Leslie. \textbf{\LaTeX: \normalfont a document preparation system}.
+  Reading: Addison-Wesley, 1986.}
+
+\bibitem[LaTeX 2009]{LaTeX2009}
+\abntrefinfo{LaTeX}{LATEX}{2009}
+{LATEX. \textbf{The \LaTeX\ project}. 2009.
+Dispon{\'\i}vel em: \url{http://www.latex-project.org}. Acesso em: 8 de
+  novembro de 2009.}
+
+\bibitem[Mendeley 2009]{Mendeley2009}
+\abntrefinfo{Mendeley}{MENDELEY}{2009}
+{MENDELEY. \textbf{Mendeley: \normalfont academic software for research
+  papers}. 2009.
+Dispon{\'\i}vel em: \url{http://www.mendeley.com}. Acesso em: 8 de novembro de
+  2009.}
+
+\bibitem[MiKTeX 2009]{MiKTeX2009}
+\abntrefinfo{MiKTeX}{MIKTEX}{2009}
+{MIKTEX. \textbf{The MiK\TeX\ project}. 2009.
+Dispon{\'\i}vel em: \url{http://www.miktex.org}. Acesso em: 8 de novembro de
+  2009.}
+
+\bibitem[Mittelbach et al. 2004]{Mittelbach2004}
+\abntrefinfo{Mittelbach et al.}{MITTELBACH et al.}{2004}
+{MITTELBACH, Frank et al. \textbf{The \LaTeX\ companion}. 2. ed. Boston:
+  Addison-Wesley, 2004.}
+
+\bibitem[TeX-BR 2009]{TeX-Br2009}
+\abntrefinfo{TeX-BR}{TEX-BR}{2009}
+{TEX-BR. \textbf{Comunidade \TeX-Br}. 2009.
+Dispon{\'\i}vel em: \url{http://www.tex-br.org/index.php}. Acesso em: 8 de
+  novembro de 2009.}
+
+\bibitem[TeXnicCenter 2009]{TeXnicCenter2009}
+\abntrefinfo{TeXnicCenter}{TEXNICCENTER}{2009}
+{TEXNICCENTER. \textbf{\TeX nicCenter: \normalfont the center of your \LaTeX\
+  universe}. 2009.
+Dispon{\'\i}vel em: \url{http://www.texniccenter.org}. Acesso em: 8 de novembro
+  de 2009.}
+
+\bibitem[UTFPR 2008]{UTFPR2008}
+\abntrefinfo{UTFPR}{UTFPR}{2008}
+{UTFPR. \textbf{Normas para elabora\c{c}\~ao de trabalhos acad\^emicos}.
+  Curitiba: Universidade Tecnol\'ogica Federal do Paran\'a, 2008.}
+
+\bibitem[Wikibooks 2009]{Wikibooks2009}
+\abntrefinfo{Wikibooks}{WIKIBOOKS}{2009}
+{WIKIBOOKS. \textbf{\LaTeX}. 2009.
+Dispon{\'\i}vel em: \url{http://en.wikibooks.org/wiki/LaTeX}. Acesso em: 8 de
+  novembro de 2009.}
+
+\end{thebibliography}
