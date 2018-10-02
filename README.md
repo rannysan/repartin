@@ -11,5 +11,6 @@
     - run `react-native run-android` para o emulador
 
 ## repartin-web
-    - `npm start` para subir a aplicação
+    - `npm start` inicia o servidor de desenvolvimento
+    - `npm build` builda o projeto para produção
 
