@@ -37,6 +37,20 @@ module.exports = merge( config, {
       }, {
         loader: "sass-loader"
       } ]
+    }, {
+      test: /\.css$/,
+      use: [ {
+        loader: MiniCSSExtractPlugin.loader
+      }, {
+        loader: "css-loader",
+        options: {
+          importLoaders: 2
+        }
+      }, {
+        loader: "csso-loader"
+      }, {
+        loader: "postcss-loader"
+      } ]
     } ]
   },
   plugins: [

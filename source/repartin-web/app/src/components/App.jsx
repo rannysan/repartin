@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./App.scss";
-import firebase from "firebase"
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import Typography from "@material-ui/core/Typography";
+  
 
 firebase.initializeApp({
   apiKey: "AIzaSyAP-W-sqXqyIqK_acOxCGXRbLb-jSy0uGY",
@@ -34,6 +36,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Typography variant="h4" component="h4">aa</Typography>
         {this.state.isSignedIn ? (
           <span>
             <div>Signed In!</div>
