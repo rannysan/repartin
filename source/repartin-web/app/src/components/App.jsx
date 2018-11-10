@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import Typography from "@material-ui/core/Typography";
 import "./App.scss";
-  
+import { getUserbyId } from 'services-commons';
+
 class App extends Component {
   state = { isSignedIn: false }
   uiConfig = {
@@ -16,8 +17,13 @@ class App extends Component {
     }
   }
 
+  async componentWillMount() {
+    const user = await getUserbyId('teste');
+    console.log(user);
+  }
+
   componentDidMount = () => {
-    
+
     this.props.firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user })
     })
@@ -26,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      
+
         <Typography variant="h4" component="h4">Login</Typography>
 
         {this.state.isSignedIn ? (
@@ -40,11 +46,11 @@ class App extends Component {
             />
           </span>
         ) : (
-          <StyledFirebaseAuth
-            uiConfig={this.uiConfig}
-            firebaseAuth={this.props.firebase.auth()}
-          />
-        )}
+            <StyledFirebaseAuth
+              uiConfig={this.uiConfig}
+              firebaseAuth={this.props.firebase.auth()}
+            />
+          )}
       </div>
     )
   }
