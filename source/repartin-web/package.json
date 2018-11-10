@@ -8,6 +8,7 @@
     "build": "npx webpack --config app/config/webpack.prod.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "@material-ui/core": "^3.4.0",
     "@material-ui/icons": "^3.0.1",
     "firebase": "^5.5.7",
