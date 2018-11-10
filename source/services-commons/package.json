@@ -1,6 +1,6 @@
 {
   "name": "services-commons",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Serviços compartilhados entre aplicações Web e Mobile",
   "main": "index.js",
   "scripts": {

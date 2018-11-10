@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import Typography from "@material-ui/core/Typography";
 import "./App.scss";
-import { getUserbyId } from 'services-commons';
+const service = require('../../../node_modules/services-commons/index');
 
 class App extends Component {
   state = { isSignedIn: false }
@@ -18,8 +18,8 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    const user = await getUserbyId('teste');
-    console.log(user);
+     var teste = (await service.getUserById('teste'))
+     console.log(teste);
   }
 
   componentDidMount = () => {

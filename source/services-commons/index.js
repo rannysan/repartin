@@ -2,17 +2,18 @@ import axios from 'axios';
 
 const url = 'http://localhost:8080';
 
-export const getUserById = async (id) => {
+
+export async function getUserById(id) {
     return axios.get('/user', {
         params: {
           id: id
         }
       })
       .then(function (response) {
-        console.log(response);
+        return response.json();
       })
       .catch(function (error) {
         console.log(error);
-      })
+        return null;
+      });
 }
-
