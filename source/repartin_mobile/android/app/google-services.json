@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:816224201193:android:ec819d5908f100ea",
+        "mobilesdk_app_id": "1:816224201193:android:fdf2675e8c9f4722",
         "android_client_info": {
-          "package_name": "com.repartin"
+          "package_name": "com.repartin_mobile"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "816224201193-ocjtooo2ab74qjsbim5b9ljpc6rq11nu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.repartin_mobile",
+            "certificate_hash": "0e55757a03f068483a0472a9c52767f693ddb268"
+          }
+        },
         {
           "client_id": "816224201193-9efb7fse4shus2r21ftr9201s2eiu7dl.apps.googleusercontent.com",
           "client_type": 3
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816224201193-9efb7fse4shus2r21ftr9201s2eiu7dl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
