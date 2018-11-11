@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const uri = 'mongodb://tester:test123@ds157853.mlab.com:57853/repartinapp'
 let db = mongoose.connection;
 
+const House = require('../Schemas/House').House
 
 function test(res) {
     mongoose.connect(uri);
@@ -12,64 +13,19 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function callback() {
 
-
-    let blue = {
-        primary: "blue",
-        onPrimary: "lightBlue",
-        secondary: "darkBlue",
-        onSecondary: "aqua"
-
-    }
-
-    // Create house schema 
-    let houseSchema = mongoose.Schema({
-        name: String,
-        address: String,
-        creation: Date,
-        color: Object,
-        adminID: Number,
-        removed: Boolean
-    });
-
-    // Store house documents in a collection called "houses"
-    let House = mongoose.model('houses', houseSchema);
-
-
     // Create seed data
-
-    let viraCopos = new House({
+    let housetest ={
         name: 'viraCopos',
         address: 'Rua Carlos Gomes, 763',
         creation: Date.now(),
-        color: blue,
+        color: {primary:"blue", secondary:"white"},
         adminID: 123,
         removed: false
-    });
+    }
 
-    let repLek = new House({
-        name: 'repLek',
-        address: 'Rua Carlos Gomes, 763',
-        creation: Date.now(),
-        color: blue,
-        adminID: 132,
-        removed: true
-    });
+    let viraCopos = new House(housetest);
 
-    let brejaFlor = new House({
-        name: 'brejaFlor',
-        address: 'Rua Carlos Gomes, 763',
-        creation: Date.now(),
-        color: blue,
-        adminID: 321,
-        removed: false
-    });
-
-    /*
-     * First we'll add a few creations. Nothing is required to create the
-     * creations collection; it is created automatically when we insert.
-     */
-
-    let list = [viraCopos, repLek, brejaFlor]
+    let list = [viraCopos]
 
     House.insertMany(list).then(() => {
 
@@ -92,7 +48,7 @@ db.once('open', function callback() {
          */
 
         return House.find({
-            adminID: 132
+            adminID: 123
         }).sort({
             name: 1
         })
@@ -101,10 +57,9 @@ db.once('open', function callback() {
 
         docs.forEach(doc => {
             console.log(
-                'A rep ' + doc['name'] + ', fica na ' + doc['address']
+                'A rep ' + doc['name'] + ' de id '+ doc["_id"] + ', fica na ' + doc['address']
             );
         });
-    // When finish testing, uncomment this lines and run it one more time, so it will clean the collection
     }).then(() => {
         // Since this is an example, we'll clean up after ourselves.
         return mongoose.connection.db.collection('houses').drop()
