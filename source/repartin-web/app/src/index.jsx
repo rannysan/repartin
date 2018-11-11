@@ -19,7 +19,7 @@ try {
   }
 }
 
-render( <App firebase={ firebase }/>, document.getElementById( "app" ) );
+render( <App firebaseAuth={ firebase.auth }/>, document.getElementById( "app" ) );
 
 // For Webpack Hot Module Replacement
 !module.hot || module.hot.accept( App );
