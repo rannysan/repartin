@@ -6,7 +6,7 @@ export default class extends Component {
   render() {
     
     return (
-      <View { ...this.props } />
+      <View { ...this.props }/>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-const View = ( { firebaseAuth, signOut } ) => {
+export default ( { firebaseAuth, signOut } ) => {
 
   return ( 
     <div>
@@ -16,5 +16,3 @@ const View = ( { firebaseAuth, signOut } ) => {
     </div>
   );
 };
-
-export default View;
