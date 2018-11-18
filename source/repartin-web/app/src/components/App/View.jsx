@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
-import Home from "../Home";
-import Login from "../Login";
+import FrontPage from "../FrontPage";
 import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
 
@@ -18,25 +18,22 @@ const theme = createMuiTheme( {
   }
 } );
 
-export default ( { firebaseAuth, isSignedIn } ) => {
-
-  const FrontPage = ( props ) => (
-    isSignedIn
-      ? <Home firebaseAuth={ firebaseAuth } { ...props }/>
-      : <Login firebaseAuth={ firebaseAuth } { ...props }/>
-  );
+export default ( { store } ) => {
 
   return (
-    <MuiThemeProvider theme={ theme }>
-      <CssBaseline>
-        <Router>
-          <div className="App">
-            <Route exact path="/" component={ FrontPage }/>
-            <Route path="/termos-de-uso" component={ TermsOfService }/>
-            <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
-          </div>
-        </Router>
-      </CssBaseline>
-    </MuiThemeProvider>
+    <Provider store={ store }>
+      <MuiThemeProvider theme={ theme }>
+        <CssBaseline>
+          <Router>
+            <div className="App">
+              <Route exact path="/" component={ FrontPage }/>
+              <Route path="/termos-de-uso" component={ TermsOfService }/>
+              <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
+            </div>
+          </Router>
+        </CssBaseline>
+      </MuiThemeProvider>
+    </Provider>
   );
 };
+

@@ -45,7 +45,7 @@ const View = ( { firebaseAuth, classes } ) => {
       firebaseAuth.FacebookAuthProvider.PROVIDER_ID
     ],
     callbacks: {
-      signInSuccess: () => false
+      signInSuccessWithAuthResult: () => false
     }
   };
 
