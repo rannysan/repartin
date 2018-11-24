@@ -1,6 +1,6 @@
 var model = require('../Schemas/House.js');
 
-modelu.exports = {
+module.exports = {
     create: function (req, res) {
         var house = new model({
             name: req.body.name,
@@ -51,7 +51,6 @@ modelu.exports = {
 
     updateById: function (req, res) {
         var id = req.body.id;
-        var body = req.body;
         var house = { 
             name: req.body.name,
             address: req.body.address,

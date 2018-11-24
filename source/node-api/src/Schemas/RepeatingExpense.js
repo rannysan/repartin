@@ -8,6 +8,5 @@ const repeatingExpenseSchema = mongoose.Schema({
     houseID: Number,
     removed: Boolean
 });
-var RepeatingExpense = mongoose.model('expenses', repeatingExpenseSchema);
 
-module.exports.RepeatingExpense = RepeatingExpense;
+module.exports = mongoose.model('expenses', repeatingExpenseSchema);
