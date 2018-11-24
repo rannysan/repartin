@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-// Create expense schema 
 const expenseSchema = mongoose.Schema({
     name: String,
     value: Float64Array,
@@ -12,6 +11,5 @@ const expenseSchema = mongoose.Schema({
     houseID: Number,
     removed: Boolean
 });
-var Expense = mongoose.model('expenses', expenseSchema);
 
-module.exports.Expense = Expense;
+module.exports = mongoose.model('expenses', expenseSchema);

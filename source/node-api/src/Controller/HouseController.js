@@ -19,12 +19,12 @@ module.exports = {
 
     getByName: function (req, res) {
         var name = req.body.name;
-        model.findOne({ name: name }, function (err, task) {
+        model.findOne({ name: name }, function (err, house) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar casa', error: err }) };
-            if (task) {
-                return res.json({ task: task, message: 'Casa encontrado!' });
+            if (house) {
+                return res.json({ house: house, message: 'Casa encontrado!' });
             } else {
-                return res.json({ task: task, message: 'Casa não encontrado :(!' });
+                return res.json({ house: house, message: 'Casa não encontrado :(!' });
             }
         });
     },
