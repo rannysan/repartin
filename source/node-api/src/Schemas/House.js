@@ -9,6 +9,5 @@ let houseSchema = mongoose.Schema({
     adminID: Number,
     removed: Boolean
 });
-var House = mongoose.model('houses', houseSchema);
 
-module.exports.House = House;
+module.exports = mongoose.model('houses', houseSchema);;
