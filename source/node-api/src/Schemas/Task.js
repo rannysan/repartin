@@ -11,6 +11,5 @@ const taskSchema = mongoose.Schema({
     houseID: Number,
     removed: Boolean
 });
-var Task = mongoose.model('tasks', taskSchema);
 
-module.exports.Task = Task;
+module.exports = mongoose.model('tasks', taskSchema);
