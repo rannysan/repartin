@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
     name: String,
     email: String,
     uid: String,
-    houseID: mongoose.Types.ObjectId,
+    houseID: String,
     removed: Boolean
 });
 
