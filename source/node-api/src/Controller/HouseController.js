@@ -3,7 +3,7 @@ var model = require('../schemas/House.js');
 module.exports = {
     create: function (req, res) {
         var house = new model({
-            name: req.params.name,
+            name: req.body.name,
             address: req.body.address,
             creation: req.body.creation,
             color: req.body.color,

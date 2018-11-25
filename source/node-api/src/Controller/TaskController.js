@@ -3,7 +3,7 @@ const modelTask = require('../schemas/Task.js');
 module.exports = {
     create: function (req, res) {
         var task = new modelTask({
-            name: req.params.name,
+            name: req.body.name,
             description: req.body.description,
             useId: req.body.userId,
             assignedUserID: req.body.assignedUserID,
@@ -43,6 +43,18 @@ module.exports = {
         });
     },
 
+    getByHouse: function (req, res) {
+        var houseID = req.params.house;
+        modelTask.find({ houseID }, function (err, task) {
+            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar task', error: err }) };
+            if (task) {
+                return res.json({ task });
+            } else {
+                return res.status(201).json({ message: 'Task não encontrados :(!' });
+            }
+        });
+    },
+
     deleteById: function (req, res) {
         var id = req.params.id;
         modelTask.findByIdAndRemove(id, function (err, task) {
@@ -54,8 +66,8 @@ module.exports = {
     updateById: function (req, res) {
         var id = req.params.id;
         var body = req.body;
-        var task = { 
-            name: body.name, description: body.description, 
+        var task = {
+            name: body.name, description: body.description,
             removed: body.removed, dueDate: body.dueDate,
             assignedUserID: body.assignedUserID, executionDate: body.executionDate
         };

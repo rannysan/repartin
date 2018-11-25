@@ -7,5 +7,6 @@ router.post('/user', controller.create);
 router.get('/user/:id', controller.getById);
 router.get('/user', controller.getById);
 router.put('/user/:id', controller.updateById)
+router.get('/user/house/:id', controller.getByHouse)
 
 module.exports = router;
