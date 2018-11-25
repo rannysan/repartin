@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import View from "./View";
 import { firebaseConnect  } from 'react-redux-firebase'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
 
@@ -11,6 +14,7 @@ class Home extends Component {
   signOut  = (event) => {
     event.preventDefault();
     this.props.firebase.auth().signOut();
+    this.props.history.push('/')
   }
 
   render() {
@@ -21,4 +25,8 @@ class Home extends Component {
   }
 };
 
-export default firebaseConnect()(Home);
+
+export default compose(
+    firebaseConnect(),
+    withRouter,
+  )(Home);

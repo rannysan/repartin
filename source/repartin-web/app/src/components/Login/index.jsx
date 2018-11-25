@@ -2,16 +2,23 @@ import React, { Component } from "react";
 import View from "./View";
 import service from "../../services/service";
 import { firebaseConnect  } from 'react-redux-firebase'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
+
 
 class Login extends Component {
 
    componentDidMount = () => {
     this.props.firebase.auth().onAuthStateChanged(async auth => {
+
       if (auth) {
-        const user = await service.getById('user',auth.uid);
-        if (user) {
+        const response = await service.getById('user',auth.uid);
+
+        if (response !== undefined) {
+          const user = response.user;
           if (!user.removed) {
-            await service.update('user', {
+            await service.update('user', user._id, {
               name: auth.displayName,
               email: auth.email,
               uid: auth.uid,
@@ -19,8 +26,8 @@ class Login extends Component {
               removed: false
             });
             //redirect
+            this.props.history.push('/home')
           }
-
         } else {
           await service.create('user', { 
             name: auth.displayName,
@@ -29,7 +36,9 @@ class Login extends Component {
             houseID: null,
             removed: false
           });
-          //redirect
+          //redirect            
+          this.props.history.push('/home')
+
         }
       }
 
@@ -44,4 +53,9 @@ class Login extends Component {
   }
 }
 
-export default firebaseConnect()(Login);
+
+
+export default compose(
+  firebaseConnect(),
+  withRouter,
+)(Login);
