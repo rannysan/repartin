@@ -31,7 +31,7 @@ module.exports = {
     
     getByHouse: function (req, res) {
         var houseID = req.params.house;
-        modelTask.find({ houseID }, function (err, users) {
+        modelUser.find({ houseID }, function (err, users) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuarios', error: err }) };
             if (users) {
                 return res.json({ users });

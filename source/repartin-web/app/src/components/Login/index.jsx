@@ -25,8 +25,6 @@ class Login extends Component {
               houseID: null,
               removed: false
             });
-            //redirect
-            this.props.history.push('/home')
           }
         } else {
           await service.create('user', { 
@@ -36,9 +34,6 @@ class Login extends Component {
             houseID: null,
             removed: false
           });
-          //redirect            
-          this.props.history.push('/home')
-
         }
       }
 

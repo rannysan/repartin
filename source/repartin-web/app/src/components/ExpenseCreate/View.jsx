@@ -1,14 +1,16 @@
 import React from "react";
-import Login from "../Login";
 import TextField from '@material-ui/core/TextField';
 
-export default props => (
-    <div>
+export default props => {
+    debugger;
+    return(<div>
         <TextField
-        name='name'
-        label='Nome da despesa'
-        onChange={props.handleChange}
+            name='name'
+            label='Nome da despesa'
+            onChange={props.handleChange}
         />
         <button onClick={props.handleSubmit}></button>
     </div>
 )
+}
+
