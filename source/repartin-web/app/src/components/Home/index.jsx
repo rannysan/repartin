@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import View from "./View";
 import { firebaseConnect  } from 'react-redux-firebase'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
 
+  state = {
+    isMember: true // é de uma rep?
+  }
+
   constructor( props ) {
     super(props);
+    this.setMember = this.setMember.bind( this );
   }
 
   signOut  = (event) => {
@@ -18,18 +20,25 @@ class Home extends Component {
       .then(() => {
         this.props.history.push('/')
       });
+
+  }
+
+  setMember( isMemeber ) {
+    this.setState( {
+      isMember: isMemeber
+    } );
   }
 
   render() {
     
     return (
-      <View { ...this.props } signOut={ this.signOut }/>
+      <View 
+        { ...this.props } 
+        { ...this.state }
+        setMember={ this.setMember }
+      />
     );
   }
 };
 
-
-export default compose(
-    firebaseConnect(),
-    withRouter,
-  )(Home);
+export default firebaseConnect()(Home);

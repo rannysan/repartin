@@ -52,12 +52,14 @@ module.exports = {
     updateById: function (req, res) {
         var id = req.params.id;
         var house = { 
-            name: req.params.name,
+            name: req.body.name,
             address: req.body.address,
             color: req.body.color,
             adminID: req.body.adminID,
             removed: req.body.removed
         };
+        console.log(house.name);
+        
         model.findByIdAndUpdate(id, house, function (err, house) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro deletar casa', error: err }) };
             return res.json({ message: 'Casa atualizado com sucesso!' });

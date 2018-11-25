@@ -6,39 +6,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { grey } from "@material-ui/core/colors";
 import logo from "../../../public/images/logo.svg";
 import { compose } from 'recompact'
-import { firebaseConnect  } from 'react-redux-firebase'
-import service from "../../services/service";
+import { firebaseConnect  } from 'react-redux-firebase';
+import styles from "./styles";
 
-const styles = createStyles({
-  root: {
-    backgroundColor: grey[900],
-    height: "100vh"
-  },
-  loginColumn: {
-    height: "100%"
-  },
-  formColumn: {
-    paddingTop: "10rem"
-  },
-  app: {
-    textAlign: "center"
-  },
-  logo: {
-    width: "132px",
-    height: "auto",
-    marginBottom: "0.8rem"
-  },
-  buttons: {
-    paddingTop: "2.2rem"
-  },
-  links: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    paddingBottom: ".4rem"
-  }
-});
 
 const View = ({ classes, firebase }) => {
 
@@ -58,9 +28,6 @@ const View = ({ classes, firebase }) => {
       
     }
   };
-
-
-
   return (
     <main className={classes.root}>
       <Grid container className={classes.loginColumn} spacing={0}>
