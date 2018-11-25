@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import View from "./View";
 
-class FullCard extends Component {
-
-  constructor( props ) {
-    super( props );
-  }
+class CardExpenses extends Component {
 
   render() {
 
@@ -15,4 +11,4 @@ class FullCard extends Component {
   }
 }
 
-export default FullCard;
+export default CardExpenses;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import View from "./View";
 
-class Card extends Component {
+class CardTasks extends Component {
 
   render() {
 
@@ -11,4 +11,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default CardTasks;

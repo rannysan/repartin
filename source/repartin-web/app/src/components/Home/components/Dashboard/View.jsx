@@ -2,7 +2,8 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import FullCard from "./components/FullCard";
-import Card from "./components/Card";
+import CardExpenses from "./components/CardExpenses";
+import CardTasks from "./components/CardTasks";
 import ListCard from "./components/ListCard";
 import styles from "./styles";
 
@@ -15,10 +16,10 @@ const View = ( { signOut } ) => {
           <FullCard />
         </Grid>
         <Grid item xs={ 6 }>
-          <Card />
+          <CardExpenses />
         </Grid>
         <Grid item xs={ 6 }>
-          <Card />
+          <CardTasks />
         </Grid>
         <Grid item xs={ 12 }>
           <ListCard />
