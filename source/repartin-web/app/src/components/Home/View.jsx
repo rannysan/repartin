@@ -9,13 +9,13 @@ const View = ( { isMember, signOut, setMember } ) => {
   // const currentUser = firebase.auth().currentUser;
 
   return ( 
-    <>
+    <main>
       {
         isMember 
         ? <Dashboard /> 
         : <Welcome setMember={ setMember }/>
-      }  
-    </>
+      }
+    </main>
   );
 };
 
