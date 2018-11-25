@@ -29,10 +29,10 @@ const View = ( { signOut } ) => {
           <ListCard />
         </Grid>
         
-        <ButtonBase component={Link} to="/tarefasAdd">
+        <ButtonBase component={Link} to="/tarefas-add">
             <Typography component="span" variant="body2">Tarefa</Typography>
         </ButtonBase>
-        <ButtonBase component={Link} to="/financasAdd">
+        <ButtonBase component={Link} to="/financas-add">
             <Typography component="span" variant="body2">Financas</Typography>
         </ButtonBase>
       </Grid>

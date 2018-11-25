@@ -1,21 +1,4 @@
-Skip to content
- 
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- @goulartt Sign out
-1
-0 1 goulartt/repartin
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
-repartin/source/repartin-web/app/src/components/App/View.jsx
-0186720  40 seconds ago
-@JeanCG7 JeanCG7 Merge branch 'master' of https://github.com/goulartt/repartin
-@renanbatel @JeanCG7 @goulartt
-     
-92 lines (82 sloc)  2.57 KB
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
@@ -60,8 +43,8 @@ const privatePages = {
   "/financas": Expenses,
   "/membros": Members,
   "/perfil": Profile,
-  "/tarefasAdd": TasksAdd,
-  "/financasAdd": ExpenseAdd, // acho que isso nao deveria estar aqui e tambem fosse /financas/criar algo assim
+  "/tarefas-add": TasksAdd,
+  "/financas-add": ExpenseAdd, // acho que isso nao deveria estar aqui e tambem fosse /financas/criar algo assim
   "/republica-add": CreateHouse // foda-se o padrão imposto pela sociedade capitalista
 };
 
@@ -106,17 +89,3 @@ export default ( { store } ) => {
     </Provider>
   );
 };
-
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Press h to open a hovercard with more details.
