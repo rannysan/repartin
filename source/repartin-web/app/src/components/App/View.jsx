@@ -39,7 +39,7 @@ const theme = createMuiTheme( {
   }
 } );
 
- function verificaAutenticacao(props, store) {
+ function checkAuth(props, store) {
   if(store.firebase.auth().currentUser) {
     if ( props.match.url == '/tarefas') {
       return <Tasks />
@@ -84,13 +84,13 @@ export default ( { store } ) => {
               }}/>
               <Route path="/termos-de-uso" component={ TermsOfService } />
               <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
-              <Route path="/tarefas"  render={(props) => verificaAutenticacao(props,store)} />
-              <Route path="/financas" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/tarefasAdd"  render={(props) => verificaAutenticacao(props,store)} />
-              <Route path="/financasAdd" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/membros" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/perfil" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/republica-add" render={(props) =>  verificaAutenticacao(props,store)}/>
+              <Route path="/tarefas"  render={(props) => checkAuth(props,store)} />
+              <Route path="/financas" render={(props) => checkAuth(props,store)}/>
+              <Route path="/tarefasAdd"  render={(props) => checkAuth(props,store)} />
+              <Route path="/financasAdd" render={(props) => checkAuth(props,store)}/>
+              <Route path="/membros" render={(props) => checkAuth(props,store)}/>
+              <Route path="/perfil" render={(props) => checkAuth(props,store)}/>
+              <Route path="/republica-add" render={(props) =>  checkAuth(props,store)}/>
 
               <Route component={ NotFound }/>
             </Switch>
