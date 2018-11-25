@@ -33,7 +33,7 @@ class ExpenseCreate extends Component {
 
 
     handleSubmit = async (e) => {
-        var useId =  this.props.firebase.auth().currentUser.uid;
+        const useId =  this.props.firebase.auth().currentUser.uid;
         this.setState({useId})
 
         const form = this.state;
@@ -45,12 +45,27 @@ class ExpenseCreate extends Component {
         e.preventDefault();
     }
 
-    getExpense = async () => {
-        if(this.props.idExpense != undefined){
-            this.state = await service.getById('expense', props.idExpose)
+    saveRepeatingExpense = async () => {
+        const repExpense = {
+            name: this.props.name,
+            dueDate: this.props.dueDate,
+            baseValue: this.props.value,
+            houseID: this.props.houseID,
+            removed: this.props.removed
         }
+        await service.create('rExpense', respExpense)
+            .then((response) => {
+                var today = new Date();
+                while(today <= repExpense.dueData){
+                    
+                }
+            })
     }
     
+    generateRepeatingExpense = async () => {
+
+    }
+
     render() {
         return (
             <View handleChange={this.handleChange}
