@@ -5,7 +5,7 @@ import { firebaseConnect  } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
-
+import Home from '../Home';
 class Login extends Component {
 
   constructor(props) {
@@ -15,15 +15,16 @@ class Login extends Component {
 
 
     componentWillMount = () => {
-
     this.setState({loading: true});
     this.props.firebase.auth().onAuthStateChanged(async auth => {
       if (auth) {
-        this.props.history.push('/home');
+        //this.props.history.push('/home');
         const response = await service.getById('user',auth.uid);
+        this.setState({loading: false})
 
         if (response !== undefined) {
           const user = response.user;
+          
           if (!user.removed) {
             await service.update('user', user._id, {
               name: auth.displayName,
@@ -56,6 +57,7 @@ class Login extends Component {
           if (cred) {
               this.props.firebase.auth().signInAndRetrieveDataWithCredential(cred)
               .then(() => {
+                this.setState({loading: false})
                 console.log('Logado via storage');
               }).catch(function(error) {
                 this.setState({loading: false})
@@ -76,8 +78,12 @@ class Login extends Component {
     
     return (
       <Fragment>
-        { this.state.loading == true ? <span>Carregando</span> : 
+        { this.props.firebase.auth().currentUser == null ?
+          this.state.loading == true ? 
+          <span>Carregando</span> : 
           <View { ...this.props }/>
+          :
+          <Home />
         }
       </Fragment>
     );
