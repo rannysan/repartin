@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import View from "./View";
+import { firebaseConnect  } from 'react-redux-firebase'
 
-export default class extends Component {
+class Home extends Component {
 
   constructor( props ) {
     super( props );
-    this.signOut = this.signOut.bind( this );
   }
 
-  signOut( event ) {
+  signOut  = (event) => {
     event.preventDefault();
-    this.props.firebaseAuth().signOut();
+    this.props.firebase.auth().signOut();
   }
 
   render() {
@@ -20,3 +20,5 @@ export default class extends Component {
     );
   }
 };
+
+export default firebaseConnect()(Home);

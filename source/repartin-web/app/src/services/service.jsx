@@ -43,6 +43,18 @@ const service = {
                 console.log(`Erro ao atualizar documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
                 return undefined;
             });
+    },
+
+    delete: async (path, id) => {
+        console.log(`Deletando documento em ${path} com o id: ${JSON.stringify(id)}`);
+
+        return axios.delete(`${url}/${path}/`, id)
+            .then(response => {
+                return response.data;
+            }).catch((error) =>  {
+                console.log(`Erro ao deletar documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
+                return undefined;
+            });
     }
 }
 

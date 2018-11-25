@@ -8,6 +8,6 @@ export default ( { firebase, auth } ) => {
   return ! isLoaded
     ? ( <h1>Loading...</h1> )
     : isEmpty( auth )
-      ? ( <Login firebaseAuth={ firebase.auth }/> )
-      : ( <Home firebaseAuth={ firebase.auth }/> );
+      ? ( <Login /> )
+      : ( <Home /> );
 }

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import View from "./View";
 import service from "../../services/service";
+import { firebaseConnect  } from 'react-redux-firebase'
 
-export default class extends Component {
+class Login extends Component {
 
    componentDidMount = () => {
-    this.props.firebaseAuth().onAuthStateChanged(async auth => {
+    this.props.firebase.auth().onAuthStateChanged(async auth => {
       if (auth) {
         const user = await service.getById('user',auth.uid);
         if (user) {
@@ -42,3 +43,5 @@ export default class extends Component {
     );
   }
 }
+
+export default firebaseConnect()(Login);

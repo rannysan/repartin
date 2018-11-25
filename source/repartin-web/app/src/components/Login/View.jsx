@@ -5,6 +5,8 @@ import { Grid, createStyles, Typography, ButtonBase } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { grey } from "@material-ui/core/colors";
 import logo from "../../../public/images/logo.svg";
+import { compose } from 'recompact'
+import { firebaseConnect  } from 'react-redux-firebase'
 
 const styles = createStyles({
   root: {
@@ -37,12 +39,13 @@ const styles = createStyles({
   }
 });
 
-const View = ({ firebaseAuth, classes }) => {
+const View = ({ classes, firebase }) => {
+
   const uiConfig = {
     signInFlow: "popup",
     signInOptions: [
-      firebaseAuth.GoogleAuthProvider.PROVIDER_ID,
-      firebaseAuth.FacebookAuthProvider.PROVIDER_ID
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
     callbacks: {
       signInSuccessWithAuthResult: () => false
@@ -64,7 +67,7 @@ const View = ({ firebaseAuth, classes }) => {
           </Grid>
 
           <Grid item className={classes.buttons} xs={12}>
-            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth()} />
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
           </Grid>
 
           <Grid item className={classes.links} xs={12}>
@@ -83,4 +86,7 @@ const View = ({ firebaseAuth, classes }) => {
   );
 };
 
-export default withStyles(styles)(View);
+export default compose(
+  withStyles(styles),
+  firebaseConnect()
+)(View);
