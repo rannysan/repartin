@@ -9,8 +9,18 @@ class Home extends Component {
   }
 
   constructor( props ) {
-    super( props );
+    super(props);
     this.setMember = this.setMember.bind( this );
+  }
+
+  signOut  = (event) => {
+    event.preventDefault();
+    localStorage.removeItem('auth-credential');
+    this.props.firebase.auth().signOut()
+      .then(() => {
+        this.props.history.push('/')
+      });
+
   }
 
   setMember( isMemeber ) {

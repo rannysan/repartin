@@ -9,6 +9,7 @@ import { compose } from 'recompact'
 import { firebaseConnect  } from 'react-redux-firebase';
 import styles from "./styles";
 
+
 const View = ({ classes, firebase }) => {
 
   const uiConfig = {
@@ -18,7 +19,13 @@ const View = ({ classes, firebase }) => {
       firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
     callbacks: {
-      signInSuccessWithAuthResult: () => false
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        var user = authResult.user;
+        var credential = authResult.credential;
+        service.saveCredential(JSON.stringify(credential));
+        return false;
+      },
+      
     }
   };
   return (

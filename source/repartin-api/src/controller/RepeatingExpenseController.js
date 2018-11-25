@@ -18,7 +18,7 @@ module.exports = {
 
     getByName: function (req, res) {
         var name = req.body.name;
-        model.findOne({ name: name }, function (err, rExpense) {
+        model.findOne({ name: name , removed : false}, function (err, rExpense) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar despesa fixa', error: err }) };
             if (rExpense) {
                 return res.json({ rExpense: rExpense, message: 'Despesa fixa encontrado!' });
@@ -30,7 +30,7 @@ module.exports = {
 
     getById: function (req, res) {
         var id = req.body.id;
-        model.findOne({ _id: id }, function (err, rExpense) {
+        model.findOne({ _id: id, removed : false }, function (err, rExpense) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar despesa fixa', error: err }) };
             if (rExpense) {
                 return res.json({ rExpense: rExpense, message: 'Despesa fixa encontrado!' });

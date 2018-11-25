@@ -72,6 +72,16 @@ const service = {
                 console.log(`Erro ao deletar documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
                 return undefined;
             });
+    },
+
+
+    saveCredential: (token) => {
+        localStorage.setItem('auth-credential', JSON.stringify(token));
+    },
+
+    getCredential: () => {
+        var retrievedObject = localStorage.getItem('auth-credential');
+        return JSON.parse(JSON.parse(retrievedObject));
     }
 }
 

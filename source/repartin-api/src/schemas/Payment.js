@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const PaymentSchema = mongoose.Schema({
-    userId: mongoose.Types.ObjectId,
+    userId: String,
     value: mongoose.Schema.Types.Decimal128,
     date: Date,
     removed: Boolean

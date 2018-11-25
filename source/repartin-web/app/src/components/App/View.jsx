@@ -1,19 +1,19 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
-import FrontPage from "../FrontPage";
 import Members from "../Members";
 import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
-import TaskCreate from "../TaskCreate";
-import ExpenseCreate from "../ExpenseCreate";
 import Home from "../Home";
+import Login from "../Login";
 import Tasks from "../Tasks";
 import Expenses from "../Expenses";
 import Profile from "../Profile";
 import NotFound from "../NotFound";
+import TasksAdd from "../TaskCreate"
+import ExpenseAdd from "../ExpenseCreate"
 
 const theme = createMuiTheme( {
   palette: {
@@ -37,6 +37,34 @@ const theme = createMuiTheme( {
   }
 } );
 
+function verificaAutenticacao(props, store) {
+  if(store.firebase.auth().currentUser) {
+    if ( props.match.url == '/home') {
+      return <Home />
+    }
+    if ( props.match.url == '/tarefas') {
+      return <Tasks />
+    }
+    if ( props.match.url == '/financas') {
+      return <Expenses />
+    }
+    if ( props.match.url == '/membros') {
+      return <Members />
+    }
+    if ( props.match.url == '/perfil') {
+      return <Profile />
+    }
+    if ( props.match.url == '/tarefasAdd') {
+      return <TasksAdd />
+    }
+    if ( props.match.url == '/financasAdd') {
+      return <ExpenseAdd />
+    }
+  }
+ 
+  return <Redirect to='/' />
+}
+
 export default ( { store } ) => {
 
   return (
@@ -44,18 +72,27 @@ export default ( { store } ) => {
       <MuiThemeProvider theme={ theme }>
         <CssBaseline>
           <Router>
-            <div className="App">
-              <Switch>
-                <Route exact path="/" component={ FrontPage }/>
-                <Route path="/membros" component={ Members }/>
-                <Route path="/termos-de-uso" component={ TermsOfService }/>
-                <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
-                <Route path="/tarefas" component={ Tasks }/>
-                <Route path="/financas" component={ Expenses }/>
-                <Route path="/perfil" component={ Profile }/>
-                <Route component={ NotFound }/>
-              </Switch>
-            </div>
+            <Switch>
+              <Route exact path="/"  render={props => {
+                    var auth = store.firebase.auth().currenUser;
+                    if (auth !== undefined) {
+                        return <Redirect to='/home' />
+                    }
+                    return <Login {...props} />
+              }}/>
+              <Route path="/termos-de-uso" component={ TermsOfService } />
+              <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
+              <Route path="/tarefas"  render={(props) => verificaAutenticacao(props,store)} />
+              <Route path="/financas" render={(props) => verificaAutenticacao(props,store)}/>
+              <Route path="/tarefasAdd"  render={(props) => verificaAutenticacao(props,store)} />
+              <Route path="/financasAdd" render={(props) => verificaAutenticacao(props,store)}/>
+              <Route path="/home" render={(props) => verificaAutenticacao(props,store)}/>
+              <Route path="/membros" render={(props) => verificaAutenticacao(props,store)}/>
+              <Route path="/perfil" render={(props) => verificaAutenticacao(props,store)}/>
+
+              <Route component={ NotFound }/>
+            </Switch>
+
           </Router>
         </CssBaseline>
       </MuiThemeProvider>
