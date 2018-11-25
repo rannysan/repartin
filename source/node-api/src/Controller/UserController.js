@@ -53,8 +53,26 @@ module.exports = {
         var body = req.body;
         var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed };
         modelUser.findByIdAndUpdate(id, user, function (err, user) {
-            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro deletar usuário', error: err }) };
+            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao editar usuário', error: err }) };
             return res.json({ message: 'Usuário atualizado com sucesso!' });
+        });
+    },
+    linkHouse: function (req, res) {
+        var id = req.body.id;
+        var body = req.body;
+        var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed };
+        modelUser.findByIdAndUpdate(id, user, function (err, user) {
+            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao vincular usuário', error: err }) };
+            return res.json({ message: 'Usuário vinculado com sucesso!' });
+        });
+    },
+    unlinkHouse: function(req, res){
+        var id = req.body.id;
+        var body = req.body;
+        var user = { name: body.name, email: body.email, houseID: null, removed: body.removed };
+        modelUser.findByIdAndUpdate(id, user, function (err, user) {
+            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao desvincular usuário', error: err }) };
+            return res.json({ message: 'Usuário desvinculado com sucesso!' });
         });
     }
 };
