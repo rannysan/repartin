@@ -2,7 +2,6 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
 import Members from "../Members";
 import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
@@ -15,7 +14,6 @@ import NotFound from "../NotFound";
 import TasksAdd from "../Tasks/TaskCreate"
 import ExpenseAdd from "../Expenses/ExpenseCreate"
 import CreateHouse from "../Home/components/Welcome/components/CreateHouse";
-
 
 const theme = createMuiTheme( {
   palette: {
@@ -39,36 +37,28 @@ const theme = createMuiTheme( {
   }
 } );
 
- function verificaAutenticacao(props, store) {
-  if(store.firebase.auth().currentUser) {
-    if ( props.match.url == '/tarefas') {
-      return <Tasks />
-    }
-    if ( props.match.url == '/financas') {
-      return <Expenses />
-    }
-    if ( props.match.url == '/membros') {
-      return <Members />
-    }
-    if ( props.match.url == '/perfil') {
-      return <Profile />
-    }
-    if ( props.match.url == '/tarefasAdd') {
-      return <TasksAdd />
-    }
-    if ( props.match.url == '/financasAdd') {
-      return <ExpenseAdd />
-    }
-    if ( props.match.url == '/republica-add') {
-        return <CreateHouse />
-    }
+const privatePages = {
+  "/tarefas": Tasks,
+  "/financas": Expenses,
+  "/membros": Members,
+  "/perfil": Profile,
+  "/tarefasAdd": TasksAdd,
+  "/financasAdd": ExpenseAdd, // acho que isso nao deveria estar aqui e tambem fosse /financas/criar algo assim
+  "/republica-add": CreateHouse // foda-se o padrão imposto pela sociedade capitalista
+};
+
+function checkAuth(props, store) {
+  
+  if( store.firebase.auth().currentUser ) {
+    const Component = privatePages[ props.match.url ];
+    return <Component />;
   }
  
   return <Redirect to='/' />
 }
 
 export default ( { store } ) => {
-
+  
   return (
     <Provider store={ store }>
       <MuiThemeProvider theme={ theme }>
@@ -82,16 +72,13 @@ export default ( { store } ) => {
                     }
                     return <Login {...props} />
               }}/>
-              <Route path="/termos-de-uso" component={ TermsOfService } />
+              <Route path="/termos-de-uso" component={ TermsOfService }/>
               <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
-              <Route path="/tarefas"  render={(props) => verificaAutenticacao(props,store)} />
-              <Route path="/financas" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/tarefasAdd"  render={(props) => verificaAutenticacao(props,store)} />
-              <Route path="/financasAdd" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/membros" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/perfil" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/republica-add" render={(props) =>  verificaAutenticacao(props,store)}/>
-
+              {
+                Object.keys( privatePages ).map( ( path, key ) => {
+                  return <Route path={ path } key={ key } render={(props) => checkAuth(props,store)}/>
+                } )
+              }
               <Route component={ NotFound }/>
             </Switch>
 

@@ -1,4 +1,5 @@
 var model = require('../schemas/House.js');
+var user = require('../controller/UserController');
 
 module.exports = {
     create: function (req, res) {
@@ -64,5 +65,12 @@ module.exports = {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro deletar casa', error: err }) };
             return res.json({ message: 'Casa atualizado com sucesso!' });
         });
+    },
+    getAdmin: function (req, res){
+        var id = req.params.id;
+        model.findById(id,(err, house)=>{
+            if (err) { return res.status(404).json({ message: 'Ops! Ocorreu um erro ao encontrar usuarios', error: err }) };
+            return user.getAdminById(house,res);
+        })
     }
 };
