@@ -12,8 +12,8 @@ import Tasks from "../Tasks";
 import Expenses from "../Expenses";
 import Profile from "../Profile";
 import NotFound from "../NotFound";
-import TasksAdd from "../TaskCreate"
-import ExpenseAdd from "../ExpenseCreate"
+import TasksAdd from "../Tasks/TaskCreate"
+import ExpenseAdd from "../Expenses/ExpenseCreate"
 import CreateHouse from "../Home/components/Welcome/components/CreateHouse";
 
 
