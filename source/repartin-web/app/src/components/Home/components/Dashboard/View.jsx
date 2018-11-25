@@ -27,6 +27,7 @@ const View = ( { signOut } ) => {
           <ListCard />
           <ListCard />
         </Grid>
+        
         <ButtonBase component={Link} to="/tarefasAdd">
             <Typography component="span" variant="body2">Tarefa</Typography>
         </ButtonBase>
