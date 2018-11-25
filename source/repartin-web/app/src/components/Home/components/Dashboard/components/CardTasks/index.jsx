@@ -3,10 +3,15 @@ import View from "./View";
 
 class CardTasks extends Component {
 
+  openTasks( event ) {
+    confirm( "open tasks" ) ?  '' : '';
+  }
+
   render() {
 
     return (
-      <View />
+      <View
+      openTasks = {this.openTasks} />
     );
   }
 }

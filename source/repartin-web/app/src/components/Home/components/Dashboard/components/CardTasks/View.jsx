@@ -4,13 +4,14 @@ import styles from "./styles";
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography } from "@material-ui/core";
 
-const View = ( {} ) => {
+const View = ( {openTasks} ) => {
 
   return (
-    <Card raised={true}>
+    <Card raised={true} onClick={ openTasks }>
       <CardContent>
         <Typography color="textPrimary" component="h1" variant="h5" align="center">TAREFAS</Typography>
         <Typography component="h2" align="center" variant="h3">5</Typography>
+        <Typography component="h3" align="center" variant="subtitle1">PENDENTES</Typography>
       </CardContent>
     </Card>
   );

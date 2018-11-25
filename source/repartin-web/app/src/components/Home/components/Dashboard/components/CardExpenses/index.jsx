@@ -3,10 +3,15 @@ import View from "./View";
 
 class CardExpenses extends Component {
 
+  openExpenses( event ) {
+    confirm( "open expenses" ) ?  '' : '';
+  }
+  
   render() {
 
     return (
-      <View />
+      <View 
+      openExpenses = {this.openExpenses} />
     );
   }
 }
