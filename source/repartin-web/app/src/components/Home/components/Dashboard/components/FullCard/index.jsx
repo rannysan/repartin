@@ -6,7 +6,7 @@ class FullCard extends Component {
   render() {
 
     return (
-      <View/>
+      <View />
     );
   }
 }

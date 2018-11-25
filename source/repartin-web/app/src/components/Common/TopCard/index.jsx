@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import View from "./View";
 
-class Card extends Component {
+class TopCard extends Component {
 
   render() {
 
     return (
-      <View />
+      <View 
+        { ...this.props }
+      />
     );
   }
 }
 
-export default Card;
+export default TopCard;
