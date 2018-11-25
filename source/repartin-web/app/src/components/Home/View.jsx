@@ -1,31 +1,22 @@
 import React from "react";
-import { compose } from 'recompact'
-import { firebaseConnect  } from 'react-redux-firebase'
 import { withStyles } from "@material-ui/core/styles";
-import { createStyles } from "@material-ui/core";
+import Dashboard from "./components/Dashboard";
+import Welcome from "./components/Welcome";
+import styles from "./styles";
 
-const styles = createStyles({
-});
+const View = ( { isMember, signOut, setMember } ) => {
 
-const View = ( { firebase, signOut } ) => {
+  // const currentUser = firebase.auth().currentUser;
 
   return ( 
-    <div>
-      <div>
-      <div>Signed in</div>
-      <button onClick={ signOut }>Sair</button>
-    </div>
-    <h1>Welcome { firebase.auth().currentUser.displayName }</h1>
-    <img
-      alt="profile picture"
-      src={ firebase.auth().currentUser.photoURL }
-    />
-    
-    </div>
+    <main>
+      {
+        isMember 
+        ? <Dashboard /> 
+        : <Welcome setMember={ setMember }/>
+      }
+    </main>
   );
 };
 
-export default compose(
-  withStyles(styles),
-  firebaseConnect()
-)(View);
+export default withStyles(styles)(View);
