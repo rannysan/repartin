@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import View from './View'
-import service from "../../services/service";
+import service from "../../../services/service";
 import { firebaseConnect  } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom';
@@ -29,12 +29,16 @@ class ExpenseCreate extends Component {
         const { name, value } = e.target;
         this.setState({ ...this.state, [name]: value })
         e.target.value = value;
+        console.log(this.state);
     }
 
 
     handleSubmit = async (e) => {
-        var useId =  this.props.firebase.auth().currentUser.uid;
+        const useId = this.props.firebase.auth().currentUser.uid;
+        const user = await service.getById('user', useId);
+
         this.setState({useId})
+        this.setState({houseID: user.houseID})
 
         const form = this.state;
         if(this.props.idExpense == undefined)
@@ -50,7 +54,7 @@ class ExpenseCreate extends Component {
             this.state = await service.getById('expense', props.idExpose)
         }
     }
-    
+
     render() {
         return (
             <View handleChange={this.handleChange}

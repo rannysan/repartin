@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import View from './View'
-import service from "../../services/service";
+import service from "../../../services/service";
 import { firebaseConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom';
@@ -24,6 +24,10 @@ class TaskCreate extends Component {
         const { name, value } = e.target;
         this.setState({ ...this.state, [name]: value })
         e.target.value = value;
+    }
+
+    handleChangeUser = (e) => {
+        
     }
 
 
