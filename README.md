@@ -12,5 +12,6 @@
 
 ## repartin-web
     - `npm start` inicia o servidor de desenvolvimento
+    - `npm start:app` inicia o servidor de desenvolvimento e a api
     - `npm build` builda o projeto para produção
 
