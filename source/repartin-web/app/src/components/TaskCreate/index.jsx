@@ -27,6 +27,9 @@ export default class TaskCreate extends Component {
 
 
     handleSubmit = async (e) => {
+        var useId =  this.props.firebase.auth().currentUser.uid;
+        this.setState({useId})
+        
         const form = this.state;
         await service.create('task', form);
         e.preventDefault();

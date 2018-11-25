@@ -7,7 +7,7 @@ import FrontPage from "../FrontPage";
 import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
 import TaskCreate from "../TaskCreate";
-import ExpenseCreate from "../TaskCreate";
+import ExpenseCreate from "../ExpenseCreate";
 import Home from "../Home";
 
 const theme = createMuiTheme( {
@@ -35,7 +35,6 @@ export default ( { store } ) => {
               <Route path="/task" component={ TaskCreate }/>
               <Route path="/expense" component={ ExpenseCreate }/>
               <Route path="/home" component={ Home }/>
-
             </div>
           </Router>
         </CssBaseline>
