@@ -7,6 +7,7 @@ import { grey } from "@material-ui/core/colors";
 import logo from "../../../public/images/logo.svg";
 import { compose } from 'recompact'
 import { firebaseConnect  } from 'react-redux-firebase'
+import service from "../../services/service";
 
 const styles = createStyles({
   root: {
@@ -48,7 +49,13 @@ const View = ({ classes, firebase }) => {
       firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
     callbacks: {
-      signInSuccessWithAuthResult: () => false
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        var user = authResult.user;
+        var credential = authResult.credential;
+        service.saveCredential(JSON.stringify(credential));
+        return false;
+      },
+      
     }
   };
 
