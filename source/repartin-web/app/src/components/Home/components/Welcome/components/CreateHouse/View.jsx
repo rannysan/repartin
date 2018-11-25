@@ -5,7 +5,7 @@ import styles from "./styles";
 const View = ( {} ) => {
 
   return (
-    <h1>Card</h1>
+    <h1>Cadastrar Republica</h1>
   );
 }
 
