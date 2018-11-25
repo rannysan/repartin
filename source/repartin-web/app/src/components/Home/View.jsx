@@ -20,6 +20,7 @@ const View = ( { firebase, signOut } ) => {
       alt="profile picture"
       src={ firebase.auth().currentUser.photoURL }
     />
+    
     </div>
   );
 };

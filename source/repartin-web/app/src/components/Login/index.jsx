@@ -6,6 +6,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 
+
 class Login extends Component {
 
    componentDidMount = () => {
@@ -25,6 +26,7 @@ class Login extends Component {
               removed: false
             });
             //redirect
+            this.props.history.push('/home')
           }
         } else {
           await service.create('user', { 
@@ -34,7 +36,9 @@ class Login extends Component {
             houseID: null,
             removed: false
           });
-          //redirect
+          //redirect            
+          this.props.history.push('/home')
+
         }
       }
 
