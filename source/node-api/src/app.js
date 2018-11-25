@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const port = 8080;
+const port = 3000;
 const data = require('./BD/connection');
 const UserRouter = require('./routes/User');
 var controller = require('./Controller/UserController.js');
@@ -22,5 +22,7 @@ app.delete('/user', function (req, res) {
 });
 
 app.post('/user/create', controller.create);
+app.get('/user/:id', controller.getById)
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

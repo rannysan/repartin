@@ -5,7 +5,7 @@ module.exports = {
         var user = new modelUser({
             name: req.body.name,
             email: req.body.email,
-            token: req.body.token,
+            uid: req.body.uid,
             houseID: req.body.houseID,
             removed: false
         });
@@ -29,8 +29,8 @@ module.exports = {
     },
 
     getById: function (req, res) {
-        var id = req.body.id;
-        modelUser.findOne({ _id: id }, function (err, user) {
+        var id = req.params.id;
+        modelUser.findOne({ uid: id }, function (err, user) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
             if (user) {
                 return res.json({ user: user, message: 'Usuário encontrado!' });
