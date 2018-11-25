@@ -19,7 +19,7 @@ const View = ( { createHouse, joinHouse, signOut, classes } ) => {
 
         <Grid item xs={ 12 }>
           <div className={ classes.actions }>
-            <Button className={ `${ classes.firstAction } ${ classes.action }` } fullWidth variant="contained" component={Link} to="/create-house">Casdastrar uma república</Button>
+            <Button className={ `${ classes.firstAction } ${ classes.action }` } fullWidth variant="contained" component={Link} to="/republica-add">Casdastrar uma república</Button>
             <Button className={ classes.action } fullWidth variant="contained" onClick={ joinHouse }>Entrar em uma república</Button>
           </div>
         </Grid>

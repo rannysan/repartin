@@ -14,6 +14,8 @@ import Profile from "../Profile";
 import NotFound from "../NotFound";
 import TasksAdd from "../TaskCreate"
 import ExpenseAdd from "../ExpenseCreate"
+import CreateHouse from "../Home/components/Welcome/components/CreateHouse";
+
 
 const theme = createMuiTheme( {
   palette: {
@@ -27,7 +29,7 @@ const theme = createMuiTheme( {
   }
 } );
 
-function verificaAutenticacao(props, store) {
+ function verificaAutenticacao(props, store) {
   if(store.firebase.auth().currentUser) {
     if ( props.match.url == '/tarefas') {
       return <Tasks />
@@ -46,6 +48,9 @@ function verificaAutenticacao(props, store) {
     }
     if ( props.match.url == '/financasAdd') {
       return <ExpenseAdd />
+    }
+    if ( props.match.url == '/republica-add') {
+        return <CreateHouse />
     }
   }
  
@@ -75,6 +80,7 @@ export default ( { store } ) => {
               <Route path="/financasAdd" render={(props) => verificaAutenticacao(props,store)}/>
               <Route path="/membros" render={(props) => verificaAutenticacao(props,store)}/>
               <Route path="/perfil" render={(props) => verificaAutenticacao(props,store)}/>
+              <Route path="/republica-add" render={(props) =>  verificaAutenticacao(props,store)}/>
 
               <Route component={ NotFound }/>
             </Switch>
