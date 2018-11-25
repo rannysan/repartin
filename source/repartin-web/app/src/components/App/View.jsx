@@ -1,8 +1,25 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @goulartt Sign out
+1
+0 1 goulartt/repartin
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
+repartin/source/repartin-web/app/src/components/App/View.jsx
+0186720  40 seconds ago
+@JeanCG7 JeanCG7 Merge branch 'master' of https://github.com/goulartt/repartin
+@renanbatel @JeanCG7 @goulartt
+     
+92 lines (82 sloc)  2.57 KB
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
 import Members from "../Members";
 import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
@@ -12,10 +29,9 @@ import Tasks from "../Tasks";
 import Expenses from "../Expenses";
 import Profile from "../Profile";
 import NotFound from "../NotFound";
-import TasksAdd from "../TaskCreate"
-import ExpenseAdd from "../ExpenseCreate"
+import TasksAdd from "../Tasks/TaskCreate"
+import ExpenseAdd from "../Expenses/ExpenseCreate"
 import CreateHouse from "../Home/components/Welcome/components/CreateHouse";
-
 
 const theme = createMuiTheme( {
   palette: {
@@ -39,36 +55,28 @@ const theme = createMuiTheme( {
   }
 } );
 
- function checkAuth(props, store) {
-  if(store.firebase.auth().currentUser) {
-    if ( props.match.url == '/tarefas') {
-      return <Tasks />
-    }
-    if ( props.match.url == '/financas') {
-      return <Expenses />
-    }
-    if ( props.match.url == '/membros') {
-      return <Members />
-    }
-    if ( props.match.url == '/perfil') {
-      return <Profile />
-    }
-    if ( props.match.url == '/tarefasAdd') {
-      return <TasksAdd />
-    }
-    if ( props.match.url == '/financasAdd') {
-      return <ExpenseAdd />
-    }
-    if ( props.match.url == '/republica-add') {
-        return <CreateHouse />
-    }
+const privatePages = {
+  "/tarefas": Tasks,
+  "/financas": Expenses,
+  "/membros": Members,
+  "/perfil": Profile,
+  "/tarefasAdd": TasksAdd,
+  "/financasAdd": ExpenseAdd, // acho que isso nao deveria estar aqui e tambem fosse /financas/criar algo assim
+  "/republica-add": CreateHouse // foda-se o padrão imposto pela sociedade capitalista
+};
+
+function checkAuth(props, store) {
+  
+  if( store.firebase.auth().currentUser ) {
+    const Component = privatePages[ props.match.url ];
+    return <Component />;
   }
  
   return <Redirect to='/' />
 }
 
 export default ( { store } ) => {
-
+  
   return (
     <Provider store={ store }>
       <MuiThemeProvider theme={ theme }>
@@ -82,16 +90,13 @@ export default ( { store } ) => {
                     }
                     return <Login {...props} />
               }}/>
-              <Route path="/termos-de-uso" component={ TermsOfService } />
+              <Route path="/termos-de-uso" component={ TermsOfService }/>
               <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
-              <Route path="/tarefas"  render={(props) => checkAuth(props,store)} />
-              <Route path="/financas" render={(props) => checkAuth(props,store)}/>
-              <Route path="/tarefasAdd"  render={(props) => checkAuth(props,store)} />
-              <Route path="/financasAdd" render={(props) => checkAuth(props,store)}/>
-              <Route path="/membros" render={(props) => checkAuth(props,store)}/>
-              <Route path="/perfil" render={(props) => checkAuth(props,store)}/>
-              <Route path="/republica-add" render={(props) =>  checkAuth(props,store)}/>
-
+              {
+                Object.keys( privatePages ).map( ( path, key ) => {
+                  return <Route path={ path } key={ key } render={(props) => checkAuth(props,store)}/>
+                } )
+              }
               <Route component={ NotFound }/>
             </Switch>
 
@@ -102,3 +107,16 @@ export default ( { store } ) => {
   );
 };
 
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Press h to open a hovercard with more details.

@@ -40,7 +40,17 @@ module.exports = {
             }
         });
     },
-
+    getAdminById: (req, res) => {
+        var id = req.adminId;
+        modelUser.findOne({ id: id, removed : false }, (err, user) => {
+            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
+            if (user) {
+                return res.json({ user: user, message: 'Usuário encontrado!' });
+            } else {
+                return res.status(201).json({ message: 'Usuário não encontrado' });
+            }
+        });
+    },
     getById: (req, res) => {
         var id = req.params.id;
         modelUser.findOne({ uid: id, removed : false }, (err, user) => {
