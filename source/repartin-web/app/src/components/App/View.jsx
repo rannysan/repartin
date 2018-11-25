@@ -15,7 +15,17 @@ const theme = createMuiTheme( {
   palette: {
     type: "dark",
     background: {
-      default: grey[900]
+      default: "#0c0c0c"
+    },
+    primary: {
+      main: "#333333"
+    },
+    secondary: {
+      main: "#cccccc"
+    },
+    text: {
+      primary: "#cccccc",
+      secondary: "#ffffff"
     }
   },
   typography: {
