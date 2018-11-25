@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 
 const expenseSchema = mongoose.Schema({
     name: String,
-    value: Float64Array,
+    value: mongoose.Schema.Types.Decimal128,
     useId: Number,
-    assignedUserID: Number,
+    assignedUserID: String,
     payments: Array,
     dueDate: Date,
-    repeatingExpenseID: Number,
+    repeatingExpenseID: String,
     houseID: Number,
     removed: Boolean
 });

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const PaymentSchema = mongoose.Schema({
     userId: Number,
-    value: Float64Array,
+    value: mongoose.Schema.Types.Decimal128,
     date: Date,
     removed: Boolean
 });

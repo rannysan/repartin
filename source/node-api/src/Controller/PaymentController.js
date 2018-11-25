@@ -1,4 +1,4 @@
-var model = require('../Schemas/Payment.js');
+var model = require('../schemas/Payment.js');
 
 module.exports = {
     create: function (req, res) {
@@ -16,31 +16,31 @@ module.exports = {
     },
 
     getByName: function (req, res) {
-        var name = req.body.name;
+        var name = req.params.name;
         model.findOne({ name: name }, function (err, payment) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar pagamento', error: err }) };
             if (payment) {
                 return res.json({ payment: payment, message: 'pagamento encontrada!' });
             } else {
-                return res.json({ payment: payment, message: 'pagamento não encontrada :(!' });
+                return res.status(201).json({ payment: payment, message: 'pagamento não encontrada :(!' });
             }
         });
     },
 
     getById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         model.findOne({ _id: id }, function (err, payment) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar pagamento', error: err }) };
             if (payment) {
                 return res.json({ payment: payment, message: 'pagamento encontrada!' });
             } else {
-                return res.json({ payment: payment, message: 'pagamento não encontrada :(!' });
+                return res.status(201).json({ payment: payment, message: 'pagamento não encontrada :(!' });
             }
         });
     },
 
     deleteById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         model.findByIdAndRemove(id, function (err, payment) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao deletar pagamento', error: err }) };
             return res.json({ message: 'pagamento excluida com sucesso!' });
@@ -48,7 +48,7 @@ module.exports = {
     },
 
     updateById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         var payment = { 
             primary: req.body.primary,
             onPrimary: req.body.onPrimary,

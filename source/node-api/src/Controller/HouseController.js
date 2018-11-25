@@ -1,9 +1,9 @@
-var model = require('../Schemas/House.js');
+var model = require('../schemas/House.js');
 
 module.exports = {
     create: function (req, res) {
         var house = new model({
-            name: req.body.name,
+            name: req.params.name,
             address: req.body.address,
             creation: req.body.creation,
             color: req.body.color,
@@ -18,31 +18,31 @@ module.exports = {
     },
 
     getByName: function (req, res) {
-        var name = req.body.name;
+        var name = req.params.name;
         model.findOne({ name: name }, function (err, house) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar casa', error: err }) };
             if (house) {
                 return res.json({ house: house, message: 'Casa encontrado!' });
             } else {
-                return res.json({ house: house, message: 'Casa não encontrado :(!' });
+                return res.status(201).json({ house: house, message: 'Casa não encontrado :(!' });
             }
         });
     },
 
     getById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         model.findOne({ _id: id }, function (err, house) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar casa', error: err }) };
             if (house) {
                 return res.json({ house: house, message: 'Casa encontrado!' });
             } else {
-                return res.json({ house: house, message: 'Casa não encontrado :(!' });
+                return res.status(201).json({ house: house, message: 'Casa não encontrado :(!' });
             }
         });
     },
 
     deleteById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         model.findByIdAndRemove(id, function (err, house) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro deletar casa', error: err }) };
             return res.json({ message: 'Casa excluida com sucesso!' });
@@ -50,9 +50,9 @@ module.exports = {
     },
 
     updateById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         var house = { 
-            name: req.body.name,
+            name: req.params.name,
             address: req.body.address,
             color: req.body.color,
             adminID: req.body.adminID,

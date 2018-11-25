@@ -1,9 +1,9 @@
-const modelUser = require('../Schemas/User.js');
+const modelUser = require('../schemas/User.js');
 
 module.exports = {
     create: (req, res) => {
         var user = new modelUser({
-            name: req.body.name,
+            name: req.params.name,
             email: req.body.email,
             uid: req.body.uid,
             houseID: req.body.houseID,
@@ -17,7 +17,7 @@ module.exports = {
     },
 
     getByName: (req, res) => {
-        var name = req.body.name;
+        var name = req.params.name;
         modelUser.findOne({ name: name }, (err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
             if (user) {
@@ -58,7 +58,7 @@ module.exports = {
         });
     },
     linkHouse: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         var body = req.body;
         var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed };
         modelUser.findByIdAndUpdate(id, user, (err, user) => {
@@ -67,7 +67,7 @@ module.exports = {
         });
     },
     unlinkHouse: function(req, res){
-        var id = req.body.id;
+        var id = req.params.id;
         var body = req.body;
         var user = { name: body.name, email: body.email, houseID: null, removed: body.removed };
         modelUser.findByIdAndUpdate(id, user, (err, user)=> {

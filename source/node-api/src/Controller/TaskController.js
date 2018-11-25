@@ -1,9 +1,9 @@
-const modelTask = require('../Schemas/Task.js');
+const modelTask = require('../schemas/Task.js');
 
 module.exports = {
     create: function (req, res) {
         var task = new modelTask({
-            name: req.body.name,
+            name: req.params.name,
             description: req.body.description,
             useId: req.body.userId,
             assignedUserID: req.body.assignedUserID,
@@ -20,31 +20,31 @@ module.exports = {
     },
 
     getByName: function (req, res) {
-        var name = req.body.name;
+        var name = req.params.name;
         modelTask.findOne({ name: name }, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar task', error: err }) };
             if (task) {
                 return res.json({ task: task, message: 'Task encontrado!' });
             } else {
-                return res.json({ task: task, message: 'Task não encontrada :(!' });
+                return res.status(201).json({ task: task, message: 'Task não encontrada :(!' });
             }
         });
     },
 
     getById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         modelTask.findOne({ _id: id }, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar task', error: err }) };
             if (task) {
                 return res.json({ task: task, message: 'Task encontrado!' });
             } else {
-                return res.json({ task: task, message: 'Task não encontrado :(!' });
+                return res.status(201).json({ task: task, message: 'Task não encontrado :(!' });
             }
         });
     },
 
     deleteById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         modelTask.findByIdAndRemove(id, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro deletar task', error: err }) };
             return res.json({ message: 'Task excluido com sucesso!' });
@@ -52,7 +52,7 @@ module.exports = {
     },
 
     updateById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         var body = req.body;
         var task = { 
             name: body.name, description: body.description, 

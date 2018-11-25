@@ -1,4 +1,4 @@
-var model = require('../Schemas/Palette.js');
+var model = require('../schemas/Palette.js');
 
 module.exports = {
     create: function (req, res) {
@@ -16,31 +16,31 @@ module.exports = {
     },
 
     getByName: function (req, res) {
-        var name = req.body.name;
+        var name = req.params.name;
         model.findOne({ name: name }, function (err, palette) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar paleta de cores', error: err }) };
             if (palette) {
                 return res.json({ palette: palette, message: 'paleta de cores encontrada!' });
             } else {
-                return res.json({ palette: palette, message: 'paleta de cores não encontrada :(!' });
+                return res.status(201).json({ palette: palette, message: 'paleta de cores não encontrada :(!' });
             }
         });
     },
 
     getById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         model.findOne({ _id: id }, function (err, palette) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar paleta de cores', error: err }) };
             if (palette) {
                 return res.json({ palette: palette, message: 'paleta de cores encontrada!' });
             } else {
-                return res.json({ palette: palette, message: 'paleta de cores não encontrada :(!' });
+                return res.status(201).json({ palette: palette, message: 'paleta de cores não encontrada :(!' });
             }
         });
     },
 
     deleteById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         model.findByIdAndRemove(id, function (err, palette) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao deletar paleta de cores', error: err }) };
             return res.json({ message: 'paleta de cores excluida com sucesso!' });
@@ -48,7 +48,7 @@ module.exports = {
     },
 
     updateById: function (req, res) {
-        var id = req.body.id;
+        var id = req.params.id;
         var palette = { 
             primary: req.body.primary,
             onPrimary: req.body.onPrimary,
