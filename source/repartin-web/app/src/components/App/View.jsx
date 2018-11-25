@@ -7,8 +7,8 @@ import FrontPage from "../FrontPage";
 import Members from "../Members";
 import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
-import TaskCreate from "../TaskCreate";
-import ExpenseCreate from "../TaskCreate";
+import Tasks from "../Tasks";
+import Expenses from "../Expenses";
 import NotFound from "../NotFound";
 
 const theme = createMuiTheme( {
@@ -36,8 +36,8 @@ export default ( { store } ) => {
                 <Route path="/membros" component={ Members }/>
                 <Route path="/termos-de-uso" component={ TermsOfService }/>
                 <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
-                <Route path="/tarefas" component={ TaskCreate }/>
-                <Route path="/financeiro" component={ ExpenseCreate }/>
+                <Route path="/tarefas" component={ Tasks }/>
+                <Route path="/financas" component={ Expenses }/>
                 <Route component={ NotFound }/>
               </Switch>
             </div>
