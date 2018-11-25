@@ -5,7 +5,7 @@ import { firebaseConnect  } from 'react-redux-firebase'
 class Home extends Component {
 
   state = {
-    isMember: false // é de uma rep?
+    isMember: true // é de uma rep?
   }
 
   constructor( props ) {

@@ -12,7 +12,7 @@ class Profile extends Component {
       name: "Jesus Cristo",
       email: "jesus@crist.com",
       isAdmin: true, //boa sorte
-      avatar: "http://2.bp.blogspot.com/-dyzMaWaud6k/U0vtJ_abIgI/AAAAAAAAA-o/362iWi6-mKQ/s1600/137412279020.jpg"
+      photoURL: "http://2.bp.blogspot.com/-dyzMaWaud6k/U0vtJ_abIgI/AAAAAAAAA-o/362iWi6-mKQ/s1600/137412279020.jpg"
     },
     house: {
       name: "Jerusarep",
@@ -24,6 +24,18 @@ class Profile extends Component {
   constructor( props ) {
     super( props );
     this.signOut = this.signOut.bind( this );
+  }
+
+  componentWillMount() {
+    const user = this.props.firebase.auth().currentUser;
+    this.setState( {
+      user: {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        isAdmin: true // boa sorte
+      }
+    } );
   }
 
   signOut() {

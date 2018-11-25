@@ -11,7 +11,6 @@ class FullCard extends Component {
   }
 
   openProfile() {
-    console.log( "aa" );
     this.props.history.push( "/perfil" );
   }
 
