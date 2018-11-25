@@ -4,11 +4,11 @@ const mongoose = require('mongoose')
 const taskSchema = mongoose.Schema({
     name: String,
     description: String,
-    useId: mongoose.Types.ObjectId,
-    assignedUserID: mongoose.Types.ObjectId,
+    useId: String,
+    assignedUserID: String,
     dueDate: Date,
     executionDate: Date,
-    houseID: mongoose.Types.ObjectId,
+    houseID:  String,
     removed: Boolean
 });
 

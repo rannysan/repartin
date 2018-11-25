@@ -6,7 +6,7 @@ import TopCard from "../Common/TopCard";
 import ListCard from "../Common/ListCard";
 import styles from "./styles";
 
-const View = ( { classes } ) => {
+const View = ( { classes, expenses } ) => {
 
   return (
     <main className={ classes.root }>
