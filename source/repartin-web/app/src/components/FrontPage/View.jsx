@@ -5,9 +5,6 @@ import Login from "../Login";
 
 export default ( { firebase, auth } ) => {
   
-  return ! isLoaded
-    ? ( <h1>Loading...</h1> )
-    : isEmpty( auth )
-      ? ( <Login /> )
-      : ( <Home /> );
+  return  ( <Login /> )
+      
 }
