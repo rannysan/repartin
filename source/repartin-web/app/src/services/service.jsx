@@ -21,6 +21,23 @@ const service = {
           });
     },
 
+    getByHouse: async (path, id) => {
+        console.log(`Buscando documento em ${path} usando o house id: ${id}`);
+
+        return axios.get(`${url}/${path}/house/${id}`)
+          .then((response) =>  {
+            if (response.status == 200) {
+                return response.data;
+            } else {
+                return undefined;
+            }
+          })
+          .catch((error) =>  {
+            console.log(`Erro ao buscar documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
+            return undefined;
+          });
+    },
+
     create: async (path, body) => {
         console.log(`Criando novo documento em ${path} com o body: ${JSON.stringify(body)}`);
 
