@@ -8,7 +8,9 @@ var controller = require('./Controller/UserController.js');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => data.test(res))
+data.connectionOpen();
+
+app.get('/', (req, res) =>{})
 app.post('/', function (req, res) {
     res.send('Got a POST request')
 })
