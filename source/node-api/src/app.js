@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express();
-const port = 8080;
+const port = 3000;
 const data = require('./BD/connection');
 const UserRouter = require('./routes/User');
 var controller = require('./Controller/UserController.js');
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -23,6 +25,10 @@ app.delete('/user', function (req, res) {
     res.send('Got a DELETE request at /user')
 });
 
-app.post('/user/create', controller.create);
+app.post('/user', controller.create);
+app.get('/user/:id', controller.getById);
+app.get('/user', controller.getById);
+app.put('/user:id', controller.updateById)
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

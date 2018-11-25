@@ -11,6 +11,7 @@
     "@babel/polyfill": "^7.0.0",
     "@material-ui/core": "^3.4.0",
     "@material-ui/icons": "^3.0.1",
+    "axios": "^0.18.0",
     "firebase": "^5.5.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -19,7 +20,6 @@
     "react-redux-firebase": "^2.2.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
-    "services-commons": "^0.0.2",
     "typeface-roboto": "^0.0.54"
   },
   "devDependencies": {
