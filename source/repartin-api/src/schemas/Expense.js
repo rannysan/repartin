@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 const expenseSchema = mongoose.Schema({
     name: String,
     value: mongoose.Schema.Types.Decimal128,
-    useId: Number,
+    useId: mongoose.Types.ObjectId,
     assignedUserID: String,
     payments: Array,
     dueDate: Date,
-    repeatingExpenseID: String,
-    houseID: Number,
+    repeatingExpenseID: mongoose.Types.ObjectId,
+    houseID: mongoose.Types.ObjectId,
     removed: Boolean
 });
 

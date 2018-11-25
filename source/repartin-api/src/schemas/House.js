@@ -6,7 +6,7 @@ let houseSchema = mongoose.Schema({
     address: String,
     creation: Date,
     color: Object,
-    adminID: Number,
+    adminID: mongoose.Types.ObjectId,
     removed: Boolean
 });
 
