@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import View from './View'
-import axios from 'axios'
+import service from "../../services/service";
 
-const URL = 'http://localhost:3000/task' 
 
 export default class TaskCreate extends Component {
 
@@ -27,14 +26,9 @@ export default class TaskCreate extends Component {
     }
 
 
-    handleSubmit = (e) => {
-        debugger;
+    handleSubmit = async (e) => {
         const form = this.state;
-        axios.post(URL, form)
-            .then(function () {
-                console.log('Tarefa salva com sucesso');
-            })
-            .catch(error => console.log(error))
+        await service.create('task', form);
         e.preventDefault();
     }
 
