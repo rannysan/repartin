@@ -18,7 +18,7 @@ module.exports = {
 
     getByName: (req, res) => {
         var name = req.params.name;
-        modelUser.findOne({ name: name }, (err, user) => {
+        modelUser.findOne({ name: name, removed : false }, (err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
             if (user) {
                 return res.json({ user: user, message: 'Usuário encontrado!' });
@@ -31,7 +31,7 @@ module.exports = {
     
     getByHouse: function (req, res) {
         var houseID = req.params.house;
-        modelUser.find({ houseID }, function (err, users) {
+        modelUser.find({ houseID : houseID , removed : false}, function (err, users) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuarios', error: err }) };
             if (users) {
                 return res.json({ users });
@@ -43,7 +43,7 @@ module.exports = {
 
     getById: (req, res) => {
         var id = req.params.id;
-        modelUser.findOne({ uid: id }, (err, user) => {
+        modelUser.findOne({ uid: id, removed : false }, (err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
             if (user) {
                 return res.json({ user: user, message: 'Usuário encontrado!' });

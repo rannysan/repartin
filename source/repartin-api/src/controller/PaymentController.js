@@ -17,7 +17,7 @@ module.exports = {
 
     getByName: function (req, res) {
         var name = req.params.name;
-        model.findOne({ name: name }, function (err, payment) {
+        model.findOne({ name: name, removed : false }, function (err, payment) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar pagamento', error: err }) };
             if (payment) {
                 return res.json({ payment: payment, message: 'pagamento encontrada!' });
@@ -29,7 +29,7 @@ module.exports = {
 
     getById: function (req, res) {
         var id = req.params.id;
-        model.findOne({ _id: id }, function (err, payment) {
+        model.findOne({ _id: id, removed : false }, function (err, payment) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar pagamento', error: err }) };
             if (payment) {
                 return res.json({ payment: payment, message: 'pagamento encontrada!' });
