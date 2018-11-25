@@ -1,9 +1,10 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "./styles";
+import { Grid } from "@material-ui/core";
 import FullCard from "./components/FullCard";
 import Card from "./components/Card";
-import { Grid } from "@material-ui/core";
+import ListCard from "./components/ListCard";
+import styles from "./styles";
 
 const View = ( { signOut } ) => {
 
@@ -20,7 +21,10 @@ const View = ( { signOut } ) => {
           <Card />
         </Grid>
         <Grid item xs={ 12 }>
-          List
+          <ListCard />
+          <ListCard />
+          <ListCard />
+          <ListCard />
         </Grid>
       </Grid>
     </>
