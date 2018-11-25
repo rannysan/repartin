@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --config app/config/webpack.dev.js --history-api-fallback",
-    "start:app": "yarpm run start & node ../node-api/src/app.js",
+    "start:app": "yarpm run start & node ../repartin-api/src/app.js",
     "build": "npx webpack --config app/config/webpack.prod.js"
   },
   "dependencies": {
