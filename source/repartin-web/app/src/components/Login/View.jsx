@@ -8,7 +8,7 @@ import logo from "../../../public/images/logo.svg";
 import { compose } from 'recompact'
 import { firebaseConnect  } from 'react-redux-firebase';
 import styles from "./styles";
-
+import service from "../../services/service";
 
 const View = ({ classes, firebase }) => {
 
