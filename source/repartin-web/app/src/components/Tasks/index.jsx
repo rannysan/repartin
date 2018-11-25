@@ -14,7 +14,7 @@ class Tasks extends Component {
     }
   }
 
-  componentWillMount = () =>{
+  componentWillMount = () => {
   }
 
   loadTasks = async()=> {
