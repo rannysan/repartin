@@ -13,7 +13,6 @@ import Home from "../Home";
 import Tasks from "../Tasks";
 import Expenses from "../Expenses";
 import NotFound from "../NotFound";
->>>>>>> 9f64842cc5f558fbd7568c4acdcd1296650800f1
 
 const theme = createMuiTheme( {
   palette: {
