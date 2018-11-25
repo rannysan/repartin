@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import View from './View'
 import service from "../../services/service";
-import { firebaseConnect  } from 'react-redux-firebase'
+import { firebaseConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom';
 
@@ -11,11 +11,11 @@ class TaskCreate extends Component {
         this.state = {
             name: '',
             description: '',
-            useId: 0,
-            assignedUserID: 0,
+            useId: '',
+            assignedUserID: '',
             dueDate: '',
             executionDate: '',
-            houseID: 0,
+            houseID: '',
             removed: 0
         }
     }
@@ -28,31 +28,37 @@ class TaskCreate extends Component {
 
 
     handleSubmit = async (e) => {
-        const useId =  this.props.firebase.auth().currentUser.uid;
-        this.setState({useId})
-        
+        const useId = this.props.firebase.auth().currentUser.uid;
+        this.setState({ useId })
+
         const form = this.state;
+        debugger;
+        if (this.props.idTask == undefined)
+            await service.create('task', form);
+        else
+            await service.update('task', this.props.idTask, form);
         e.preventDefault();
     }
 
     //verifica a existência de uma task antes de renderizar
     getTask = async () => {
-        if(this.props.idTask != undefined){
+        if (this.props.idTask != undefined) {
             this.state = await service.getById('task', props.idTask)
         }
     }
 
     //buscar por todos usuários da casa
     loadUsers = async (e) => {
-        const useId =  this.props.firebase.auth().currentUser.uid;
-        let houseUsers = await service.getById('user/house', useId);
+        const useId = this.props.firebase.auth().currentUser.uid;
+        const user = await service.getById('user', useId);
+        let houseUsers = await service.getByHouseId('user', user.houseID);
         return houseUsers;
     }
 
     render() {
         return (
             <View handleChange={this.handleChange}
-                handleSubmit={this.handleSubmits} />
+                handleSubmit={this.handleSubmit} />
         )
     }
 };
@@ -60,5 +66,4 @@ class TaskCreate extends Component {
 export default compose(
     withRouter,
     firebaseConnect()
-  )(TaskCreate);
-  
+)(TaskCreate);

@@ -1,5 +1,7 @@
 const modelTask = require('../schemas/Task.js');
+const mongoose = require('mongoose')
 
+ObjectId = require('mongodb').ObjectID;
 module.exports = {
     create: function (req, res) {
         var task = new modelTask({
@@ -21,7 +23,7 @@ module.exports = {
 
     getByName: function (req, res) {
         var name = req.params.name;
-        modelTask.findOne({ name: name }, function (err, task) {
+        modelTask.findOne({ name: name, removed : false }, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar task', error: err }) };
             if (task) {
                 return res.json({ task: task, message: 'Task encontrado!' });
@@ -33,7 +35,7 @@ module.exports = {
 
     getById: function (req, res) {
         var id = req.params.id;
-        modelTask.findOne({ _id: id }, function (err, task) {
+        modelTask.findOne({ _id: id , removed : false}, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar task', error: err }) };
             if (task) {
                 return res.json({ task: task, message: 'Task encontrado!' });
@@ -45,7 +47,7 @@ module.exports = {
 
     getByHouse: function (req, res) {
         var houseID = req.params.house;
-        modelTask.find({ houseID }, function (err, task) {
+        modelTask.find({ houseID : houseID , removed : false}, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar task', error: err }) };
             if (task) {
                 return res.json({ task });

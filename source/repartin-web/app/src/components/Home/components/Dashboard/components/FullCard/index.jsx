@@ -3,10 +3,15 @@ import View from "./View";
 
 class FullCard extends Component {
 
+  openProfile( event ) {
+    confirm( "open profile" ) ?  '' : '';
+  }
+
   render() {
 
     return (
-      <View />
+      <View
+      openProfile = {this.openProfile} />
     );
   }
 }
