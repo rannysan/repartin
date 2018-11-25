@@ -7,26 +7,31 @@ import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
 
-  constructor( props ) {
-    super( props );
+  state = {
+    isMember: false // é de uma rep?
   }
 
-  signOut  = (event) => {
-    event.preventDefault();
-    this.props.firebase.auth().signOut();
-    this.props.history.push('/')
+  constructor( props ) {
+    super( props );
+    this.setMember = this.setMember.bind( this );
+  }
+
+  setMember( isMemeber ) {
+    this.setState( {
+      isMember: isMemeber
+    } );
   }
 
   render() {
     
     return (
-      <View { ...this.props } signOut={ this.signOut }/>
+      <View 
+        { ...this.props } 
+        { ...this.state }
+        setMember={ this.setMember }
+      />
     );
   }
 };
 
-
-export default compose(
-    firebaseConnect(),
-    withRouter,
-  )(Home);
+export default firebaseConnect()(Home);

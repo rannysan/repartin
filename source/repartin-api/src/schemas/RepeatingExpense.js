@@ -5,7 +5,7 @@ const repeatingExpenseSchema = mongoose.Schema({
     name: String,
     dueDate: Date,
     baseValue: Float64Array,r,
-    houseID: Number,
+    houseID: mongoose.Types.ObjectId,
     removed: Boolean
 });
 
