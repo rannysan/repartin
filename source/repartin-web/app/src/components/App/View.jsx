@@ -9,6 +9,7 @@ import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
 import Tasks from "../Tasks";
 import Expenses from "../Expenses";
+import Profile from "../Profile";
 import NotFound from "../NotFound";
 
 const theme = createMuiTheme( {
@@ -38,6 +39,7 @@ export default ( { store } ) => {
                 <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
                 <Route path="/tarefas" component={ Tasks }/>
                 <Route path="/financas" component={ Expenses }/>
+                <Route path="/perfil" component={ Profile }/>
                 <Route component={ NotFound }/>
               </Switch>
             </div>
