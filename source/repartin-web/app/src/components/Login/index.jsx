@@ -12,8 +12,10 @@ class Login extends Component {
     this.props.firebase.auth().onAuthStateChanged(async auth => {
 
       if (auth) {
-        const {user, message} = await service.getById('user',auth.uid);
-        if (user) {
+        const response = await service.getById('user',auth.uid);
+
+        if (response !== undefined) {
+          const user = response.user;
           if (!user.removed) {
             await service.update('user', user._id, {
               name: auth.displayName,
