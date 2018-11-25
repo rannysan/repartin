@@ -17,7 +17,7 @@ module.exports = {
 
     getByName: function (req, res) {
         var name = req.params.name;
-        model.findOne({ name: name }, function (err, palette) {
+        model.findOne({ name: name, removed : false }, function (err, palette) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar paleta de cores', error: err }) };
             if (palette) {
                 return res.json({ palette: palette, message: 'paleta de cores encontrada!' });
@@ -29,7 +29,7 @@ module.exports = {
 
     getById: function (req, res) {
         var id = req.params.id;
-        model.findOne({ _id: id }, function (err, palette) {
+        model.findOne({ _id: id, removed : false }, function (err, palette) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar paleta de cores', error: err }) };
             if (palette) {
                 return res.json({ palette: palette, message: 'paleta de cores encontrada!' });
