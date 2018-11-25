@@ -5,22 +5,12 @@ import { firebaseConnect  } from 'react-redux-firebase'
 class Home extends Component {
 
   state = {
-    isMember: true // é de uma rep?
+    isMember: false // é de uma rep?
   }
 
   constructor( props ) {
     super(props);
     this.setMember = this.setMember.bind( this );
-  }
-
-  signOut  = (event) => {
-    event.preventDefault();
-    localStorage.removeItem('auth-credential');
-    this.props.firebase.auth().signOut()
-      .then(() => {
-        this.props.history.push('/')
-      });
-
   }
 
   setMember( isMemeber ) {

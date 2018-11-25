@@ -1,26 +1,32 @@
 import React, { Component } from "react";
 import View from "./View";
 import { firebaseConnect } from "react-redux-firebase";
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
 class Welcome extends Component {
 
   constructor( props ) {
     super( props );
-    this.createHouse = this.createHouse.bind( this );
-    this.joinHouse   = this.joinHouse.bind( this );
-    this.signOut     = this.signOut.bind( this );
   }
 
-  createHouse( event ) {
+  createHouse = ( event ) => {
     confirm( "create house" ) ? this.props.setMember( true ) : '';
   }
 
-  joinHouse( event ) {
+  joinHouse = ( event ) => {
     confirm( "enter house id" ) ? this.props.setMember( true ) : '';
   }
 
-  signOut( event ) {
-    this.props.firebase.auth().signOut();
+  signOut  = (event) => {
+    event.preventDefault();
+    localStorage.removeItem('auth-credential');
+    this.props.firebase.auth().signOut()
+      .then(() => {
+        this.props.history.push('/')
+    });
+
   }
 
   render() {
@@ -36,4 +42,7 @@ class Welcome extends Component {
   }
 }
 
-export default firebaseConnect()( Welcome );
+export default compose(
+  firebaseConnect(),
+  withRouter,
+)(Welcome);

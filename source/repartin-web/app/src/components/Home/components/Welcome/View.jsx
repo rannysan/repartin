@@ -2,6 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import { Grid, Typography, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const View = ( { createHouse, joinHouse, signOut, classes } ) => {
   
@@ -18,7 +19,7 @@ const View = ( { createHouse, joinHouse, signOut, classes } ) => {
 
         <Grid item xs={ 12 }>
           <div className={ classes.actions }>
-            <Button className={ `${ classes.firstAction } ${ classes.action }` } fullWidth variant="contained" onClick={ createHouse }>Casdastrar uma república</Button>
+            <Button className={ `${ classes.firstAction } ${ classes.action }` } fullWidth variant="contained" component={Link} to="/create-house">Casdastrar uma república</Button>
             <Button className={ classes.action } fullWidth variant="contained" onClick={ joinHouse }>Entrar em uma república</Button>
           </div>
         </Grid>
