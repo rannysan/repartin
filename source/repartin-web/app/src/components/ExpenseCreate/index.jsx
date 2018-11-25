@@ -11,7 +11,7 @@ class ExpenseCreate extends Component {
         super(props);
         this.state = {
             name: '',
-            value: '',
+            value: 0,
             useId: '',
             payments: [],
             dueDate: '',
@@ -37,14 +37,17 @@ class ExpenseCreate extends Component {
         this.setState({useId})
 
         const form = this.state;
-        await service.create('expense', form);
+        if(this.props.idExpense == undefined)
+            await service.create('expense', form);
+        else
+            await service.update('expense', this.props.idExpense , form);
+
         e.preventDefault();
     }
 
     getExpense = async () => {
         if(this.props.idExpense != undefined){
             this.state = await service.getById('expense', props.idExpose)
-            debugger;
         }
     }
     
