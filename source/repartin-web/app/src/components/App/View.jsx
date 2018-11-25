@@ -12,6 +12,8 @@ import Tasks from "../Tasks";
 import Expenses from "../Expenses";
 import Profile from "../Profile";
 import NotFound from "../NotFound";
+import TasksAdd from "../TaskCreate"
+import ExpenseAdd from "../ExpenseCreate"
 
 const theme = createMuiTheme( {
   palette: {
@@ -26,7 +28,6 @@ const theme = createMuiTheme( {
 } );
 
 function verificaAutenticacao(props, store) {
-
   if(store.firebase.auth().currentUser) {
     if ( props.match.url == '/home') {
       return <Home />
@@ -42,6 +43,12 @@ function verificaAutenticacao(props, store) {
     }
     if ( props.match.url == '/perfil') {
       return <Profile />
+    }
+    if ( props.match.url == '/tarefasAdd') {
+      return <TasksAdd />
+    }
+    if ( props.match.url == '/financasAdd') {
+      return <ExpenseAdd />
     }
   }
  
@@ -67,9 +74,11 @@ export default ( { store } ) => {
               <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
               <Route path="/tarefas"  render={(props) => verificaAutenticacao(props,store)} />
               <Route path="/financas" render={(props) => verificaAutenticacao(props,store)}/>
+              <Route path="/tarefasAdd"  render={(props) => verificaAutenticacao(props,store)} />
+              <Route path="/financasAdd" render={(props) => verificaAutenticacao(props,store)}/>
               <Route path="/home" render={(props) => verificaAutenticacao(props,store)}/>
-              <Route path="/membros" render={(props) => verificaAutenticacao(props,store)} component={ Members }/>
-              <Route path="/perfil" render={(props) => verificaAutenticacao(props,store)} component={ Profile }/>
+              <Route path="/membros" render={(props) => verificaAutenticacao(props,store)}/>
+              <Route path="/perfil" render={(props) => verificaAutenticacao(props,store)}/>
 
               <Route component={ NotFound }/>
             </Switch>

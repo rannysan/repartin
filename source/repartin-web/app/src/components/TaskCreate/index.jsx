@@ -4,6 +4,7 @@ import service from "../../services/service";
 import { firebaseConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom';
+ObjectId = require('mongodb').ObjectID;
 
 class TaskCreate extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class TaskCreate extends Component {
         this.state = {
             name: '',
             description: '',
-            useId: 0,
+            useId: '',
             assignedUserID: '',
             dueDate: '',
             executionDate: '',
