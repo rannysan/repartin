@@ -21,6 +21,10 @@ class ExpenseCreate extends Component {
         }
     }
 
+    componentWillMount(){
+        this.getExpense();
+    }
+
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ ...this.state, [name]: value })
@@ -31,15 +35,24 @@ class ExpenseCreate extends Component {
     handleSubmit = async (e) => {
         var useId =  this.props.firebase.auth().currentUser.uid;
         this.setState({useId})
+
         const form = this.state;
         await service.create('expense', form);
         e.preventDefault();
+    }
+
+    getExpense = async () => {
+        if(this.props.idExpense != undefined){
+            this.state = await service.getById('expense', props.idExpose)
+            debugger;
+        }
     }
     
     render() {
         return (
             <View handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit} />
+                handleSubmit={this.handleSubmit} 
+                data={this.state}/>
         )
     }
 };
