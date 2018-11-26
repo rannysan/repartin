@@ -4,7 +4,7 @@ import { Grid, Typography, ButtonBase  } from "@material-ui/core";
 import FullCard from "./components/FullCard";
 import CardExpenses from "./components/CardExpenses";
 import CardTasks from "./components/CardTasks";
-import ListCard from "./components/ListCard";
+import FeedList from "./components/FeedList";
 import styles from "./styles";
 import { Link } from "react-router-dom";
 
@@ -23,10 +23,7 @@ const View = ( { } ) => {
           <CardTasks />
         </Grid>
         <Grid item xs={ 12 }>
-          <ListCard />
-          <ListCard />
-          <ListCard />
-          <ListCard />
+          <FeedList/>
         </Grid>
         
         <ButtonBase component={Link} to="/tarefas-add">
