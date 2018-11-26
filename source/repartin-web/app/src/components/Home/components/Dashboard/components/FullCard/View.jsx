@@ -14,7 +14,7 @@ const View = ( {openProfile, houseMembers, classes} ) => {
           <Typography color="textPrimary" component="h1" variant="h4" align="left">República</Typography>
           <Typography component="h2" align="left" variant="h5">Usuário</Typography>
         </div>
-        <IconButton color="secondary" onClick={houseMembers} className={classes.button} aria-label="Membros da república">
+        <IconButton color="secondary" onClick={houseMembers} aria-label="Membros da república">
           <People/>
         </IconButton>
       </CardContent>

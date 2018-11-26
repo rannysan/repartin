@@ -5,10 +5,8 @@ export default ( theme ) => {
   return createStyles( {
     cardStyle:{
       display: "flex", 
-      justifyContent:"space-between"
-    },
-    houseMembers: {
-      alignSelf: "right"
+      justifyContent:"space-between",
+      width: "100%"
     }
   } );
 }
