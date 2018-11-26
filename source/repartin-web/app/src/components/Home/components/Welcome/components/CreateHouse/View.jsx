@@ -57,7 +57,7 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete, color
   return (
     <Grid container>
       <form noValidate autoComplete="off">
-        <Grid xs={12}>
+        <Grid >
           <TextField
             name="name"
             label="Nome"
@@ -73,17 +73,18 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete, color
             margin="normal"
           />
         </Grid>
-        <Grid xs={12}>
+        <Grid >
 
           <input
             accept="image/*"
             className={classes.input}
             id="contained-button-file"
             type="file"
-            unique
+            onChange={handleUpload}
+            unique="true"
           />
           <label htmlFor="contained-button-file">
-            <Button variant="contained" component="span" onChange={handleUpload} className={classes.button}>
+            <Button variant="contained" component="span" className={classes.button}>
               Upload
               <CloudUploadIcon className={classes.rightIcon} />
             </Button>
