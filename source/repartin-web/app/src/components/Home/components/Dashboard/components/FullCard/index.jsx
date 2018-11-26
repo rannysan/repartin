@@ -7,11 +7,16 @@ class FullCard extends Component {
     confirm( "open profile" ) ?  '' : '';
   }
 
+  houseMembers( event ) {
+    confirm( "see house members" ) ?  '' : '';
+  }
+
   render() {
 
     return (
       <View
-      openProfile = {this.openProfile} />
+      openProfile = {this.openProfile}
+      houseMembers = {this.houseMembers} />
     );
   }
 }

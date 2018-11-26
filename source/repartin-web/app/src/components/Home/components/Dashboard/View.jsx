@@ -12,7 +12,7 @@ const View = ( { signOut } ) => {
 
   return (
     <>
-      <Grid container spacing={ 0 }>
+      <Grid container style={{padding: "10px"}} spacing={ 8 }>
         <Grid item xs={ 12 }>
           <FullCard />
         </Grid>
