@@ -46,7 +46,6 @@ class CreateHouse extends Component {
 
     if (house !== undefined) {
       let uploadTask = this.props.firebase.storage().ref().child(this.props.firebase.auth().currentUser.uid).put(this.state.file);
-
       await uploadTask.on('state_changed', async function (snapshot) {
         let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log('Upload is ' + progress + '% done');

@@ -35,6 +35,8 @@ const service = {
             .catch((err) => {
                 console.log(`Erro ao buscar documento em ${path}`);
                 handleError(err);
+                return undefined;
+
             });
     },
 
@@ -60,6 +62,7 @@ const service = {
             }).catch((error) => {
                 console.log(`Erro ao atualizar documento em ${path}`);
                 handleError(err);
+                return undefined;
             });
     },
 
@@ -72,6 +75,7 @@ const service = {
             }).catch((error) => {
                 console.log(`Erro ao deletar documento em ${path}`);
                 handleError(err);
+                return undefined;
             });
     },
 

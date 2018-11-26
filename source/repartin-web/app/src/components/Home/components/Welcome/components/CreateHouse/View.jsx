@@ -23,7 +23,6 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete, color
       <form noValidate autoComplete="off">
         <CardContent>
           <Grid container spacing={24}>
-
             <Grid item xs={12}>
               <Typography component="h1" className={classes.title} color="textSecondary" gutterBottom>
                 <h1>Nova República</h1>
