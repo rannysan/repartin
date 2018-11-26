@@ -33,6 +33,10 @@ class CreateHouse extends Component {
     this.setState({ color: color.hex });
   };
 
+  /*
+  * Só é possível cadastrar uma house para o usuario que tenha houseID null
+  *
+  */
   handleSubmit = async (e) => {
 
     const form = this.state;
@@ -53,7 +57,6 @@ class CreateHouse extends Component {
       form.image = image;
 
       let res = await service.create('house', form);
-      console.log(res);
     });
 
 
