@@ -29,7 +29,7 @@ class Login extends Component {
               name: auth.displayName,
               email: auth.email,
               uid: auth.uid,
-              houseID: null,
+              houseID: user.houseID,
               removed: false
             });
           }
