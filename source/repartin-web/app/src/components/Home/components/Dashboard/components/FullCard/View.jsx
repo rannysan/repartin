@@ -2,17 +2,21 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
 import styles from "./styles";
-import people from "../../../../../../../public/images/account-multiple.svg";
-import { CardContent, Typography } from "@material-ui/core";
+import People from '@material-ui/icons/People';
+import { CardContent, Typography, IconButton, Button } from "@material-ui/core";
 
-const View = ( {openProfile} ) => {
+const View = ( {openProfile, houseMembers, classes} ) => {
 
   return (
-    <Card raised={true} onClick={ openProfile }>
-      <CardContent>
-        <Typography color="textPrimary" component="h1" variant="h4" align="left">República</Typography>
-        <Typography component="h2" align="left" variant="h5">Usuário</Typography>
-        <object data={people} align="right" style={ {maxWidth: "150px", alignSelf: "center", padding: "20px"} } type="image/svg+xml" />
+    <Card raised={true} onClick={ openProfile } className={ classes.card }>
+      <CardContent className={classes.cardStyle}>
+        <div>
+          <Typography color="textPrimary" component="h1" variant="h4" align="left">República</Typography>
+          <Typography component="h2" align="left" variant="h5">Usuário</Typography>
+        </div>
+        <IconButton color="secondary" onClick={houseMembers} className={classes.button} aria-label="Membros da república">
+          <People/>
+        </IconButton>
       </CardContent>
     </Card>
   );

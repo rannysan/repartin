@@ -12,7 +12,7 @@ const View = ( { signOut } ) => {
 
   return (
     <>
-      <Grid container spacing={ 0 }>
+      <Grid container style={{padding: "10px"}} spacing={ 8 }>
         <Grid item xs={ 12 }>
           <FullCard />
         </Grid>
@@ -29,10 +29,10 @@ const View = ( { signOut } ) => {
           <ListCard />
         </Grid>
         
-        <ButtonBase component={Link} to="/tarefasAdd">
+        <ButtonBase component={Link} to="/tarefas-add">
             <Typography component="span" variant="body2">Tarefa</Typography>
         </ButtonBase>
-        <ButtonBase component={Link} to="/financasAdd">
+        <ButtonBase component={Link} to="/financas-add">
             <Typography component="span" variant="body2">Financas</Typography>
         </ButtonBase>
       </Grid>

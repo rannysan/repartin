@@ -14,11 +14,16 @@ class FullCard extends Component {
     this.props.history.push( "/perfil" );
   }
 
+  houseMembers( event ) {
+    confirm( "see house members" ) ?  '' : '';
+  }
+
   render() {
 
     return (
       <View
-      openProfile = {this.openProfile} />
+      openProfile = {this.openProfile}
+      houseMembers = {this.houseMembers} />
     );
   }
 }

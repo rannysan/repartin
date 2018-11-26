@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
@@ -42,8 +43,8 @@ const privatePages = {
   "/financas": Expenses,
   "/membros": Members,
   "/perfil": Profile,
-  "/tarefasAdd": TasksAdd,
-  "/financasAdd": ExpenseAdd, // acho que isso nao deveria estar aqui e tambem fosse /financas/criar algo assim
+  "/tarefas-add": TasksAdd,
+  "/financas-add": ExpenseAdd, // acho que isso nao deveria estar aqui e tambem fosse /financas/criar algo assim
   "/republica-add": CreateHouse // foda-se o padrão imposto pela sociedade capitalista
 };
 
@@ -66,8 +67,9 @@ export default ( { store } ) => {
           <Router>
             <Switch>
               <Route exact path="/"  render={props => {
-                    var auth = store.firebase.auth().currenUser;
-                    if (auth !== undefined) {
+                    var auth = store.firebase.auth().currentUser;
+                    console.log(auth);
+                    if (auth !== null) {
                         return <Home />
                     }
                     return <Login {...props} />
@@ -88,4 +90,3 @@ export default ( { store } ) => {
     </Provider>
   );
 };
-

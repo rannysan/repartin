@@ -18,7 +18,6 @@ class Login extends Component {
     this.setState({loading: true});
     this.props.firebase.auth().onAuthStateChanged(async auth => {
       if (auth) {
-        //this.props.history.push('/home');
         const response = await service.getById('user',auth.uid);
         this.setState({loading: false})
 
