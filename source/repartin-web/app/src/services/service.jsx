@@ -8,34 +8,34 @@ const service = {
         console.log(`Buscando documento em ${path} usando o id: ${id}`);
 
         return axios.get(`${url}/${path}/${id}`)
-          .then((response) =>  {
-            if (response.status == 200) {
-                return response.data;
-            } else {
-                return undefined;
-            }
-          })
-          .catch((error) =>  {
-            console.log(`Erro ao buscar documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
-            return undefined;
-          });
+            .then((response) => {
+                if (response.status == 200) {
+                    return response.data;
+                } else {
+                    return undefined;
+                }
+            })
+            .catch((err) => {
+                console.log(`Erro ao buscar documento em ${path}`);
+                handleError(err);
+            });
     },
 
     getByHouse: async (path, id) => {
         console.log(`Buscando documento em ${path} usando o house id: ${id}`);
 
         return axios.get(`${url}/${path}/house/${id}`)
-          .then((response) =>  {
-            if (response.status == 200) {
-                return response.data;
-            } else {
-                return undefined;
-            }
-          })
-          .catch((error) =>  {
-            console.log(`Erro ao buscar documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
-            return undefined;
-          });
+            .then((response) => {
+                if (response.status == 200) {
+                    return response.data;
+                } else {
+                    return undefined;
+                }
+            })
+            .catch((err) => {
+                console.log(`Erro ao buscar documento em ${path}`);
+                handleError(err);
+            });
     },
 
     create: async (path, body) => {
@@ -44,21 +44,22 @@ const service = {
         return axios.post(`${url}/${path}`, body)
             .then(response => {
                 return response.data;
-            }).catch((error) =>  {
-                console.log(`Erro ao inserir documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
+            }).catch((err) => {
+                console.log(`Erro ao inserir documento em ${path}`);
+                handleError(err);
                 return undefined;
             });
     },
 
     update: async (path, id, body) => {
         console.log(`Atualizando documento em ${path} com o body: ${JSON.stringify(body)}`);
-        
+
         return axios.put(`${url}/${path}/${id}`, body)
             .then(response => {
                 return response.data;
-            }).catch((error) =>  {
-                console.log(`Erro ao atualizar documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
-                return undefined;
+            }).catch((error) => {
+                console.log(`Erro ao atualizar documento em ${path}`);
+                handleError(err);
             });
     },
 
@@ -68,9 +69,9 @@ const service = {
         return axios.delete(`${url}/${path}`, id)
             .then(response => {
                 return response.data;
-            }).catch((error) =>  {
-                console.log(`Erro ao deletar documento em ${path}. Seguinte erro foi disparado: ${JSON.stringify(error)}`);
-                return undefined;
+            }).catch((error) => {
+                console.log(`Erro ao deletar documento em ${path}`);
+                handleError(err);
             });
     },
 
@@ -85,4 +86,15 @@ const service = {
     }
 }
 
+function handleError(error) {
+    const err = JSON.parse(JSON.stringify(error));
+    const status = err.response.status;
+    const message = err.response.data.message;
+    console.log(`HTTP STATUS: ${status}`);
+    if (mensagem)
+        console.log(`MENSAGEM: ${message}`);
+    else
+        console.log(`ERROR: ${JSON.stringify(error)}`);
+
+}
 export default service;

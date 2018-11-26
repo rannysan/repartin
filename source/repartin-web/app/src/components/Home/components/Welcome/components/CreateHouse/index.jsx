@@ -42,24 +42,25 @@ class CreateHouse extends Component {
     const form = this.state;
     form.adminID = this.props.firebase.auth().currentUser.uid;
 
-    let uploadTask = this.props.firebase.storage().ref().child(this.props.firebase.auth().currentUser.uid).put(this.state.file);
+    let house = await service.create('house', form);
 
-    await uploadTask.on('state_changed', async function (snapshot) {
-      console.log(this);
-      let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
+    if (house !== undefined) {
+      let uploadTask = this.props.firebase.storage().ref().child(this.props.firebase.auth().currentUser.uid).put(this.state.file);
 
-    }, function (error) {
-      console.log(error)
-    }, async function () {
-      let image = uploadTask.uploadUrl_;
-      form.file = '';
-      form.image = image;
-
-      let res = await service.create('house', form);
-    });
-
-
+      await uploadTask.on('state_changed', async function (snapshot) {
+        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+      }, function (error) {
+        console.log(error)
+      }, async function () {
+        uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadURL) {
+          house.house.image = downloadURL;
+          await service.update('house', house.house._id, house.house);
+        }).catch(err => console.log(err));
+      });
+    } else {
+      alert('Erro ao cadastrar a república');
+    }
   }
 
 
