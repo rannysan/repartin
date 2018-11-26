@@ -12,8 +12,8 @@ class CreateHouse extends Component {
     address: '',
     creation: new Date(),
     color: '#fff',
-    adminId: '',
-    removed: false
+    removed: false,
+    file: ''
   };
 
   componentWillMount = async () => {
@@ -35,22 +35,42 @@ class CreateHouse extends Component {
 
   handleSubmit = async (e) => {
 
-    let adminId = this.props.firebase.auth().currentUser.uid;
-    this.setState({ adminId });
     const form = this.state;
+    form.adminID = this.props.firebase.auth().currentUser.uid;
 
-    e.preventDefault();
+    let uploadTask = this.props.firebase.storage().ref().child(this.props.firebase.auth().currentUser.uid).put(this.state.file);
+
+    await uploadTask.on('state_changed', async function (snapshot) {
+      console.log(this);
+      let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('Upload is ' + progress + '% done');
+
+    }, function (error) {
+      console.log(error)
+    }, async function () {
+      let image = uploadTask.uploadUrl_;
+      form.file = '';
+      form.image = image;
+
+      let res = await service.create('house', form);
+      console.log(res);
+    });
+
+
   }
 
-  handleUpload = async (e) => {
-    console.log(e);
+
+  handleUpload = (e) => {
+    let file = e.target.files[0];
+    this.setState({ file })
+
   }
 
   render() {
 
     return (
       <View handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit} handleChangeComplete={this.handleChangeComplete} color={this.state.color} />
+        handleSubmit={this.handleSubmit} handleChangeComplete={this.handleChangeComplete} color={this.state.color} handleUpload={this.handleUpload} />
     );
   }
 }

@@ -67,8 +67,9 @@ export default ( { store } ) => {
           <Router>
             <Switch>
               <Route exact path="/"  render={props => {
-                    var auth = store.firebase.auth().currenUser;
-                    if (auth !== undefined) {
+                    var auth = store.firebase.auth().currentUser;
+                    console.log(auth);
+                    if (auth !== null) {
                         return <Home />
                     }
                     return <Login {...props} />
