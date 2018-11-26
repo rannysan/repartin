@@ -12,30 +12,30 @@ module.exports = {
             removed: false
         });
 
-        house.save(function (err, house) {
-            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao salvar nova casa', error: err }) };
-
-            if (house.adminID !== undefined && house.adminID !== '') {
-
-                modelUser.findOne({ uid: house.adminID, removed: false }, (err, user) => {
-                    if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
-                    if (user) {
+        modelUser.findOne({ uid: house.adminID, removed: false }, (err, user) => {
+            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
+            if (user) {
+                if (user.houseID == null) {
+                    house.save(function (err, house) {
+                        if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao salvar nova casa', error: err }) };
                         user.houseID = house._id;
                         modelUser.findByIdAndUpdate(user._id, user, (err, user) => {
                             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro atualizar usuário', error: err }) };
                         });
-                    } else {
-                        return res.status(201).json({ message: 'Usuário admin não existe' });
-                    }
-                });
-                return res.json({ house: house, message: 'Casa criada com sucesso!' });
+
+                    });
+                } else {
+                    return res.status(500).json({ message: 'Usuario já possui uma republica', error: err });
+                }
             } else {
-                return res.status(201).json({ house: house, message: 'Necessário passar o ID do admin' });
-
+                return res.status(201).json({ message: 'Usuário admin não existe' });
             }
-
         });
+        return res.json({ house: house, message: 'Casa criada com sucesso!' });
+
+
     },
+
 
     getByName: function (req, res) {
         var name = req.params.name;
