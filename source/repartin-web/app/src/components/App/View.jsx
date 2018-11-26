@@ -2,11 +2,11 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { CssBaseline, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import service from "../../services/service";
+import { CssBaseline, createMuiTheme, MuiThemeProvider, withStyles } from "@material-ui/core";
 import PrivacyPolicy from "../PrivacyPolice";
 import TermsOfService from "../TermsOfService";
 import FrontPage from "../FrontPage";
+import styles from "./style";
 
 const theme = createMuiTheme( {
   palette: {
@@ -30,21 +30,25 @@ const theme = createMuiTheme( {
   }
 } );
 
-export default ( { store } ) => {
-  
+const View = ( { store, classes } ) => {
+
   return (
     <Provider store={ store }>
       <MuiThemeProvider theme={ theme }>
         <CssBaseline>
           <Router>
-            <Switch>
-              <Route path="/termos-de-uso" component={ TermsOfService }/>
-              <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
-              <Route path="/" component={ FrontPage }/>
-            </Switch>
+            <main className={ classes.root }>
+              <Switch>
+                <Route path="/termos-de-uso" component={ TermsOfService }/>
+                <Route path="/politica-de-privacidade" component={ PrivacyPolicy }/>
+                <Route path="/" component={ FrontPage }/>
+              </Switch>
+            </main>
           </Router>
         </CssBaseline>
       </MuiThemeProvider>
     </Provider>
   );
 };
+
+export default withStyles( styles )( View );

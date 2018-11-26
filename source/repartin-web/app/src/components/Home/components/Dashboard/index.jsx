@@ -6,7 +6,10 @@ class Dashboard extends Component {
 
   constructor( props ) {
     super( props );
-    this.signOut = this.signOut.bind( this );
+  }
+
+  componentDidMount() {
+    this.props.setCollapse( true );
   }
 
   render() {

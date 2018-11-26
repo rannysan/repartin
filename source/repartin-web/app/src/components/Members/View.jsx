@@ -7,12 +7,12 @@ import { Typography } from "@material-ui/core";
 const View = ( {} ) => {
 
   return (
-    <main>
+    <>
       <Typography component="h1" variant="h4">Membros</Typography>
       <ListCard />
       <ListCard />
       <ListCard />
-    </main>
+    </>
   );
 }
 

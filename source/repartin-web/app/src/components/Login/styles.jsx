@@ -5,9 +5,6 @@ export default ( theme ) => {
   const palette = theme.palette;
 
   return createStyles( {
-    root: {
-      height: "100vh"
-    },
     loginColumn: {
       height: "100%"
     },

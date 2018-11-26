@@ -1,10 +1,17 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import View from "./View";
+import { compose } from "redux";
 
 class CardExpenses extends Component {
 
+  constructor( props ) {
+    super( props );
+    this.openExpenses = this.openExpenses.bind( this );
+  }
+
   openExpenses( event ) {
-    confirm( "open expenses" ) ?  '' : '';
+    this.props.history.push( "/financas" );
   }
   
   render() {
@@ -16,4 +23,6 @@ class CardExpenses extends Component {
   }
 }
 
-export default CardExpenses;
+export default compose(
+  withRouter
+)( CardExpenses );

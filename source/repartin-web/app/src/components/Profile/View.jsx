@@ -11,7 +11,7 @@ import styles from "./styles";
 const View = ( { user, house, signOut, exitHouse, classes } ) => {
 
   return (
-    <main className={ classes.root }>
+    <>
       <div className={ classes.houseBackground }>
         <BackButton className={ classes.backButton } to="/"/>
         <img className={ classes.houseImage } src={ house.image } alt=""/>
@@ -33,7 +33,7 @@ const View = ( { user, house, signOut, exitHouse, classes } ) => {
           </Button>
         </Grid>
       </Grid>
-    </main>
+    </>
   );
 }
 

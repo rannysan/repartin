@@ -8,11 +8,11 @@ import ListCard from "./components/ListCard";
 import styles from "./styles";
 import { Link } from "react-router-dom";
 
-const View = ( { signOut } ) => {
+const View = ( { } ) => {
 
   return (
     <>
-      <Grid container style={{padding: "10px"}} spacing={ 8 }>
+      <Grid container style={{padding: "16px"}} spacing={ 16 }>
         <Grid item xs={ 12 }>
           <FullCard />
         </Grid>

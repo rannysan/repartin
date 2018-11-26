@@ -7,8 +7,8 @@ import { grey } from "@material-ui/core/colors";
 import logo from "../../../public/images/logo.svg";
 import { compose } from 'recompact'
 import { firebaseConnect  } from 'react-redux-firebase';
-import styles from "./styles";
 import service from "../../services/service";
+import styles from "./styles";
 
 const View = ({ classes, firebase }) => {
 
@@ -29,7 +29,7 @@ const View = ({ classes, firebase }) => {
     }
   };
   return (
-    <main className={classes.root}>
+    <>
       <Grid container className={classes.loginColumn} spacing={0}>
 
         <Grid container item className={classes.formColumn} direction="column" justify="space-between" wrap="nowrap" xs={12}>
@@ -56,7 +56,7 @@ const View = ({ classes, firebase }) => {
         </Grid>
 
       </Grid>
-    </main>
+    </>
   );
 };
 

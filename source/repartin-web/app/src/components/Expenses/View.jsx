@@ -9,7 +9,7 @@ import styles from "./styles";
 const View = ( { classes, expenses } ) => {
 
   return (
-    <main className={ classes.root }>
+    <>
       [busca][filtro]
       <TopCard title="Finanças"/>
       <ListCard />
@@ -18,7 +18,7 @@ const View = ( { classes, expenses } ) => {
       <Button className={ classes.addButton } variant="fab" color="primary">
         <AddIcon></AddIcon>
       </Button>
-    </main>
+    </>
   );
 }
 

@@ -9,7 +9,7 @@ import styles from "./styles";
 const View = ( { classes, tasks } ) => {
   
   return (
-    <main className={ classes.root }>
+    <>
       [busca][filtro]
       <TopCard title="Tarefas"/>
       <ListCard />
@@ -18,7 +18,7 @@ const View = ( { classes, tasks } ) => {
       <Button className={ classes.addButton } variant="fab" color="primary">
         <AddIcon></AddIcon>
       </Button>
-    </main>
+    </>
   );
 }
 
