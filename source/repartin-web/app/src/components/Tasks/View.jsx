@@ -7,7 +7,7 @@ import ListCard from "../Common/ListCard";
 import styles from "./styles";
 
 const View = ( { classes, tasks } ) => {
-  debugger;
+  
   return (
     <main className={ classes.root }>
       [busca][filtro]

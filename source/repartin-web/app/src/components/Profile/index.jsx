@@ -28,6 +28,7 @@ class Profile extends Component {
 
   componentWillMount() {
     const user = this.props.firebase.auth().currentUser;
+
     this.setState( {
       user: {
         name: user.displayName,
@@ -39,8 +40,11 @@ class Profile extends Component {
   }
 
   signOut() {
-    this.props.firebase.auth().signOut();
-    this.props.history.push( "/" );
+    localStorage.removeItem( "auth-credential" );
+    this.props.firebase.auth().signOut()
+      .then(() => {
+        this.props.history.push('/')
+    });
   }
 
   exitHouse() {

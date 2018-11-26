@@ -26,7 +26,6 @@ class Welcome extends Component {
       .then(() => {
         this.props.history.push('/')
     });
-
   }
 
   render() {

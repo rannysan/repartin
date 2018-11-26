@@ -13,6 +13,7 @@ module.exports = merge( config, {
   devServer: {
     hot: true,
     index: "index.html",
+    publicPath: "/",
     compress: true,
     open: true
   },

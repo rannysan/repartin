@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import View from "./View";
 
-export default class extends Component {
+class App extends Component {
 
   render() {
 
@@ -10,3 +10,5 @@ export default class extends Component {
     );
   }
 }
+
+export default App;
