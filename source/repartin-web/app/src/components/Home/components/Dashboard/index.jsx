@@ -9,19 +9,12 @@ class Dashboard extends Component {
     this.signOut = this.signOut.bind( this );
   }
 
-  signOut() {
-    localStorage.removeItem('auth-credential');
-    this.props.firebase.auth().signOut()
-      .then(() => {
-        this.props.history.push('/')
-    });
-  }
-
   render() {
 
     return (
       <View
-        signOut={ this.signOut }
+        { ...this.props }
+        { ...this.state }
       />
     );
   }

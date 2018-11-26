@@ -28,7 +28,7 @@ class FrontPage extends Component {
               name: auth.displayName,
               email: auth.email,
               uid: auth.uid,
-              houseID: user.houseID,,
+              houseID: user.houseID,
               removed: false
             });
           }
