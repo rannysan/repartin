@@ -15,6 +15,7 @@ class Expenses extends Component {
   }
 
   componentWillMount = () =>{
+    this.loadExpenses();
   }
 
   loadExpenses = async()=> {

@@ -1,10 +1,17 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 import View from "./View";
 
 class FullCard extends Component {
 
-  openProfile( event ) {
-    confirm( "open profile" ) ?  '' : '';
+  constructor( props ) {
+    super( props );
+    this.openProfile = this.openProfile.bind( this );
+  }
+
+  openProfile() {
+    this.props.history.push( "/perfil" );
   }
 
   houseMembers( event ) {
@@ -21,4 +28,6 @@ class FullCard extends Component {
   }
 }
 
-export default FullCard;
+export default compose(
+  withRouter
+)( FullCard );
