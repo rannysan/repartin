@@ -8,7 +8,7 @@ import { CardContent, Typography, IconButton } from "@material-ui/core";
 const View = ( { classes } ) => {
 
   return (
-    <Card color="secondary" raised={true} style={{margin: "8px"}}>
+    <Card color="secondary" raised={true} style={{margin: "16px 0px"}}>
       <CardContent className={classes.cardStyle}>
         <div>
           <Typography color="primary" component="h1" align="left" variant="h5">Usuário</Typography>
