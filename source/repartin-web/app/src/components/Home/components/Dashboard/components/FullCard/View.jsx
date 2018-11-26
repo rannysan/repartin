@@ -8,7 +8,7 @@ import { CardContent, Typography, IconButton, Button } from "@material-ui/core";
 const View = ( {openProfile, houseMembers, classes} ) => {
 
   return (
-    <Card raised={true} onClick={ openProfile } className={ classes.card }>
+    <Card raised={true} onClick={ openProfile } className={ classes.cardStyle }>
       <CardContent className={classes.cardStyle}>
         <div>
           <Typography color="textPrimary" component="h1" variant="h4" align="left">República</Typography>
