@@ -36,22 +36,13 @@ const View = ({ handleChange, handleSubmit, classes }) => {
                             onChange={handleChange}
                         />
                     </FormGroup>
-
-                    <button onClick={handleSubmit}></button>
+                    <button onClick={handleSubmit}>Cadastrar</button>
                 </form>
-
             </Grid>
         </div>
     )
 }
 
 export default withStyles(styles)(View);
-// name: '',
-//             value: 0,
-//             useId: '',
-//             payments: [],
-//             dueDate: '',
-//             repeatingExpenseID: '',
-//             houseID: 0,
-//             removed: 0
+
 

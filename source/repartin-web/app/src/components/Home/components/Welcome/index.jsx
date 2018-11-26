@@ -11,10 +11,6 @@ class Welcome extends Component {
     super( props );
   }
 
-  createHouse = ( event ) => {
-    confirm( "create house" ) ? this.props.setMember( true ) : '';
-  }
-
   joinHouse = ( event ) => {
     confirm( "enter house id" ) ? this.props.setMember( true ) : '';
   }
@@ -26,7 +22,6 @@ class Welcome extends Component {
       .then(() => {
         this.props.history.push('/')
     });
-
   }
 
   render() {

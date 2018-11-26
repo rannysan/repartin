@@ -1,14 +1,13 @@
 import React from "react";
-import { isLoaded, isEmpty } from "react-redux-firebase";
 import Home from "../Home";
+import { Redirect } from "react-router-dom";
 import Login from "../Login";
 
-export default ( { firebase, auth } ) => {
+export default ( { credential, match } ) => {
   
-  return ! isLoaded
-    ? ( <h1>Loading...</h1> )	      
-    : isEmpty( auth )	
-      ? ( <Login /> )	
-      : ( <Home /> );
-      
+  return credential
+    ? <Home/>
+    : match.isExact
+      ? <Login/>
+      : <Redirect to="/"/>;
 }

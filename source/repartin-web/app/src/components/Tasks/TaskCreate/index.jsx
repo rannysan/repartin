@@ -9,34 +9,44 @@ class TaskCreate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            description: '',
-            useId: '',
-            assignedUserID: '',
-            dueDate: '',
-            executionDate: '',
-            houseID: '',
-            removed: 0
+            task: {
+                name: '',
+                description: '',
+                useId: '',
+                assignedUserID: '',
+                dueDate: '',
+                executionDate: '',
+                houseID: '',
+                removed: 0
+            }, 
+            users:[]
         }
     }
 
     handleChange = (e) => {
         const { name, value } = e.target;
-        this.setState({ ...this.state, [name]: value })
+        let task = this.state.task;
+        task[name] = value;
+        this.setState({ task })
         e.target.value = value;
+        console.log(this.state)
+    }
+
+    componentWillMount(){
+        debugger;
+        this.loadUsers();
     }
 
     handleChangeUser = (e) => {
-        
+
     }
+    
 
 
     handleSubmit = async (e) => {
         const useId = this.props.firebase.auth().currentUser.uid;
-        this.setState({ useId })
-
-        const form = this.state;
-        debugger;
+        this.setState({...this.state.task, useId })
+        const form = this.state.task;
         if (this.props.idTask == undefined)
             await service.create('task', form);
         else
@@ -47,7 +57,7 @@ class TaskCreate extends Component {
     //verifica a existência de uma task antes de renderizar
     getTask = async () => {
         if (this.props.idTask != undefined) {
-            this.state = await service.getById('task', props.idTask)
+            this.state.task = await service.getById('task', props.idTask)
         }
     }
 
@@ -55,14 +65,16 @@ class TaskCreate extends Component {
     loadUsers = async (e) => {
         const useId = this.props.firebase.auth().currentUser.uid;
         const user = await service.getById('user', useId);
-        let houseUsers = await service.getByHouseId('user', user.houseID);
-        return houseUsers;
+
+        let users = await service.getByHouse('user', user.houseID);
+        this.setState({users});
     }
 
     render() {
         return (
             <View handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit} />
+                handleSubmit={this.handleSubmit}
+                users={this.state.users} />
         )
     }
 };

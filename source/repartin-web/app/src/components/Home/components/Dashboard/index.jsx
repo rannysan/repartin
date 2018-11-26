@@ -9,15 +9,12 @@ class Dashboard extends Component {
     this.signOut = this.signOut.bind( this );
   }
 
-  signOut() {
-    this.props.firebase.auth().signOut();
-  }
-
   render() {
 
     return (
       <View
-        signOut={ this.signOut }
+        { ...this.props }
+        { ...this.state }
       />
     );
   }
