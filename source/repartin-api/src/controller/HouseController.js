@@ -9,6 +9,9 @@ module.exports = {
             creation: req.body.creation,
             color: req.body.color,
             adminID: req.body.adminID,
+            CEP: req.body.cep,
+            city: req.body.city,
+            state: req.body.state,
             removed: false
         });
 
@@ -21,8 +24,8 @@ module.exports = {
                         user.houseID = house._id;
                         modelUser.findByIdAndUpdate(user._id, user, (err, user) => {
                             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro atualizar usuário', error: err }) };
+                            return res.json({ house: house, message: 'Casa criada com sucesso!' });
                         });
-
                     });
                 } else {
                     return res.status(500).json({ message: 'Usuario já possui uma republica', error: err });
@@ -31,7 +34,6 @@ module.exports = {
                 return res.status(201).json({ message: 'Usuário admin não existe' });
             }
         });
-        return res.json({ house: house, message: 'Casa criada com sucesso!' });
 
 
     },
@@ -76,6 +78,9 @@ module.exports = {
             address: req.body.address,
             color: req.body.color,
             adminID: req.body.adminID,
+            CEP: req.body.cep,
+            city: req.body.city,
+            state: req.body.state,
             removed: req.body.removed
         };
         console.log(house.name);

@@ -5,7 +5,7 @@ const taskSchema = mongoose.Schema({
     name: String,
     description: String,
     useId: String,
-    assignedUserID: String,
+    assignedUserID: { type: Array, "default": [] },
     dueDate: Date,
     executionDate: Date,
     houseID:  String,

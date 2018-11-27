@@ -7,6 +7,9 @@ let houseSchema = mongoose.Schema({
     creation: Date,
     color: Object,
     adminID: String,
+    CEP: Number,
+    city: String,
+    state: String,
     removed: Boolean
 });
 

@@ -10,7 +10,7 @@ import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 
-const View = ({ handleChange, handleSubmit, classes, users }) => {
+const View = ({ handleChange, handleSubmit,handleChangeUser, classes, state }) => {
     return (
         <div className={classes.root}>
             <Grid container>
@@ -50,20 +50,21 @@ const View = ({ handleChange, handleSubmit, classes, users }) => {
                         </FormGroup>
                     </Grid>
                     <Grid>
-                        {/* <Select
+                         <Select
+                            name='assignedUserID'
                             multiple
-                            value={users}
+                            value={state.task.assignedUserID}
                             onChange={handleChange}
                             input={<Input id="select-multiple" />}
                         >
-                            {users != undefined && users.map(u => {
-                                debugger;
+                            {
+                                state.users && state.users.map(u => {
                                 return(
                                 <MenuItem key={u.uid} value={u.uid}>
-                                    {u.uid}
+                                    {u.name}
                                 </MenuItem>
                             )})}
-                        </Select> */}
+                        </Select>
                     </Grid>
 
                     <button onClick={handleSubmit}></button>
