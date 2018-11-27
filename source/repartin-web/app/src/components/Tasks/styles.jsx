@@ -11,8 +11,8 @@ export default ( theme ) => {
       margin: "auto"
     },
     addButton: {
-      position: "absolute",
-      bottom: theme.spacing.unit * 2,
+      position: "fixed",
+      bottom: theme.spacing.unit * 9,
       right: theme.spacing.unit * 2,
     }
   } );
