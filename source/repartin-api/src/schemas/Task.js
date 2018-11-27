@@ -4,8 +4,8 @@ const mongoose = require('mongoose')
 const taskSchema = mongoose.Schema({
     name: String,
     description: String,
-    useId: { type: Array, "default": [] },
-    assignedUserID: String,
+    useId: String,
+    assignedUserID: { type: Array, "default": [] },
     dueDate: Date,
     executionDate: Date,
     houseID:  String,
