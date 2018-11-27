@@ -10,9 +10,9 @@ const feed = [ 1, 2, 3, 4, 5]
 const View = ( { classes } ) => {
 
   return (
-    <div>
-      <Typography color="primary" component="h1" variant="h4" align="center"  style={{margin: "20px"}}>FEED</Typography>
-      <Typography color="primary" component="h2" align="center"  style={{margin: "20px"}}>
+    <div style={{margin: "0px", padding: "0px"}}>
+      <Typography color="primary" component="h1" variant="h4" align="center"  style={{margin: "20px 0px"}}>FEED</Typography>
+      <Typography color="primary" component="h2" align="center"  style={{margin: "20px 0px"}}>
         <Down/>
       </Typography>
       <div>

@@ -10,22 +10,18 @@ import styles from "./styles";
 const View = ( { expenses, handleSearch, handleFilter, classes } ) => {
 
   return (
-    <>
+    <div className={classes.body}>
       <Toolbar 
         handleSearch={ handleSearch }
         handleFilter={ handleFilter }
       />
-      <div className={classes.body}>
       [busca][filtro]
       <TopCard title="Finanças"/>
-      <ExpenseList />
-      <ExpenseList />
       <ExpenseList />
       <Button className={ classes.addButton } variant="fab" color="primary">
         <AddIcon></AddIcon>
       </Button>
-      </div>
-    </>
+    </div>
   );
 }
 
