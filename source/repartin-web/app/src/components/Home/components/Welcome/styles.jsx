@@ -6,14 +6,14 @@ export default ( theme ) => {
 
   return createStyles( {
     root: {
-      height: "100vh"
+      height: "100%"
     },
     welcomeColumn: {
       height: "100%",
       paddingTop: "10rem"
     },
     text: {
-      padding: "0 1.72rem"
+      padding: "0 .6rem"
     },
     signOut: {
       display: "flex",

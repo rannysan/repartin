@@ -17,7 +17,7 @@ const View = ( { classes } ) => {
       </Typography>
       <div>
         {feed.map((item, i) => 
-          <ListCard />
+          <ListCard key={i} />
         )}
       </div>
     </div>

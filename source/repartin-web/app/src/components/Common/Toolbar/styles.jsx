@@ -4,16 +4,17 @@ export default ( theme ) => {
 
   return createStyles( {
     root: {
-      height: "100vh"
+      position: "relative",
+      display: "flex"
     },
-    body:{
-      maxWidth: "800px",
-      margin: "auto"
+    search: {
+      flex: "1 auto"
     },
-    addButton: {
+    select: {
       position: "absolute",
-      bottom: theme.spacing.unit * 2,
-      right: theme.spacing.unit * 2,
+      top: "58px",
+      right: "6px",
+      opacity: "0"
     }
   } );
 }

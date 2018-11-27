@@ -17,6 +17,14 @@ class Tasks extends Component {
   componentWillMount = () => {
   }
 
+  handleSearch( value ) {
+    // console.log( value );
+  }
+
+  handleFilter( value ) {
+    // console.log( value );
+  }
+
   loadTasks = async()=> {
     const user = await service.getById('user', this.props.firebase.auth().currentUser.uid);
     let tasks = await service.getByHouseId('task', user.houseID); 
@@ -33,7 +41,11 @@ class Tasks extends Component {
 
   render() {
     return (
-      <View tasks={this.state.tasks}/>
+      <View 
+        tasks={ this.state.tasks }
+        handleSearch={ this.handleSearch }
+        handleFilter={ this.handleFilter }
+      />
     );
   }
 }
