@@ -14,10 +14,17 @@ class CreateHouse extends Component {
       creation: new Date(),
       color: '#fff',
       removed: false,
-      cep: ''
+      cep: '',
+      city: '',
+      state: ''
     },
     file: '',
-    loading: false
+    loading: false,
+    dialog: {
+      open: false,
+      title: '',
+      message: ''
+    }
   };
 
   componentWillMount = async () => {
@@ -48,34 +55,39 @@ class CreateHouse extends Component {
 
     this.setState({ loading: true })
 
-    const form = this.state.house;
-    form.adminID = this.props.firebase.auth().currentUser.uid;
-    let house = await service.create('house', form);
+    if (this.state.file !== '') {
+      const form = this.state.house;
+      form.adminID = this.props.firebase.auth().currentUser.uid;
+      let house = await service.create('house', form);
 
 
-    if (house !== undefined) {
-      let uploadTask = this.props.firebase.storage().ref().child(this.props.firebase.auth().currentUser.uid).put(this.state.file);
-      await uploadTask.on('state_changed', async function (snapshot) {
-        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-      }, function (error) {
-        console.log(error)
-      }, async function () {
-        uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadURL) {
-          house.house.image = downloadURL;
-          await service.update('house', house.house._id, house.house);
-          this.setState({ loading: false })
-          //this.props.history.push( "/" );
+      if (house !== undefined) {
+        let uploadTask = this.props.firebase.storage().ref().child(this.props.firebase.auth().currentUser.uid).put(this.state.file);
+        await uploadTask.on('state_changed', async function (snapshot) {
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+        }, function (error) {
+          console.log(error)
+        }, async function () {
+          uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadURL) {
+            house.house.image = downloadURL;
+            await service.update('house', house.house._id, house.house);
+            this.setState({ loading: false })
+            this.props.history.push("/");
 
-        }).catch(err => {
-          this.setState({ loading: false })
-          console.log(err)
+          }).catch(err => {
+            this.setState({ loading: false })
+          });
         });
-      });
+      } else {
+        this.carregaDialog('Erro ao cadastrar república', 'Por favor, verifique todas informações do formulário!');
+        this.setState({ loading: false })
+      }
     } else {
-      alert('Erro ao cadastrar a república');
+      this.carregaDialog('Ops! Falta uma foto', 'Por favor, suba uma imagem para representar sua república!');
       this.setState({ loading: false })
     }
+
   }
 
 
@@ -85,11 +97,47 @@ class CreateHouse extends Component {
 
   }
 
+  buscaCep = async (e) => {
+    const { value } = e.target;
+
+    this.setState({ loading: true })
+
+    let address = await service.getAddress(value);
+    if (address !== undefined && address.erro == undefined) {
+      const house = this.state.house;
+      house.city = address.localidade;
+      house.state = address.uf;
+      house.address = `${address.logradouro} - ${address.bairro}`;
+
+      this.setState({ loading: true, house })
+    } else {
+      this.carregaDialog('Erro ao buscar CEP', 'O CEP digitado não existe ou está incorreto!');
+    }
+
+    this.setState({ loading: false });
+  }
+
+  closeDialog = () => {
+    const dialog = this.state.dialog;
+    dialog.open = false;
+    this.setState({ dialog });
+  }
+
+  carregaDialog = (title, message) => {
+    const dialog = this.state.dialog;
+    dialog.open = true;
+    dialog.message = message;
+    dialog.title = title;
+    this.setState({ dialog });
+  }
+
   render() {
 
     return (
-      <View handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit} handleChangeComplete={this.handleChangeComplete} color={this.state.color} handleUpload={this.handleUpload} loading={this.state.loading}  house={this.state.house}/>
+      <View handleChange={this.handleChange} buscaCep={this.buscaCep}
+        handleSubmit={this.handleSubmit} handleChangeComplete={this.handleChangeComplete} 
+        handleUpload={this.handleUpload} loading={this.state.loading} 
+        house={this.state.house} dialog={this.state.dialog} closeDialog={this.closeDialog} />
     );
   }
 }

@@ -61,7 +61,7 @@ const service = {
                 return response.data;
             }).catch((error) => {
                 console.log(`Erro ao atualizar documento em ${path}`);
-                handleError(err);
+                handleError(error);
                 return undefined;
             });
     },
@@ -74,12 +74,24 @@ const service = {
                 return response.data;
             }).catch((error) => {
                 console.log(`Erro ao deletar documento em ${path}`);
-                handleError(err);
+                handleError(error);
                 return undefined;
             });
     },
 
+    getAddress: async (cep) => {
+        let cepFormatted = cep.replace("-", "");
 
+        return axios.get(`https://viacep.com.br/ws/${cepFormatted}/json/`)
+            .then(response => {
+                return response.data;
+            }).catch((error) => {
+                console.log(`Erro ao buscar cep ${cep}`);
+                handleError(error);
+                return undefined;
+            });
+
+    },
     saveCredential: (token) => {
         localStorage.setItem('auth-credential', JSON.stringify(token));
     },
@@ -92,13 +104,15 @@ const service = {
 
 function handleError(error) {
     const err = JSON.parse(JSON.stringify(error));
-    const status = err.response.status;
-    const message = err.response.data.message;
-    console.log(`HTTP STATUS: ${status}`);
-    if (message)
+
+    if (err.response) {
+        const status = err.response.status;
+        const message = err.response.data.message;
+        console.log(`HTTP STATUS: ${status}`);
         console.log(`MENSAGEM: ${message}`);
-    else
+    } else {
         console.log(`ERROR: ${JSON.stringify(error)}`);
 
+    }
 }
 export default service;
