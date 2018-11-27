@@ -95,7 +95,7 @@ function handleError(error) {
     const status = err.response.status;
     const message = err.response.data.message;
     console.log(`HTTP STATUS: ${status}`);
-    if (mensagem)
+    if (message)
         console.log(`MENSAGEM: ${message}`);
     else
         console.log(`ERROR: ${JSON.stringify(error)}`);

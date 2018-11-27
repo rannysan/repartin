@@ -8,12 +8,16 @@ import { withRouter } from 'react-router-dom';
 class CreateHouse extends Component {
 
   state = {
-    name: 'Cat in the Hat',
-    address: '',
-    creation: new Date(),
-    color: '#fff',
-    removed: false,
-    file: ''
+    house: {
+      name: '',
+      address: '',
+      creation: new Date(),
+      color: '#fff',
+      removed: false,
+      cep: ''
+    },
+    file: '',
+    loading: false
   };
 
   componentWillMount = async () => {
@@ -25,12 +29,15 @@ class CreateHouse extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ ...this.state, [name]: value })
-    e.target.value = value;
+    let house = this.state.house;
+    house[name] = value;
+    this.setState({ house })
   }
 
   handleChangeComplete = (color) => {
-    this.setState({ color: color.hex });
+    let house = this.state.house;
+    house.color = color.hex;
+    this.setState({ house });
   };
 
   /*
@@ -39,10 +46,12 @@ class CreateHouse extends Component {
   */
   handleSubmit = async (e) => {
 
-    const form = this.state;
-    form.adminID = this.props.firebase.auth().currentUser.uid;
+    this.setState({ loading: true })
 
+    const form = this.state.house;
+    form.adminID = this.props.firebase.auth().currentUser.uid;
     let house = await service.create('house', form);
+
 
     if (house !== undefined) {
       let uploadTask = this.props.firebase.storage().ref().child(this.props.firebase.auth().currentUser.uid).put(this.state.file);
@@ -55,10 +64,17 @@ class CreateHouse extends Component {
         uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadURL) {
           house.house.image = downloadURL;
           await service.update('house', house.house._id, house.house);
-        }).catch(err => console.log(err));
+          this.setState({ loading: false })
+          //this.props.history.push( "/" );
+
+        }).catch(err => {
+          this.setState({ loading: false })
+          console.log(err)
+        });
       });
     } else {
       alert('Erro ao cadastrar a república');
+      this.setState({ loading: false })
     }
   }
 
@@ -73,7 +89,7 @@ class CreateHouse extends Component {
 
     return (
       <View handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit} handleChangeComplete={this.handleChangeComplete} color={this.state.color} handleUpload={this.handleUpload} />
+        handleSubmit={this.handleSubmit} handleChangeComplete={this.handleChangeComplete} color={this.state.color} handleUpload={this.handleUpload} loading={this.state.loading}  house={this.state.house}/>
     );
   }
 }
