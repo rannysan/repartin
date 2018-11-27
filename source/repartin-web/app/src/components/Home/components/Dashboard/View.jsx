@@ -12,7 +12,7 @@ const View = ( { } ) => {
 
   return (
     <>
-      <Grid container style={{padding: "16px"}} spacing={ 16 }>
+      <Grid container spacing={ 16 }>
         <Grid item xs={ 12 }>
           <FullCard />
         </Grid>

@@ -15,10 +15,10 @@ const theme = createMuiTheme( {
       default: "#0c0c0c"
     },
     primary: {
-      main: "#333333"
+      main: "#cccccc"
     },
     secondary: {
-      main: "#cccccc"
+      main: "#333333"
     },
     text: {
       primary: "#cccccc",

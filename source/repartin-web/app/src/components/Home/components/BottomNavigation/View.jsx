@@ -5,24 +5,32 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import styles from "./styles";
 
-const View = ( { value, visible, handleChange, className } ) => (
-  <>
-    {
-      visible
-        ? (
-          <BottomNavigation
-            value={ value }
-            onChange={ handleChange }
-            showLabels
-            className={ className }
-          >
-            <BottomNavigationAction label="Home" icon={ <HomeIcon/> }/>
-            <BottomNavigationAction label="Finanças" icon={ <AttachMoneyIcon /> }/>
-            <BottomNavigationAction label="Tarefas" icon={ <ListAltIcon/> }/>
-          </BottomNavigation>
-        ) : ''
-    }
-  </>
-);
+const View = ( { value, visible, handleChange, className, classes } ) => {
+
+  const actionClasses = {
+    root: classes.actionRoot,
+    selected: classes.actionSelected
+  };
+
+  return (
+    <>
+      {
+        visible
+          ? (
+            <BottomNavigation
+              value={ value }
+              onChange={ handleChange }
+              showLabels
+              className={ className }
+            >
+              <BottomNavigationAction classes={ actionClasses } label="Home" icon={ <HomeIcon/> }/>
+              <BottomNavigationAction classes={ actionClasses } label="Finanças" icon={ <AttachMoneyIcon /> }/>
+              <BottomNavigationAction classes={ actionClasses } label="Tarefas" icon={ <ListAltIcon/> }/>
+            </BottomNavigation>
+          ) : ''
+      }
+    </>
+  );
+};
 
 export default withStyles( styles )( View );

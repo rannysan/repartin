@@ -17,6 +17,8 @@ class BottomNavigation extends Component {
   }
 
   componentWillMount() {
+    this.props.setCollapse( true );
+    this.handlePageChange( this.props.location );
     this.unlisten = this.props.history.listen( this.handlePageChange );
   }
 
@@ -24,7 +26,7 @@ class BottomNavigation extends Component {
     this.unlisten();
   }
 
-  handlePageChange( location, action ) {
+  handlePageChange( location ) {
     const indexOf = [ "/", "/financas", "/tarefas" ].indexOf( location.pathname );
     const state   = {
       visible: indexOf != -1

@@ -4,13 +4,17 @@ import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import TopCard from "../Common/TopCard";
 import ListCard from "../Common/ListCard";
+import Toolbar from "../Common/Toolbar";
 import styles from "./styles";
 
-const View = ( { classes, tasks } ) => {
+const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
   
   return (
     <>
-      [busca][filtro]
+      <Toolbar
+        handleSearch={ handleSearch }
+        handleFilter={ handleFilter }
+      />
       <TopCard title="Tarefas"/>
       <ListCard />
       <ListCard />
