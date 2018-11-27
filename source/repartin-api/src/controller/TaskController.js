@@ -46,7 +46,7 @@ module.exports = {
     },
 
     getByHouse: function (req, res) {
-        var houseID = req.params.house;
+        var houseID = req.params.id;
         modelTask.find({ houseID : houseID , removed : false}, function (err, task) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar task', error: err }) };
             if (task) {

@@ -24,23 +24,23 @@ class Expenses extends Component {
     // console.log( value );
   }
 
-  // componentWillMount = () =>{
-  //   this.loadExpenses();
-  // }
+  componentWillMount = () =>{
+    this.loadExpenses();
+  }
 
-  // loadExpenses = async()=> {
-  //   const user = await service.getById('user', this.props.firebase.auth().currentUser.uid);
-  //   let expenses = await service.getByHouseId('expense', user.houseID); 
-  //   this.setState({expenses})
-  // }
+  loadExpenses = async()=> {
+    const user = await service.getById('user', this.props.firebase.auth().currentUser.uid);
+    let expenses = await service.getByHouseId('expense', user.houseID); 
+    this.setState({expenses})
+  }
 
-  // filterExpenses = () => {
-  //   let expenses = [...this.state.expenses];
-  //   expenses = expenses.filter(t => {
-  //     return t.assignedUserID == this.props.firebase.auth().currentUser.uid
-  //   })
-  //   this.setState({expenses})
-  // }
+  filterExpenses = () => {
+    let expenses = [...this.state.expenses];
+    expenses = expenses.filter(t => {
+      return t.assignedUserID == this.props.firebase.auth().currentUser.uid
+    })
+    this.setState({expenses})
+  }
 
   render() {
 
