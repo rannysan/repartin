@@ -10,10 +10,21 @@ class Expenses extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      expenses:[]
+      expenses:[],
+      card: {
+        blocks: [ {
+          label: "GASTO",
+          value: "500,00"
+        }, {
+          label: "PAGO",
+          value: "200,00"
+        } ],
+        quickTip: "Quick Tip"
+      }
     }
-    this.handleSearch = this.handleSearch.bind( this );
-    this.handleFilter = this.handleFilter.bind( this );
+    this.handleSearch   = this.handleSearch.bind( this );
+    this.handleFilter   = this.handleFilter.bind( this );
+    this.handleQuickTip = this.handleQuickTip.bind( this );
   }
 
   handleSearch( value ) {
@@ -22,6 +33,12 @@ class Expenses extends Component {
 
   handleFilter( value ) {
     // console.log( value );
+  }
+
+  handleQuickTip() {
+    const card = { ...this.state.card };
+    card.quickTip = "New Quick Tip";
+    this.setState( { card } );
   }
 
   // componentWillMount = () =>{
@@ -46,9 +63,11 @@ class Expenses extends Component {
 
     return (
       <View
+        { ...this.state }
         expenses={ this.state.expenses }
         handleSearch={ this.handleSearch }
         handleFilter={ this.handleFilter }
+        handleQuickTip={ this.handleQuickTip }
       />
     );
   }

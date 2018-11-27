@@ -10,8 +10,19 @@ class Tasks extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks:[]
+      tasks:[],
+      card: {
+        blocks: [ {
+          label: "SUAS TAREFAS",
+          value: "20"
+        }, {
+          label: "ATRASADAS",
+          value: "2"
+        } ],
+        quickTip: "Quick Tip"
+      }
     }
+    this.handleQuickTip = this.handleQuickTip.bind( this );
   }
 
   componentWillMount = () => {
@@ -23,6 +34,12 @@ class Tasks extends Component {
 
   handleFilter( value ) {
     // console.log( value );
+  }
+
+  handleQuickTip() {
+    const card = { ...this.state.card };
+    card.quickTip = "New Quick Tip";
+    this.setState( { card } );
   }
 
   loadTasks = async()=> {
@@ -42,9 +59,10 @@ class Tasks extends Component {
   render() {
     return (
       <View 
-        tasks={ this.state.tasks }
+        { ...this.state }
         handleSearch={ this.handleSearch }
         handleFilter={ this.handleFilter }
+        handleQuickTip={ this.handleQuickTip }
       />
     );
   }

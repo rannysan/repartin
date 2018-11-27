@@ -7,7 +7,7 @@ import TaskList from "./components/TaskList";
 import Toolbar from "../Common/Toolbar";
 import styles from "./styles";
 
-const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
+const View = ( { tasks, card, handleSearch, handleFilter, handleQuickTip, classes } ) => {
   
   return (
     <>
@@ -16,8 +16,7 @@ const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
         handleFilter={ handleFilter }
       />
       <div className={classes.body}>
-        [busca][filtro]
-        <TopCard title="Tarefas"/>
+        <TopCard card={ card } handleQuickTip={ handleQuickTip }/>
         <TaskList />
         <Button className={ classes.addButton } variant="fab" color="primary">
           <AddIcon></AddIcon>

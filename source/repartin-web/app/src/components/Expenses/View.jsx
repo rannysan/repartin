@@ -7,7 +7,7 @@ import ListCard from "../Common/ListCard";
 import Toolbar from "../Common/Toolbar";
 import styles from "./styles";
 
-const View = ( { expenses, handleSearch, handleFilter, classes } ) => {
+const View = ( { expenses, card, handleSearch, handleFilter, handleQuickTip, classes } ) => {
 
   return (
     <>
@@ -15,7 +15,7 @@ const View = ( { expenses, handleSearch, handleFilter, classes } ) => {
         handleSearch={ handleSearch }
         handleFilter={ handleFilter }
       />
-      <TopCard title="Finanças"/>
+      <TopCard card={ card } handleQuickTip={ handleQuickTip }/>
       <ListCard />
       <ListCard />
       <ListCard />

@@ -8,6 +8,7 @@ class TopCard extends Component {
     return (
       <View 
         { ...this.props }
+        { ...this.state }
       />
     );
   }
