@@ -38,7 +38,7 @@ const View = ({ handleChange, handleSubmit, handleChangeUser, classes, state }) 
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
+                            <TextValidator
                                 name='name'
                                 label='Nome da tarefa'
                                 onChange={handleChange}
@@ -47,7 +47,7 @@ const View = ({ handleChange, handleSubmit, handleChangeUser, classes, state }) 
                             />
                         </Grid>
                         <Grid item xs={6}>
-                            <TextField
+                            <TextValidator
                                 name='description'
                                 label='Descrição'
                                 onChange={handleChange}

@@ -15,6 +15,7 @@ class Tasks extends Component {
   }
 
   componentWillMount = () => {
+    this.loadTasks();
   }
 
   handleSearch( value ) {
@@ -26,8 +27,8 @@ class Tasks extends Component {
   }
 
   loadTasks = async()=> {
-    const user = await service.getById('user', this.props.firebase.auth().currentUser.uid);
-    let tasks = await service.getByHouseId('task', user.houseID); 
+    const { user } = await service.getById('user', this.props.firebase.auth().currentUser.uid);
+    let tasks = await service.getById('task/house', user.houseID);
     this.setState({tasks})
   }
 

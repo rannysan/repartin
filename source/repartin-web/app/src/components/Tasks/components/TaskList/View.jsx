@@ -6,7 +6,7 @@ import { CardContent, Typography, IconButton } from "@material-ui/core";
 
 const tasks = [ 1, 2, 3, 4, 5]
 
-const View = ( { classes } ) => {
+const View = ( { classes/*, tasks*/ } ) => {
 
   return (
     <div>

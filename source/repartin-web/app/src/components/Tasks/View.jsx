@@ -18,7 +18,7 @@ const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
       <div className={classes.body}>
         [busca][filtro]
         <TopCard title="Tarefas"/>
-        <TaskList />
+        <TaskList tasks={tasks}/>
         <Button className={ classes.addButton } variant="fab" color="primary">
           <AddIcon></AddIcon>
         </Button>
