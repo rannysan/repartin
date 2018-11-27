@@ -9,6 +9,9 @@ module.exports = {
             creation: req.body.creation,
             color: req.body.color,
             adminID: req.body.adminID,
+            CEP: req.body.cep,
+            city: req.body.city,
+            state: req.body.state,
             removed: false
         });
 
@@ -75,6 +78,9 @@ module.exports = {
             address: req.body.address,
             color: req.body.color,
             adminID: req.body.adminID,
+            CEP: req.body.cep,
+            city: req.body.city,
+            state: req.body.state,
             removed: req.body.removed
         };
         console.log(house.name);
