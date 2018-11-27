@@ -34,15 +34,17 @@ class ExpenseCreate extends Component {
 
 
     handleSubmit = async (e) => {
+        debugger;
         const useId = this.props.firebase.auth().currentUser.uid;
-        const user = await service.getById('user', useId);
-
-        this.setState({useId})
-        this.setState({houseID: user.houseID})
-
+        const { user } = await service.getById('user', useId);
         const form = this.state;
+        form.useId = useId
+        form.houseID = user.houseID
+
         if(this.props.idExpense == undefined)
-            await service.create('expense', form);
+            await service.create('expense', form).then(
+                alert('Despesa salva com sucesso')
+            )
         else
             await service.update('expense', this.props.idExpense , form);
 

@@ -5,6 +5,7 @@ const userSchema = mongoose.Schema({
     email: String,
     uid: String,
     houseID: String,
+    accepted: Boolean,
     removed: Boolean
 });
 

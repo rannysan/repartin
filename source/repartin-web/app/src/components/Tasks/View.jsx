@@ -10,19 +10,19 @@ import styles from "./styles";
 const View = ( { tasks, card, handleSearch, handleFilter, handleQuickTip, classes } ) => {
   
   return (
-    <>
-      <Toolbar
-        handleSearch={ handleSearch }
-        handleFilter={ handleFilter }
-      />
       <div className={classes.body}>
-        <TopCard card={ card } handleQuickTip={ handleQuickTip }/>
-        <TaskList />
-        <Button className={ classes.addButton } variant="fab" color="primary">
-          <AddIcon></AddIcon>
-        </Button>
+        <Toolbar
+          handleSearch={ handleSearch }
+          handleFilter={ handleFilter }
+        />
+        <div className={ classes.wrapper }>
+          <TopCard card={ card } handleQuickTip={ handleQuickTip }/>
+          <TaskList tasks={tasks}/>
+          <Button className={ classes.addButton } variant="fab" color="primary">
+            <AddIcon></AddIcon>
+          </Button>
+        </div>
       </div>
-    </>
   );
 }
 
