@@ -13,7 +13,7 @@ class TaskCreate extends Component {
                 name: '',
                 description: '',
                 useId: '',
-                assignedUserID: '',
+                assignedUserID: [],
                 dueDate: '',
                 executionDate: '',
                 houseID: '',
@@ -29,17 +29,13 @@ class TaskCreate extends Component {
         task[name] = value;
         this.setState({ task })
         e.target.value = value;
-        console.log(this.state)
     }
 
-    componentWillMount(){
-        debugger;
-        this.loadUsers();
+    componentWillMount = async() =>{
+        await this.loadUsers();
     }
 
-    handleChangeUser = (e) => {
 
-    }
     
 
 
@@ -64,9 +60,9 @@ class TaskCreate extends Component {
     //buscar por todos usuários da casa
     loadUsers = async (e) => {
         const useId = this.props.firebase.auth().currentUser.uid;
-        const user = await service.getById('user', useId);
+        const { user } = await service.getById('user', useId);
 
-        let users = await service.getByHouse('user', user.houseID);
+        let { users } = await service.getById('house/members', user.houseID);
         this.setState({users});
     }
 
@@ -74,7 +70,7 @@ class TaskCreate extends Component {
         return (
             <View handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
-                users={this.state.users} />
+                state={this.state} />
         )
     }
 };
