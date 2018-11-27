@@ -10,12 +10,11 @@ import styles from "./styles";
 const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
   
   return (
-    <>
-      <Toolbar
-        handleSearch={ handleSearch }
-        handleFilter={ handleFilter }
-      />
       <div className={classes.body}>
+        <Toolbar
+          handleSearch={ handleSearch }
+          handleFilter={ handleFilter }
+        />
         [busca][filtro]
         <TopCard title="Tarefas"/>
         <TaskList />
@@ -23,7 +22,6 @@ const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
           <AddIcon></AddIcon>
         </Button>
       </div>
-    </>
   );
 }
 

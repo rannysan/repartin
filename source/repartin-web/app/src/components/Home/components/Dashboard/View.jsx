@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const View = ( { classes } ) => {
 
   return (
-    <Grid container spacing={ 16 }>
+    <Grid container className={classes.body} spacing={ 16 }>
       <Grid item xs={ 12 }>
         <FullCard />
       </Grid>
