@@ -18,8 +18,8 @@ class TaskCreate extends Component {
                 executionDate: '',
                 houseID: '',
                 removed: 0
-            }, 
-            users:[]
+            },
+            users: []
         }
     }
 
@@ -31,23 +31,29 @@ class TaskCreate extends Component {
         e.target.value = value;
     }
 
-    componentWillMount = async() =>{
+    componentWillMount = async () => {
         await this.loadUsers();
     }
 
 
-    
+
 
 
     handleSubmit = async (e) => {
-        const useId = this.props.firebase.auth().currentUser.uid;
-        this.setState({...this.state.task, useId })
-        const form = this.state.task;
+        const useId = this.props.firebase.auth().currentUser.uid
+        const { user } = await service.getById('user', useId)
+
+        var form = this.state.task
+        form.useId = useId
+        form.houseID = user.houseID
         if (this.props.idTask == undefined)
-            await service.create('task', form);
+            await service.create('task', form).then(
+                alert('Tarefa cadastrada com sucesso')
+            )
         else
-            await service.update('task', this.props.idTask, form);
-        e.preventDefault();
+            await service.update('task', this.props.idTask, form)
+        this.props.history.push('/tarefas')
+
     }
 
     //verifica a existência de uma task antes de renderizar
@@ -63,7 +69,7 @@ class TaskCreate extends Component {
         const { user } = await service.getById('user', useId);
 
         let { users } = await service.getById('house/members', user.houseID);
-        this.setState({users});
+        this.setState({ users });
     }
 
     render() {
