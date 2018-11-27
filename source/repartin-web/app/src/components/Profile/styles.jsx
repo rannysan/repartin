@@ -5,7 +5,8 @@ export default ( theme ) => {
   return createStyles( {
     houseBackground: {
       position: "relative",
-      height: "172px"
+      height: "172px",
+      margin: "-16px -16px 0 -16px"
     },
     backButton: {
       zIndex: "2"

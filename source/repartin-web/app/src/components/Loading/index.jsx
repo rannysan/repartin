@@ -1,6 +1,18 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import { ClipLoader } from 'react-spinners';
+import styles from "./styles";
+import { withStyles } from "@material-ui/core";
 
-export default () => (
-  <Typography component="p" variant="h5">Loading bonito e fofo</Typography>
+const View = ( { classes, loading } ) => (
+  <div className={ classes.root }>
+    <ClipLoader
+      className={ classes.loader }
+      sizeUnit={ "px" }
+      size={ 130 }
+      color={ '#cccccc' }
+      loading={ loading }
+    />
+  </div>
 );
+
+export default withStyles( styles )( View );
