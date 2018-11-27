@@ -28,7 +28,7 @@ class Tasks extends Component {
 
   loadTasks = async()=> {
     const { user } = await service.getById('user', this.props.firebase.auth().currentUser.uid);
-    let tasks = await service.getById('task/house', user.houseID);
+    let tasks = await service.getByHouse('task', user.houseID);
     this.setState({tasks})
   }
 

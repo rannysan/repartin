@@ -8,7 +8,6 @@ import Toolbar from "../Common/Toolbar";
 import styles from "./styles";
 
 const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
-  
   return (
       <div className={classes.body}>
         <Toolbar
@@ -17,7 +16,7 @@ const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
         />
         [busca][filtro]
         <TopCard title="Tarefas"/>
-        <TaskList tasks={tasks}/>
+        <TaskList tasks={tasks.task}/>
         <Button className={ classes.addButton } variant="fab" color="primary">
           <AddIcon></AddIcon>
         </Button>
