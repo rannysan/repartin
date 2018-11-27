@@ -6,6 +6,10 @@ export default ( theme ) => {
     root: {
       height: "100vh"
     },
+    body:{
+      maxWidth: "800px",
+      margin: "auto"
+    },
     addButton: {
       position: "absolute",
       bottom: theme.spacing.unit * 2,
