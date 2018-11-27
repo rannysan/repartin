@@ -43,13 +43,6 @@ export default (theme) => {
     },
     rightIcon: {
       marginLeft: 10
-    },
-    sweetLoading: {
-      position: 'absolute',
-      top: '40%',
-      left: '40%', bottom: 0, right: 0,
-      margin: '0 auto',
-      borderColor: 'red',
     }
   });
 }

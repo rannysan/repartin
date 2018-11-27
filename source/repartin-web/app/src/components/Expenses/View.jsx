@@ -7,7 +7,7 @@ import ExpenseList from "./components/ExpenseList";
 import Toolbar from "../Common/Toolbar";
 import styles from "./styles";
 
-const View = ( { expenses, handleSearch, handleFilter, classes } ) => {
+const View = ( { expenses, card, handleSearch, handleFilter, handleQuickTip, classes } ) => {
 
   return (
     <div className={classes.body}>
@@ -15,12 +15,13 @@ const View = ( { expenses, handleSearch, handleFilter, classes } ) => {
         handleSearch={ handleSearch }
         handleFilter={ handleFilter }
       />
-      [busca][filtro]
-      <TopCard title="Finanças"/>
-      <ExpenseList />
-      <Button className={ classes.addButton } variant="fab" color="primary">
-        <AddIcon></AddIcon>
-      </Button>
+      <div className={ classes.wrapper }>
+        <TopCard card={ card } handleQuickTip={ handleQuickTip }/>
+        <ExpenseList />
+        <Button className={ classes.addButton } variant="fab" color="primary">
+          <AddIcon></AddIcon>
+        </Button>
+      </div>
     </div>
   );
 }

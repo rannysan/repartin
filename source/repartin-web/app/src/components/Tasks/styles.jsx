@@ -10,6 +10,9 @@ export default ( theme ) => {
       maxWidth: "800px",
       margin: "auto"
     },
+    wrapper: {
+      paddingTop: ".4rem"
+    },
     addButton: {
       position: "fixed",
       bottom: theme.spacing.unit * 9,

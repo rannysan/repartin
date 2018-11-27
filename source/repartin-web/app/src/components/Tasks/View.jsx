@@ -7,21 +7,23 @@ import TaskList from "./components/TaskList";
 import Toolbar from "../Common/Toolbar";
 import styles from "./styles";
 
-const View = ( { tasks, handleSearch, handleFilter, classes } ) => {
+const View = ({ tasks, card, handleSearch, handleFilter, handleQuickTip, classes }) => {
+
   return (
-      <div className={classes.body}>
-        <Toolbar
-          handleSearch={ handleSearch }
-          handleFilter={ handleFilter }
-        />
-        [busca][filtro]
-        <TopCard title="Tarefas"/>
-        <TaskList tasks={tasks.task}/>
-        <Button className={ classes.addButton } variant="fab" color="primary">
+    <div className={classes.body}>
+      <Toolbar
+        handleSearch={handleSearch}
+        handleFilter={handleFilter}
+      />
+      <div className={classes.wrapper}>
+        <TopCard card={card} handleQuickTip={handleQuickTip} />
+        <TaskList tasks={tasks.task} />
+        <Button className={classes.addButton} variant="fab" color="primary">
           <AddIcon></AddIcon>
         </Button>
       </div>
+    </div>
   );
 }
 
-export default withStyles( styles )( View );
+export default withStyles(styles)(View);
