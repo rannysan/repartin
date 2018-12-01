@@ -7,12 +7,34 @@ import { withRouter } from 'react-router-dom';
 
 class Welcome extends Component {
 
-  constructor( props ) {
-    super( props );
+  state = {
+    openInputModal: false
   }
 
-  joinHouse = ( event ) => {
-    confirm( "enter house id" ) ? this.props.setMember( true ) : '';
+  constructor( props ) {
+    super( props );
+
+    this.handleJoinHouse = this.handleJoinHouse.bind( this )
+    this.handleCancel    = this.handleCancel.bind( this )
+  }
+
+  openJoinHouse = ( value ) => ( event ) => {
+    
+    this.setState( {
+      openInputModal: value
+    } )
+  }
+  
+  handleJoinHouse( id ) {
+    alert( `send invite to house ${ id }` )
+    this.props.setPending( true )
+    this.setState( {
+      openInputModal: false
+    } )
+  }
+
+  handleCancel( event ) {
+    this.props.setPending( false )
   }
 
   signOut  = (event) => {
@@ -28,9 +50,12 @@ class Welcome extends Component {
 
     return (
       <View 
+        { ...this.state }
         { ...this.props }
         createHouse={ this.createHouse }
-        joinHouse={ this.joinHouse }
+        openJoinHouse={ this.openJoinHouse }
+        handleJoinHouse={ this.handleJoinHouse }
+        handleCancel={ this.handleCancel }
         signOut={ this.signOut }
       />
     );

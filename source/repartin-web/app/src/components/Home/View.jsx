@@ -15,7 +15,7 @@ import NotFound from "../NotFound";
 import Loading from "../Loading";
 import styles from "./styles";
 
-const View = ( { isMember, collapse, setMember, setCollapse, classes, pending, loading } ) => {
+const View = ( { isMember, collapse, setMember, setCollapse, classes, pending, loading, setPending } ) => {
 
   return ( 
     <Router>
@@ -26,10 +26,12 @@ const View = ( { isMember, collapse, setMember, setCollapse, classes, pending, l
               return loading
                 ? <Loading /> 
                 : isMember
-                    ? pending 
-                      ? <span>Convite Pendente</span> 
-                      : <Dashboard setCollapse={ setCollapse }/>
-                    : <Welcome setMember={ setMember }/>
+                    ? <Dashboard setCollapse={ setCollapse }/>
+                    : <Welcome 
+                        pending={ pending } 
+                        setMember={ setMember } 
+                        setPending={ setPending }
+                      />
             } }/>
             <Route path="/perfil" component={ Profile }/>
             <Route exact path="/tarefas" component={ Tasks }/>

@@ -37,6 +37,12 @@ class Home extends Component {
     } );
   }
 
+  setPending = ( pending ) => {
+    this.setState( {
+      pending: pending
+    } )
+  }
+
   setCollapse = ( collapse )  => {
     this.setState( {
       collapse: collapse
@@ -51,6 +57,7 @@ class Home extends Component {
         { ...this.state }
         setMember={ this.setMember }
         setCollapse={ this.setCollapse }
+        setPending={ this.setPending }
       />
     );
   }
