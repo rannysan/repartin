@@ -22,6 +22,7 @@ module.exports = {
                     house.save(function (err, house) {
                         if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao salvar nova casa', error: err }) };
                         user.houseID = house._id;
+                        user.accepted = true;
                         modelUser.findByIdAndUpdate(user._id, user, (err, user) => {
                             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro atualizar usuário', error: err }) };
                             return res.json({ house: house, message: 'Casa criada com sucesso!' });
@@ -83,7 +84,6 @@ module.exports = {
             state: req.body.state,
             removed: req.body.removed
         };
-        console.log(house.name);
 
         model.findByIdAndUpdate(id, house, function (err, house) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro deletar casa', error: err }) };

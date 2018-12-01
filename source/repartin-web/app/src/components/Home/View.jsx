@@ -14,7 +14,7 @@ import CreateHouse from "./components/Welcome/components/CreateHouse";
 import NotFound from "../NotFound";
 import styles from "./styles";
 
-const View = ( { isMember, collapse, setMember, setCollapse, classes } ) => {
+const View = ( { isMember, collapse, setMember, setCollapse, classes, pending } ) => {
 
   return ( 
     <Router>
@@ -23,7 +23,7 @@ const View = ( { isMember, collapse, setMember, setCollapse, classes } ) => {
           <Switch>
             <Route exact path="/" render={ ( props ) => {
               return isMember
-                ? <Dashboard setCollapse={ setCollapse }/>
+                ? pending ? <span>Convite Pendente</span> : <Dashboard setCollapse={ setCollapse }/>
                 : <Welcome setMember={ setMember }/>
             } }/>
             <Route path="/perfil" component={ Profile }/>
@@ -39,7 +39,7 @@ const View = ( { isMember, collapse, setMember, setCollapse, classes } ) => {
           </Switch>
         </div>
         {
-          isMember
+          isMember && !pending
             ? (
               <BottomNavigation 
                 className={ classes.bottomNavigation }

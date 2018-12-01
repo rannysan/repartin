@@ -3,27 +3,38 @@ import { withRouter } from "react-router-dom";
 import { firebaseConnect } from 'react-redux-firebase';
 import { compose } from "redux";
 import View from "./View";
+import service from './../../services/service';
 
 class Home extends Component {
 
   state = {
     isMember: false, // é de uma rep?
-    collapse: false
+    collapse: false,
+    pending: false
   }
 
   constructor( props ) {
     super(props);
-    this.setMember   = this.setMember.bind( this );
-    this.setCollapse = this.setCollapse.bind( this );
   }
 
-  setMember( isMemeber ) {
+  componentWillMount = async () => {
+    const { user } = await service.getById('user', this.props.firebase.auth().currentUser.uid);
+    if (user.houseID != null) {
+      if (user.accepted) {
+        this.setState({ isMember: true })
+      } else {
+        this.setState({ isMember: true, pending: true });
+      }
+    }
+  }
+
+  setMember = ( isMemeber ) => {
     this.setState( {
       isMember: isMemeber
     } );
   }
 
-  setCollapse( collapse ) {
+  setCollapse = ( collapse )  => {
     this.setState( {
       collapse: collapse
     } );

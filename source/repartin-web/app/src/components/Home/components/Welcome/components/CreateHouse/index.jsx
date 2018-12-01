@@ -54,7 +54,7 @@ class CreateHouse extends Component {
   handleSubmit = async (e) => {
 
     this.setState({ loading: true })
-
+    let scope = this;
     if (this.state.file !== '') {
       const form = this.state.house;
       form.adminID = this.props.firebase.auth().currentUser.uid;
@@ -72,11 +72,11 @@ class CreateHouse extends Component {
           uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadURL) {
             house.house.image = downloadURL;
             await service.update('house', house.house._id, house.house);
-            this.setState({ loading: false })
-            this.props.history.push("/");
+            scope.setState({ loading: false })
+            scope.props.history.push("/");
 
           }).catch(err => {
-            this.setState({ loading: false })
+            scope.setState({ loading: false })
           });
         });
       } else {

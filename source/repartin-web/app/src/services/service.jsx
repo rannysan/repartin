@@ -110,9 +110,9 @@ function handleError(error) {
         const message = err.response.data.message;
         console.log(`HTTP STATUS: ${status}`);
         console.log(`MENSAGEM: ${message}`);
-    } else {
-        console.log(`ERROR: ${JSON.stringify(error)}`);
+    } 
+    console.log(`ERROR: ${JSON.stringify(error)}`);
 
-    }
+
 }
 export default service;

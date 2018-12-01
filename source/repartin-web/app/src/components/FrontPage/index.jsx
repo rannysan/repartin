@@ -22,14 +22,17 @@ class FrontPage extends Component {
 
         if (response !== undefined) {
           const user = response.user;
-          
+          if (user.accepted == undefined) {
+            user.accepted = false;
+          }
           if (!user.removed) {
             await service.update('user', user._id, {
               name: auth.displayName,
               email: auth.email,
               uid: auth.uid,
               houseID: user.houseID,
-              removed: false
+              removed: false,
+              accepted: user.accepted
             });
           }
         } else {
@@ -38,7 +41,8 @@ class FrontPage extends Component {
             email: auth.email,
             uid: auth.uid,
             houseID: null,
-            removed: false
+            removed: false,
+            accepted: false
           } );
         }
       } else {
