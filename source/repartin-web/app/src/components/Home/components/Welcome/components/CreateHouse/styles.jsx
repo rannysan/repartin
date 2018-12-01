@@ -4,9 +4,7 @@ export default (theme) => {
 
   return createStyles({
     textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
-      width: 200,
+      width: "100%"
     },
     dense: {
       marginTop: 19,
@@ -20,21 +18,26 @@ export default (theme) => {
     input: {
       display: 'none',
     },
-    card: {
-      minWidth: 275,
-      width: '80vh',
-      maxHeight: '60vh',
-      overflow: 'auto',
-      margin: 'auto',
-      position: 'absolute',
-      top: 0,
-      left: 0, bottom: 0, right: 0
-    },
     pos: {
       marginBottom: 12,
     },
     rightIcon: {
       marginLeft: 10
+    },
+    buttonInput: {
+      marginTop: 8,
+      display: "flex",
+      justifyContent: "flex-end"
+    },
+    colorPicker: {
+      marginTop: 8
+    },
+    label: {
+      display: "block",
+      marginTop: 8
+    },
+    submit: {
+      marginTop: 16
     }
   });
 }

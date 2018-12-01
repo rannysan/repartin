@@ -12,9 +12,10 @@ import ExpenseAdd from "../Expenses/ExpenseCreate"
 import Members from "../Members";
 import CreateHouse from "./components/Welcome/components/CreateHouse";
 import NotFound from "../NotFound";
+import Loading from "../Loading";
 import styles from "./styles";
 
-const View = ( { isMember, collapse, setMember, setCollapse, classes, pending } ) => {
+const View = ( { isMember, collapse, setMember, setCollapse, classes, pending, loading } ) => {
 
   return ( 
     <Router>
@@ -22,9 +23,13 @@ const View = ( { isMember, collapse, setMember, setCollapse, classes, pending } 
         <div className={ `${ classes.homeWrapper } ${ collapse ? classes.homeWrapperCollapsed : '' }` }>
           <Switch>
             <Route exact path="/" render={ ( props ) => {
-              return isMember
-                ? pending ? <span>Convite Pendente</span> : <Dashboard setCollapse={ setCollapse }/>
-                : <Welcome setMember={ setMember }/>
+              return loading
+                ? <Loading /> 
+                : isMember
+                    ? pending 
+                      ? <span>Convite Pendente</span> 
+                      : <Dashboard setCollapse={ setCollapse }/>
+                    : <Welcome setMember={ setMember }/>
             } }/>
             <Route path="/perfil" component={ Profile }/>
             <Route exact path="/tarefas" component={ Tasks }/>
@@ -34,7 +39,7 @@ const View = ( { isMember, collapse, setMember, setCollapse, classes, pending } 
             <Route path="/financas/nova" component={ ExpenseAdd }/>
             <Route path="/financas/:id" component={ ExpenseAdd }/>
             <Route path="/membros" component={ Members }/>
-            <Route path="/nova-republica" component={ CreateHouse }/>
+            <Route path="/nova-republica" render={ ( props ) => <CreateHouse setMember={ setMember }/> }/>
             <Route component={ NotFound }/>
           </Switch>
         </div>

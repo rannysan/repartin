@@ -4,7 +4,7 @@ import styles from "./styles";
 import { Grid, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const View = ( { createHouse, joinHouse, signOut, classes } ) => {
+const View = ( { joinHouse, signOut, classes } ) => {
   
   return (
     <div className={ classes.root }>

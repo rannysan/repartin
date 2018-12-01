@@ -9,11 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import InputMask from 'react-input-mask';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Loading from "../../../../../Loading";
-import styles from './styles';
 import MessageDialog from '../../../../../MessageDialog';
+import styles from './styles';
 
 const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,  
-  handleUpload, loading, house, buscaCep, dialog, closeDialog }) => {
+  handleUpload, loading, house, searchCep, dialog, closeDialog }) => {
 
   ValidatorForm.addValidationRule('minLength', (value) => {
     if (value.length < 4) {
@@ -28,7 +28,7 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,
         ? <Loading loading={loading} />
         : (
           <>
-            <Typography component="h1" variant="h5">NOVA REPÚBLICA</Typography>
+            <Typography component="h1" variant="h5">Nova república</Typography>
             <ValidatorForm
               onSubmit={handleSubmit}
               onError={errors => console.log(errors)}
@@ -51,7 +51,7 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,
                     mask="99999-999"
                     value={house.cep}
                     onChange={handleChange}
-                    onBlur={buscaCep}
+                    onBlur={searchCep}
                   >
                     {() => <TextValidator
                       label="Cep"
@@ -100,6 +100,7 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  
                   <input
                     accept="image/*"
                     className={classes.input}
@@ -108,20 +109,48 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,
                     onChange={handleUpload}
                     unique="true"
                   />
-                  <label htmlFor="contained-button-file">
-                    <Button variant="contained" component="span" className={classes.button}>
-                      Upload <CloudUploadIcon className={classes.rightIcon} />
-                    </Button>
+                  <label className={ classes.label } htmlFor="contained-button-file">
+                    <Typography component="p" variant="body2">Imagem da república</Typography>
+                    <div className={ classes.buttonInput }>
+                      <Button variant="contained" component="span" className={classes.button}>
+                        Upload <CloudUploadIcon className={classes.rightIcon} />
+                      </Button>
+                    </div>
                   </label>
-                  <TwitterPicker triangle="hide" value={house.color} color={house.color}
-                    onChangeComplete={handleChangeComplete} />
+                  <label className={ classes.label } htmlFor="colorPicker">
+                      <Typography component="p" variant="body2">Cor da república</Typography>
+                  </label>
+                  <TwitterPicker
+                    id="colorPicker"
+                    triangle="hide"
+                    className={ classes.colorPicker }
+                    value={house.color}
+                    color={house.color}
+                    onChangeComplete={handleChangeComplete}
+                    width="100%"
+                    colors={ [ 
+                      "#F44336", 
+                      "#E91E63", 
+                      "#9C27B0", 
+                      "#3F51B5", 
+                      "#2196F3", 
+                      "#00BCD4", 
+                      "#4CAF50", 
+                      "#8BC34A",
+                      "#CDDC39", 
+                      "#FFEB3B", 
+                      "#FF9800",
+                      "#607D8B"  
+                    ] }
+                  />
                 </Grid>
 
               </Grid>
-              <Button variant="contained" type="submit" color="primary" className={classes.button}>
-                Salvar
-              </Button>
-
+              <div className={ classes.buttonInput }>
+                <Button variant="contained" type="submit" color="primary" className={ `${ classes.button } ${ classes.submit }` }>
+                  Salvar
+                </Button>
+              </div>
               <MessageDialog title={dialog.title} message={dialog.message} open={dialog.open} handleClose={closeDialog}/>
             </ValidatorForm>
           </>
@@ -130,6 +159,5 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,
     </>
   );
 }
-
 
 export default withStyles(styles)(View);

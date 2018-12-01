@@ -10,7 +10,8 @@ class Home extends Component {
   state = {
     isMember: false, // é de uma rep?
     collapse: false,
-    pending: false
+    pending: false,
+    loading: true
   }
 
   constructor( props ) {
@@ -21,10 +22,12 @@ class Home extends Component {
     const { user } = await service.getById('user', this.props.firebase.auth().currentUser.uid);
     if (user.houseID != null) {
       if (user.accepted) {
-        this.setState({ isMember: true })
+        this.setState({ isMember: true, loading: false })
       } else {
-        this.setState({ isMember: true, pending: true });
+        this.setState({ isMember: true, pending: true, laoding: false });
       }
+    } else {
+      this.setState( { loading: false } )
     }
   }
 

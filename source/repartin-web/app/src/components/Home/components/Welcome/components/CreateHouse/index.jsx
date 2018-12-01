@@ -28,6 +28,7 @@ class CreateHouse extends Component {
   };
 
   componentWillMount = async () => {
+
     let user = await service.getById('user', this.props.firebase.auth().currentUser.uid)
     if (user.houseID !== undefined) {
       this.props.history.push('/');
@@ -72,7 +73,7 @@ class CreateHouse extends Component {
           uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadURL) {
             house.house.image = downloadURL;
             await service.update('house', house.house._id, house.house);
-            scope.setState({ loading: false })
+            scope.props.setMember( true );
             scope.props.history.push("/");
 
           }).catch(err => {
@@ -80,11 +81,11 @@ class CreateHouse extends Component {
           });
         });
       } else {
-        this.carregaDialog('Erro ao cadastrar república', 'Por favor, verifique todas informações do formulário!');
+        this.loadDialog('Erro ao cadastrar república', 'Por favor, verifique todas informações do formulário!');
         this.setState({ loading: false })
       }
     } else {
-      this.carregaDialog('Ops! Falta uma foto', 'Por favor, suba uma imagem para representar sua república!');
+      this.loadDialog('Ops! Falta uma foto', 'Por favor, suba uma imagem para representar sua república!');
       this.setState({ loading: false })
     }
 
@@ -94,27 +95,29 @@ class CreateHouse extends Component {
   handleUpload = (e) => {
     let file = e.target.files[0];
     this.setState({ file })
-
   }
 
-  buscaCep = async (e) => {
+  searchCep = async (e) => {
     const { value } = e.target;
 
-    this.setState({ loading: true })
+    if( value.length > 0 ) {
+      this.setState({ loading: true })
 
-    let address = await service.getAddress(value);
-    if (address !== undefined && address.erro == undefined) {
-      const house = this.state.house;
-      house.city = address.localidade;
-      house.state = address.uf;
-      house.address = `${address.logradouro} - ${address.bairro}`;
+      let address = await service.getAddress(value);
+      
+      if (address !== undefined && address.erro == undefined) {
+        const house = this.state.house;
+        house.city = address.localidade;
+        house.state = address.uf;
+        house.address = `${address.logradouro} - ${address.bairro}`;
 
-      this.setState({ loading: true, house })
-    } else {
-      this.carregaDialog('Erro ao buscar CEP', 'O CEP digitado não existe ou está incorreto!');
+        this.setState({ loading: true, house })
+      } else {
+        this.loadDialog('Erro ao buscar CEP', 'O CEP digitado não existe ou está incorreto!');
+      }
+
+      this.setState({ loading: false });
     }
-
-    this.setState({ loading: false });
   }
 
   closeDialog = () => {
@@ -123,7 +126,7 @@ class CreateHouse extends Component {
     this.setState({ dialog });
   }
 
-  carregaDialog = (title, message) => {
+  loadDialog = (title, message) => {
     const dialog = this.state.dialog;
     dialog.open = true;
     dialog.message = message;
@@ -134,7 +137,7 @@ class CreateHouse extends Component {
   render() {
 
     return (
-      <View handleChange={this.handleChange} buscaCep={this.buscaCep}
+      <View handleChange={this.handleChange} searchCep={this.searchCep}
         handleSubmit={this.handleSubmit} handleChangeComplete={this.handleChangeComplete} 
         handleUpload={this.handleUpload} loading={this.state.loading} 
         house={this.state.house} dialog={this.state.dialog} closeDialog={this.closeDialog} />
