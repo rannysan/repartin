@@ -43,8 +43,8 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,
                     value={house.name}
                     onChange={handleChange}
                     name="name"
-                    validators={['minLength', 'required']}
-                    errorMessages={['O nome precisa ter mais que 3 caracteres', 'Campo obrigatório']}
+                    validators={['required', 'minLength']}
+                    errorMessages={['Campo obrigatório', 'O nome precisa ter mais que 3 caracteres']}
                     fullWidth
                   />
                   <InputMask

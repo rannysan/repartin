@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import View from './View'
-import service from "../../../services/service";
+import service from "../../../../services/service";
 import { firebaseConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom';
@@ -14,8 +14,8 @@ class TaskCreate extends Component {
                 description: '',
                 useId: '',
                 assignedUserID: [],
-                dueDate: '',
-                executionDate: '',
+                dueDate: new Date().toISOString().slice( 0, 10 ),
+                executionDate: new Date().toISOString().slice( 0, 10 ),
                 houseID: '',
                 removed: 0
             },
@@ -28,16 +28,11 @@ class TaskCreate extends Component {
         let task = this.state.task;
         task[name] = value;
         this.setState({ task })
-        e.target.value = value;
     }
 
     componentWillMount = async () => {
         await this.loadUsers();
     }
-
-
-
-
 
     handleSubmit = async (e) => {
         const useId = this.props.firebase.auth().currentUser.uid
@@ -74,9 +69,12 @@ class TaskCreate extends Component {
 
     render() {
         return (
-            <View handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-                state={this.state} />
+            <View 
+                { ...this.state }
+                { ...this.props }
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit} 
+            />
         )
     }
 };

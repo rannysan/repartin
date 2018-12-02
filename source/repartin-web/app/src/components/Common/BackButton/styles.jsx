@@ -4,9 +4,6 @@ export default ( theme ) => {
 
   return createStyles( {
     button: {
-      position: "absolute",
-      top: theme.spacing.unit * 1,
-      left: theme.spacing.unit * 1,
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",

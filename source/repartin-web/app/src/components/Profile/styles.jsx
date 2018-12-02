@@ -9,6 +9,9 @@ export default ( theme ) => {
       margin: "-16px -16px 0 -16px"
     },
     backButton: {
+      position: "absolute",
+      top: theme.spacing.unit * 1,
+      left: theme.spacing.unit * 1,
       zIndex: "2"
     },
     houseImage: {
@@ -27,6 +30,7 @@ export default ( theme ) => {
     },
     info: {
       position: "relative",
+      marginBottom: "-78px",
       transform: "translateY( -78px )",
       zIndex: "1"
     },

@@ -7,8 +7,8 @@ import BottomNavigation from "./components/BottomNavigation";
 import Tasks from "../Tasks";
 import Expenses from "../Expenses";
 import Profile from "../Profile";
-import TasksAdd from "../Tasks/TaskCreate"
-import ExpenseAdd from "../Expenses/ExpenseCreate"
+import TasksAdd from "../Tasks/components/TaskCreate"
+import ExpenseAdd from "../Expenses/components/ExpenseCreate"
 import Members from "../Members";
 import CreateHouse from "./components/Welcome/components/CreateHouse";
 import NotFound from "../NotFound";

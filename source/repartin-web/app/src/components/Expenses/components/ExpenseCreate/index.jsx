@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import View from './View'
-import service from "../../../services/service";
+import service from "../../../../services/service";
 import { firebaseConnect  } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom';
@@ -11,10 +11,10 @@ class ExpenseCreate extends Component {
         super(props);
         this.state = {
             name: '',
-            value: 0,
+            value: '',
             useId: '',
             payments: [],
-            dueDate: '',
+            dueDate: new Date().toISOString().slice( 0, 10 ),
             repeatingExpenseID: '',
             houseID: 0,
             removed: 0
@@ -28,8 +28,6 @@ class ExpenseCreate extends Component {
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ ...this.state, [name]: value })
-        e.target.value = value;
-        console.log(this.state);
     }
 
 
@@ -59,9 +57,12 @@ class ExpenseCreate extends Component {
 
     render() {
         return (
-            <View handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit} 
-                data={this.state}/>
+            <View 
+                { ...this.state }
+                { ...this.props }
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+            />
         )
     }
 };
