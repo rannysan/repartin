@@ -31,7 +31,7 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,
             <Typography component="h1" variant="h5">Nova república</Typography>
             <ValidatorForm
               onSubmit={handleSubmit}
-              onError={errors => console.log(errors)}
+              onError={errors => console.error(errors)}
             >
               <Grid container spacing={0}>
                 <Grid item xs={12}>

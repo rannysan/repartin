@@ -28,7 +28,7 @@ const View = ({ handleChange, handleSubmit, handleChangeUser, classes, state }) 
         <Card className={classes.card}>
             <ValidatorForm
                 onSubmit={handleSubmit}
-                onError={errors => console.log(errors)}
+                onError={errors => console.error(errors)}
             >
                 <CardContent>
                     <Grid container spacing={24}>

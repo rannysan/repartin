@@ -68,7 +68,7 @@ class CreateHouse extends Component {
           let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + progress + '% done');
         }, function (error) {
-          console.log(error)
+          console.error(error)
         }, async function () {
           uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadURL) {
             house.house.image = downloadURL;

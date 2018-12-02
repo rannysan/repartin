@@ -16,10 +16,8 @@ class FrontPage extends Component {
     
     this.props.firebase.auth().onAuthStateChanged(async auth => {
       if (auth) {
-        console.log(auth);
         const response = await service.getById('user',auth.uid);
         this.setState({loading: false})
-        console.log(response);
         if (response !== undefined && response.user) {
           const user = response.user;
           if (user.accepted == undefined) {
@@ -64,7 +62,7 @@ class FrontPage extends Component {
               console.log('Logado via storage');
             }).catch(function(error) {
               this.setState({loading: false})
-              console.log(`Erro ao logar via storage ${JSON.stringify(error)}`)
+              console.error(`Erro ao logar via storage ${JSON.stringify(error)}`)
             });
           }
         } else {

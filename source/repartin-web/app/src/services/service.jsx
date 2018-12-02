@@ -16,7 +16,7 @@ const service = {
                 }
             })
             .catch((err) => {
-                console.log(`Erro ao buscar documento em ${path}`);
+                console.error(`Erro ao buscar documento em ${path}`);
                 handleError(err);
             });
     },
@@ -33,7 +33,7 @@ const service = {
                 }
             })
             .catch((err) => {
-                console.log(`Erro ao buscar documento em ${path}`);
+                console.error(`Erro ao buscar documento em ${path}`);
                 handleError(err);
                 return undefined;
 
@@ -47,7 +47,7 @@ const service = {
             .then(response => {
                 return response.data;
             }).catch((err) => {
-                console.log(`Erro ao inserir documento em ${path}`);
+                console.error(`Erro ao inserir documento em ${path}`);
                 handleError(err);
                 return undefined;
             });
@@ -60,7 +60,7 @@ const service = {
             .then(response => {
                 return response.data;
             }).catch((error) => {
-                console.log(`Erro ao atualizar documento em ${path}`);
+                console.error(`Erro ao atualizar documento em ${path}`);
                 handleError(error);
                 return undefined;
             });
@@ -73,7 +73,7 @@ const service = {
             .then(response => {
                 return response.data;
             }).catch((error) => {
-                console.log(`Erro ao deletar documento em ${path}`);
+                console.error(`Erro ao deletar documento em ${path}`);
                 handleError(error);
                 return undefined;
             });
@@ -86,7 +86,7 @@ const service = {
             .then(response => {
                 return response.data;
             }).catch((error) => {
-                console.log(`Erro ao buscar cep ${cep}`);
+                console.error(`Erro ao buscar cep ${cep}`);
                 handleError(error);
                 return undefined;
             });
@@ -111,7 +111,7 @@ function handleError(error) {
         console.log(`HTTP STATUS: ${status}`);
         console.log(`MENSAGEM: ${message}`);
     } 
-    console.log(`ERROR: ${JSON.stringify(error)}`);
+    console.error(`ERROR: ${JSON.stringify(error)}`);
 
 
 }

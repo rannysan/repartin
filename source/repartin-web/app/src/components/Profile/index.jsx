@@ -34,7 +34,6 @@ class Profile extends Component {
     if (house) {
       isAdmin = true;
     }
-    console.log(house);
     this.setState( {
       user: {
         name: userFirebase.displayName,

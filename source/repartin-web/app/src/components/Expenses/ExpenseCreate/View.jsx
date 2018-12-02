@@ -23,7 +23,7 @@ const View = ({ handleChange, handleSubmit, classes }) => {
         <Card className={classes.card}>
             <ValidatorForm
                 onSubmit={handleSubmit}
-                onError={errors => console.log(errors)}
+                onError={errors => console.error(errors)}
             >
                 <CardContent>
                     <Grid container spacing={24}>
