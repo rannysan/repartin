@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const port = 3030;
+const port = 3000;
 const data = require('./bd/connection');
 const cors = require('cors');
 
