@@ -7,14 +7,15 @@ import BottomNavigation from "./components/BottomNavigation";
 import Tasks from "../Tasks";
 import Expenses from "../Expenses";
 import Profile from "../Profile";
-import TasksAdd from "../Tasks/TaskCreate"
-import ExpenseAdd from "../Expenses/ExpenseCreate"
+import TasksAdd from "../Tasks/components/TaskCreate"
+import ExpenseAdd from "../Expenses/components/ExpenseCreate"
 import Members from "../Members";
 import CreateHouse from "./components/Welcome/components/CreateHouse";
 import NotFound from "../NotFound";
+import Loading from "../Loading";
 import styles from "./styles";
 
-const View = ( { isMember, collapse, setMember, setCollapse, classes } ) => {
+const View = ( { isMember, collapse, setMember, setCollapse, classes, pending, loading, setPending } ) => {
 
   return ( 
     <Router>
@@ -22,9 +23,15 @@ const View = ( { isMember, collapse, setMember, setCollapse, classes } ) => {
         <div className={ `${ classes.homeWrapper } ${ collapse ? classes.homeWrapperCollapsed : '' }` }>
           <Switch>
             <Route exact path="/" render={ ( props ) => {
-              return isMember
-                ? <Dashboard setCollapse={ setCollapse }/>
-                : <Welcome setMember={ setMember }/>
+              return loading
+                ? <Loading /> 
+                : isMember && !pending
+                    ? <Dashboard setCollapse={ setCollapse }/>
+                    : <Welcome 
+                        pending={ pending } 
+                        setMember={ setMember } 
+                        setPending={ setPending }
+                      />
             } }/>
             <Route path="/perfil" component={ Profile }/>
             <Route exact path="/tarefas" component={ Tasks }/>
@@ -34,12 +41,12 @@ const View = ( { isMember, collapse, setMember, setCollapse, classes } ) => {
             <Route path="/financas/nova" component={ ExpenseAdd }/>
             <Route path="/financas/:id" component={ ExpenseAdd }/>
             <Route path="/membros" component={ Members }/>
-            <Route path="/nova-republica" component={ CreateHouse }/>
+            <Route path="/nova-republica" render={ ( props ) => <CreateHouse setMember={ setMember }/> }/>
             <Route component={ NotFound }/>
           </Switch>
         </div>
         {
-          isMember
+          isMember && !pending
             ? (
               <BottomNavigation 
                 className={ classes.bottomNavigation }

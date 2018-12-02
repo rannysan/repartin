@@ -7,10 +7,11 @@ let houseSchema = mongoose.Schema({
     creation: Date,
     color: Object,
     adminID: String,
-    CEP: Number,
+    CEP: String,
     city: String,
     state: String,
-    removed: Boolean
+    removed: Boolean, 
+    image: String
 });
 
 module.exports = mongoose.model('houses', houseSchema);;

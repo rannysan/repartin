@@ -2,9 +2,10 @@ import React from "react";
 import { Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import EditIcon from "@material-ui/icons/Edit";
+import FilterNoneIcon from "@material-ui/icons/FilterNone"
 import styles from "./styles";
 
-const View = ( { house, admin, editHouse, classes } ) => {
+const View = ( { house, admin, editHouse, copyId, classes } ) => {
 
   return (
     <div className={ classes.root }>
@@ -18,6 +19,12 @@ const View = ( { house, admin, editHouse, classes } ) => {
         }
       </Typography>
       <Typography className={ classes.address } component="p" variant="body1">{ house.address }</Typography>
+      <Button onClick={ copyId( house.id ) } className={ classes.id }>
+        <Typography className={ classes.id } component="p" variant="body2">
+          ID: { house.id }
+          <FilterNoneIcon className={ classes.copyIcon }/>
+        </Typography>
+      </Button>
     </div>
   );
 }

@@ -8,6 +8,7 @@ const CleanWebpackPlugin   = require( "clean-webpack-plugin" );
 
 module.exports = merge( config, {
   mode: "production",
+  devtool: "source-map",
   output: {
     filename: "[name].[hash].js"
   },
@@ -16,7 +17,12 @@ module.exports = merge( config, {
       new UglifyJSPlugin( {
         cache: true,
         parallel: true,
-        sourceMap: true
+        sourceMap: true,
+        uglifyOptions: {
+          compress: {
+            pure_funcs: [ "console.log" ]
+          }
+        }
       } )
     ]
   },

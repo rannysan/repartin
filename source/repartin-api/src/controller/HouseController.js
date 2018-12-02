@@ -12,7 +12,8 @@ module.exports = {
             CEP: req.body.cep,
             city: req.body.city,
             state: req.body.state,
-            removed: false
+            removed: false, 
+            image: req.body.image
         });
 
         modelUser.findOne({ uid: house.adminID, removed: false }, (err, user) => {
@@ -22,6 +23,7 @@ module.exports = {
                     house.save(function (err, house) {
                         if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao salvar nova casa', error: err }) };
                         user.houseID = house._id;
+                        user.accepted = true;
                         modelUser.findByIdAndUpdate(user._id, user, (err, user) => {
                             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro atualizar usuário', error: err }) };
                             return res.json({ house: house, message: 'Casa criada com sucesso!' });
@@ -81,9 +83,9 @@ module.exports = {
             CEP: req.body.cep,
             city: req.body.city,
             state: req.body.state,
-            removed: req.body.removed
+            removed: req.body.removed,
+            image: req.body.image
         };
-        console.log(house.name);
 
         model.findByIdAndUpdate(id, house, function (err, house) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro deletar casa', error: err }) };
@@ -92,9 +94,17 @@ module.exports = {
     },
     getAdmin: function (req, res) {
         var id = req.params.id;
-        model.findById(id, (err, house) => {
+       /* model.findById(id, (err, house) => {
             if (err) { return res.status(404).json({ message: 'Ops! Ocorreu um erro ao encontrar usuarios', error: err }) };
             return user.getAdminById(house, res);
-        })
+        })*/   
+        model.findOne({ adminID: id, removed: false }, function (err, house) {
+            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar casa', error: err }) };
+            if (house) {
+                return res.json({ house: house, message: 'Casa encontrado!' });
+            } else {
+                return res.status(201).json({ house: house, message: 'Casa não encontrado :(!' });
+            }
+        });
     }
 };

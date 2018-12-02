@@ -7,8 +7,10 @@ module.exports = {
             email: req.body.email,
             uid: req.body.uid,
             houseID: req.body.houseID,
-            removed: false
+            removed: false,
+            accepted: false
         });
+
 
         user.save((err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao salvar novo usuário', error: err }) };
@@ -18,7 +20,7 @@ module.exports = {
 
     getByName: (req, res) => {
         var name = req.params.name;
-        modelUser.findOne({ name: name, removed : false }, (err, user) => {
+        modelUser.findOne({ name: name, removed: false }, (err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
             if (user) {
                 return res.json({ user: user, message: 'Usuário encontrado!' });
@@ -28,10 +30,10 @@ module.exports = {
         });
     },
 
-    
+
     getByHouse: function (req, res) {
         var houseID = req.params.house;
-        modelUser.find({ houseID : houseID , removed : false}, function (err, users) {
+        modelUser.find({ houseID: houseID, removed: false }, function (err, users) {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuarios', error: err }) };
             if (users) {
                 return res.json({ users });
@@ -42,7 +44,7 @@ module.exports = {
     },
     getAdminById: (req, res) => {
         var id = req.adminId;
-        modelUser.findOne({ id: id, removed : false }, (err, user) => {
+        modelUser.findOne({ id: id, removed: false }, (err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
             if (user) {
                 return res.json({ user: user, message: 'Usuário encontrado!' });
@@ -53,7 +55,7 @@ module.exports = {
     },
     getById: (req, res) => {
         var id = req.params.id;
-        modelUser.findOne({ uid: id, removed : false }, (err, user) => {
+        modelUser.findOne({ uid: id, removed: false }, (err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao buscar usuário', error: err }) };
             if (user) {
                 return res.json({ user: user, message: 'Usuário encontrado!' });
@@ -74,8 +76,9 @@ module.exports = {
     updateById: (req, res) => {
         var id = req.params.id;
         var body = req.body;
-        var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed };
-        modelUser.findByIdAndUpdate(id, user, (err, user) => {
+        var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed, accepted: body.accepted, uid: body.uid };
+        console.log(JSON.stringify(user));
+        modelUser.findByIdAndUpdate(id, user, (err, userReturn) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro atualizar usuário', error: err }) };
             return res.json({ message: 'Usuário atualizado com sucesso!' });
         });
@@ -83,17 +86,17 @@ module.exports = {
     linkHouse: function (req, res) {
         var id = req.params.id;
         var body = req.body;
-        var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed };
+        var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed, accepted: body.accepted };
         modelUser.findByIdAndUpdate(id, user, (err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao vincular usuário', error: err }) };
             return res.json({ message: 'Usuário vinculado com sucesso!' });
         });
     },
-    unlinkHouse: function(req, res){
+    unlinkHouse: function (req, res) {
         var id = req.params.id;
         var body = req.body;
-        var user = { name: body.name, email: body.email, houseID: null, removed: body.removed };
-        modelUser.findByIdAndUpdate(id, user, (err, user)=> {
+        var user = { name: body.name, email: body.email, houseID: null, removed: body.removed, accepted: body.accepted };
+        modelUser.findByIdAndUpdate(id, user, (err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao desvincular usuário', error: err }) };
             return res.json({ message: 'Usuário desvinculado com sucesso!' });
         });

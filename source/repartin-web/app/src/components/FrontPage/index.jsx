@@ -16,20 +16,21 @@ class FrontPage extends Component {
     
     this.props.firebase.auth().onAuthStateChanged(async auth => {
       if (auth) {
-        
         const response = await service.getById('user',auth.uid);
         this.setState({loading: false})
-
-        if (response !== undefined) {
+        if (response !== undefined && response.user) {
           const user = response.user;
-          
+          if (user.accepted == undefined) {
+            user.accepted = false;
+          }
           if (!user.removed) {
             await service.update('user', user._id, {
               name: auth.displayName,
               email: auth.email,
               uid: auth.uid,
               houseID: user.houseID,
-              removed: false
+              removed: false,
+              accepted: user.accepted
             });
           }
         } else {
@@ -38,7 +39,8 @@ class FrontPage extends Component {
             email: auth.email,
             uid: auth.uid,
             houseID: null,
-            removed: false
+            removed: false,
+            accepted: false
           } );
         }
       } else {
@@ -60,7 +62,7 @@ class FrontPage extends Component {
               console.log('Logado via storage');
             }).catch(function(error) {
               this.setState({loading: false})
-              console.log(`Erro ao logar via storage ${JSON.stringify(error)}`)
+              console.error(`Erro ao logar via storage ${JSON.stringify(error)}`)
             });
           }
         } else {

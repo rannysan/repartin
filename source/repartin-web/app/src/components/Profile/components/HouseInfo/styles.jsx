@@ -26,6 +26,14 @@ export default ( theme ) => {
     address: {
       display: "inline-block",
       maxWidth: "180px"
+    },
+    id: {
+      marginTop: ".32rem"
+    },
+    copyIcon: {
+      marginLeft: ".4rem",
+      fontSize: "1em",
+      transform: "translateY( -.4rem )"
     }
   } );
 };

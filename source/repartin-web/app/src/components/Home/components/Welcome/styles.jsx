@@ -15,7 +15,7 @@ export default ( theme ) => {
     text: {
       padding: "0 .6rem"
     },
-    signOut: {
+    centerButton: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center" 
@@ -32,6 +32,12 @@ export default ( theme ) => {
     },
     title: {
       fontWeight: "bold"
+    },
+    pendingTitle: {
+      marginBottom: ".4rem"
+    },
+    cancel: {
+      marginTop: ".8rem"
     }
   } );
 }
