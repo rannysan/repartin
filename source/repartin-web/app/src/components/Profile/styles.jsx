@@ -40,7 +40,7 @@ export default ( theme ) => {
     actions: {
       display: "flex",
       justifyContent: "center",
-      paddingTop: "3.8rem"
+      paddingTop: "1.4rem"
     },
     action: {
       display: "flex",
