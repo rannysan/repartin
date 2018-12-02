@@ -16,11 +16,11 @@ class FrontPage extends Component {
     
     this.props.firebase.auth().onAuthStateChanged(async auth => {
       if (auth) {
-        
+        console.log(auth);
         const response = await service.getById('user',auth.uid);
         this.setState({loading: false})
-
-        if (response !== undefined) {
+        console.log(response);
+        if (response !== undefined && response.user) {
           const user = response.user;
           if (user.accepted == undefined) {
             user.accepted = false;

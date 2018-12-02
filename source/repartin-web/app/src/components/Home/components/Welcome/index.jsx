@@ -4,59 +4,104 @@ import { firebaseConnect } from "react-redux-firebase";
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
+import service from './../../../../services/service';
 
 class Welcome extends Component {
 
   state = {
-    openInputModal: false
+    openInputModal: false,
+    dialog: {
+      open: false,
+      title: '',
+      message: ''
+    },
+    loading: false
   }
 
-  constructor( props ) {
-    super( props );
-
-    this.handleJoinHouse = this.handleJoinHouse.bind( this )
-    this.handleCancel    = this.handleCancel.bind( this )
+  constructor(props) {
+    super(props);
   }
 
-  openJoinHouse = ( value ) => ( event ) => {
-    
-    this.setState( {
+  openJoinHouse = (value) => (event) => {
+
+    this.setState({
       openInputModal: value
-    } )
-  }
-  
-  handleJoinHouse( id ) {
-    alert( `send invite to house ${ id }` )
-    this.props.setPending( true )
-    this.setState( {
-      openInputModal: false
-    } )
+    })
   }
 
-  handleCancel( event ) {
-    this.props.setPending( false )
+  handleJoinHouse = async (id) => {
+
+    this.setState({ loading: true });
+
+    let resp = await service.getById('house', id);
+
+    if (resp && resp.house) {
+      const house = resp.house;
+      const idUser = this.props.firebase.auth().currentUser.uid;
+      const { user } = await service.getById('user', idUser);
+      let update = await service.update('user', user._id, {
+        name: user.name,
+        email: user.email,
+        uid: user.uid,
+        houseID: id,
+        removed: false,
+        accepted: false
+      });
+      if (update == undefined)
+        this.loadDialog('Ops! Ocorreu um erro ao processar a solicitação', 'Por favor, tente novamente mais tarde!');
+      else
+        this.props.setPending(true)
+    } else {
+      this.loadDialog('Ops! Código não encontrado', 'Por favor, confirme o código da república e tente novamente!');
+
+    }
+    this.setState({
+      openInputModal: false,
+      loading: false
+    });
+
+
   }
 
-  signOut  = (event) => {
+  loadDialog = (title, message) => {
+    const dialog = this.state.dialog;
+    dialog.open = true;
+    dialog.message = message;
+    dialog.title = title;
+    this.setState({ dialog });
+  }
+
+  closeDialog = () => {
+    const dialog = this.state.dialog;
+    dialog.open = false;
+    this.setState({ dialog });
+  }
+
+  handleCancel = (event) => {
+    this.props.setPending(false)
+  }
+
+  signOut = (event) => {
     event.preventDefault();
     localStorage.removeItem('auth-credential');
     this.props.firebase.auth().signOut()
       .then(() => {
         this.props.history.push('/')
-    });
+      });
   }
 
   render() {
 
     return (
-      <View 
-        { ...this.state }
-        { ...this.props }
-        createHouse={ this.createHouse }
-        openJoinHouse={ this.openJoinHouse }
-        handleJoinHouse={ this.handleJoinHouse }
-        handleCancel={ this.handleCancel }
-        signOut={ this.signOut }
+      <View
+        {...this.state}
+        {...this.props}
+        createHouse={this.createHouse}
+        openJoinHouse={this.openJoinHouse}
+        handleJoinHouse={this.handleJoinHouse}
+        handleCancel={this.handleCancel}
+        signOut={this.signOut}
+        closeDialog={this.closeDialog}
       />
     );
   }

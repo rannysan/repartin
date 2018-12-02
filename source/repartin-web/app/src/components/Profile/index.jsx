@@ -3,6 +3,7 @@ import { firebaseConnect } from "react-redux-firebase";
 import { withRouter } from "react-router-dom";
 import View from "./View";
 import { compose } from "redux";
+import service from './../../services/service';
 
 class Profile extends Component {
 
@@ -26,15 +27,25 @@ class Profile extends Component {
     this.signOut = this.signOut.bind( this );
   }
 
-  componentWillMount() {
-    const user = this.props.firebase.auth().currentUser;
-
+  componentWillMount = async () => {
+    const userFirebase = this.props.firebase.auth().currentUser;
+    const { house } = await service.getById('house/admin', userFirebase.uid);
+    let isAdmin = false;
+    if (house) {
+      isAdmin = true;
+    }
+    console.log(house);
     this.setState( {
       user: {
-        name: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
-        isAdmin: true // boa sorte
+        name: userFirebase.displayName,
+        email: userFirebase.email,
+        photoURL: userFirebase.photoURL+'?height=500',
+        isAdmin: isAdmin // boa sorte
+      },
+      house: {
+        name: house.name,
+        address: `${house.address} - ${house.state}, ${house.city}`,
+        image: house.image
       }
     } );
   }

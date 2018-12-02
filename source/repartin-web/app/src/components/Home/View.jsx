@@ -25,7 +25,7 @@ const View = ( { isMember, collapse, setMember, setCollapse, classes, pending, l
             <Route exact path="/" render={ ( props ) => {
               return loading
                 ? <Loading /> 
-                : isMember
+                : isMember && !pending
                     ? <Dashboard setCollapse={ setCollapse }/>
                     : <Welcome 
                         pending={ pending } 

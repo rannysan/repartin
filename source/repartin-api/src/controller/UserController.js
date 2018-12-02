@@ -11,6 +11,7 @@ module.exports = {
             accepted: false
         });
 
+
         user.save((err, user) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao salvar novo usuário', error: err }) };
             return res.json({ user: user, message: 'Usuário criado com sucesso!' });
@@ -75,8 +76,9 @@ module.exports = {
     updateById: (req, res) => {
         var id = req.params.id;
         var body = req.body;
-        var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed, accepted: body.accepted };
-        modelUser.findByIdAndUpdate(id, user, (err, user) => {
+        var user = { name: body.name, email: body.email, houseID: body.houseID, removed: body.removed, accepted: body.accepted, uid: body.uid };
+        console.log(JSON.stringify(user));
+        modelUser.findByIdAndUpdate(id, user, (err, userReturn) => {
             if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro atualizar usuário', error: err }) };
             return res.json({ message: 'Usuário atualizado com sucesso!' });
         });

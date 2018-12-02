@@ -24,7 +24,7 @@ class Home extends Component {
       if (user.accepted) {
         this.setState({ isMember: true, loading: false })
       } else {
-        this.setState({ isMember: true, pending: true, laoding: false });
+        this.setState({ isMember: true, pending: true, loading: false });
       }
     } else {
       this.setState( { loading: false } )
