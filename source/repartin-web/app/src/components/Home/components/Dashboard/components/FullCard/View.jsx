@@ -4,8 +4,9 @@ import Card from '@material-ui/core/Card';
 import styles from "./styles";
 import People from '@material-ui/icons/People';
 import { CardContent, Typography, IconButton, Button } from "@material-ui/core";
+import HouseMembers from './../HouseMembers';
 
-const View = ( {openProfile, houseMembers, classes} ) => {
+const View = ( {openProfile, houseMembers, classes, dialog, closeDialog, deleteMember, acceptMember} ) => {
 
   return (
     <Card raised={true} onClick={ openProfile } className={ classes.cardStyle }>
@@ -18,6 +19,7 @@ const View = ( {openProfile, houseMembers, classes} ) => {
           <People/>
         </IconButton>
       </CardContent>
+      <HouseMembers members={dialog.members} open={dialog.open} isAdmin={dialog.isAdmin} handleClose={closeDialog} deleteMember={deleteMember} acceptMember={acceptMember} />
     </Card>
   );
 }
