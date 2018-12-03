@@ -43,7 +43,7 @@ const View = ({ members, open, handleClose, classes, isAdmin, deleteMember, acce
             <DialogTitle>Membros da República</DialogTitle>
             <DialogContent className={classes.dialogStyle}>
                 <List dense={false}>
-                    {members && members.map(member => {
+                    {members && members.map((member, index) => {
                         return (
                             <ListItem className={ classes.listItem } key={member.uid}>
                                 <ListItemAvatar>
@@ -61,7 +61,7 @@ const View = ({ members, open, handleClose, classes, isAdmin, deleteMember, acce
                                             <IconButton onClick={() => acceptMember(member)} className={classes.icon} aria-label="Approve">
                                                 <CheckIcon className={ classes.icon }/>
                                             </IconButton> : ''}
-                                        <IconButton onClick={() => deleteMember(member)} className={classes.icon} aria-label="Delete">
+                                        <IconButton onClick={() => deleteMember(member, index)} className={classes.icon} aria-label="Delete">
                                             <DeleteIcon className={ classes.icon }/>
                                         </IconButton>
                                     </ListItemSecondaryAction>

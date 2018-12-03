@@ -44,7 +44,7 @@ class FullCard extends Component {
     this.setState({ dialog });
   }
 
-  deleteMember = async (member) => {
+  deleteMember = async (member, index) => {
     await service.update('user', member._id, {
       name: member.displayName,
       email: member.email,
@@ -54,11 +54,7 @@ class FullCard extends Component {
       accepted: member.accepted
     });
     let dialog = this.state.dialog;
-    if (dialog.members.length > 1) {
-      dialog.members = dialog.members.slice(dialog.members.indexOf(member), 1);
-    } else {
-      dialog.members = [];
-    }
+    dialog.members.splice(index, 1);
 
     this.setState({ dialog });
   }
@@ -68,7 +64,7 @@ class FullCard extends Component {
       name: member.displayName,
       email: member.email,
       uid: member.uid,
-      houseID: null,
+      houseID: member.houseID,
       removed: false,
       accepted: true
     });

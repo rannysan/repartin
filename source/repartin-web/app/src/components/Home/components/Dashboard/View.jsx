@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, Typography, ButtonBase  } from "@material-ui/core";
+import { Grid  } from "@material-ui/core";
 import FullCard from "./components/FullCard";
 import CardExpenses from "./components/CardExpenses";
 import CardTasks from "./components/CardTasks";
@@ -24,13 +24,7 @@ const View = ( { classes } ) => {
       <Grid item xs={ 12 }>
         <FeedList/>
       </Grid>
-      
-      <ButtonBase component={Link} to="/tarefas-add">
-          <Typography component="span" variant="body2">Tarefa</Typography>
-      </ButtonBase>
-      <ButtonBase component={Link} to="/financas-add">
-          <Typography component="span" variant="body2">Financas</Typography>
-      </ButtonBase>
+ 
     </Grid>
   );
 }

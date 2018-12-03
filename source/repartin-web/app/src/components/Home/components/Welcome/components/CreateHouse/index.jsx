@@ -56,11 +56,12 @@ class CreateHouse extends Component {
 
     this.setState({ loading: true })
     let scope = this;
+   
+    const form = this.state.house;
+    form.adminID = this.props.firebase.auth().currentUser.uid;
+    let house = await service.create('house', form);
+    
     if (this.state.file !== '') {
-      const form = this.state.house;
-      form.adminID = this.props.firebase.auth().currentUser.uid;
-      let house = await service.create('house', form);
-
 
       if (house !== undefined) {
         let uploadTask = this.props.firebase.storage().ref().child(this.props.firebase.auth().currentUser.uid).put(this.state.file);
@@ -85,9 +86,10 @@ class CreateHouse extends Component {
         this.setState({ loading: false })
       }
     } else {
-      this.loadDialog('Ops! Falta uma foto', 'Por favor, suba uma imagem para representar sua república!');
+      //this.loadDialog('Ops! Falta uma foto', 'Por favor, suba uma imagem para representar sua república!');
       this.setState({ loading: false })
     }
+    this.props.history.push('/');
 
   }
 

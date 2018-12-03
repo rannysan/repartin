@@ -77,8 +77,21 @@ class Welcome extends Component {
     this.setState({ dialog });
   }
 
-  handleCancel = (event) => {
-    this.props.setPending(false)
+  handleCancel = async (event) => {
+    const idUser = this.props.firebase.auth().currentUser.uid;
+    const { user } = await service.getById('user', idUser);
+    await service.update('user', user._id, {
+      name: user.displayName,
+      email: user.email,
+      uid: user.uid,
+      houseID: null,
+      removed: false,
+      accepted: false
+    });
+    this.props.setPending(false);
+
+    this.loadDialog('Solicitação cancelada com sucesso!', 'Por favor, cadastre uma nova república ou digite o código de uma');
+
   }
 
   signOut = (event) => {

@@ -15,42 +15,48 @@ import NotFound from "../NotFound";
 import Loading from "../Loading";
 import styles from "./styles";
 
-const View = ( { isMember, collapse, setMember, setCollapse, classes, pending, loading, setPending } ) => {
+const View = ({ isMember, collapse, setMember, setCollapse, classes, pending, loading, setPending }) => {
 
-  return ( 
+  return (
     <Router>
       <div>
-        <div className={ `${ classes.homeWrapper } ${ collapse ? classes.homeWrapperCollapsed : '' }` }>
+        <div className={`${classes.homeWrapper} ${collapse ? classes.homeWrapperCollapsed : ''}`}>
           <Switch>
-            <Route exact path="/" render={ ( props ) => {
+            <Route exact path="/" render={(props) => {
               return loading
-                ? <Loading /> 
+                ? <Loading />
                 : isMember && !pending
-                    ? <Dashboard setCollapse={ setCollapse }/>
-                    : <Welcome 
-                        pending={ pending } 
-                        setMember={ setMember } 
-                        setPending={ setPending }
-                      />
-            } }/>
-            <Route path="/perfil" component={ Profile }/>
-            <Route exact path="/tarefas" component={ Tasks }/>
-            <Route path="/tarefas/nova" component={ TasksAdd }/>
-            <Route path="/tarefas/:id" component={ TasksAdd }/>
-            <Route exact path="/financas" component={ Expenses }/>
-            <Route path="/financas/nova" component={ ExpenseAdd }/>
-            <Route path="/financas/:id" component={ ExpenseAdd }/>
-            <Route path="/membros" component={ Members }/>
-            <Route path="/nova-republica" render={ ( props ) => <CreateHouse setMember={ setMember }/> }/>
-            <Route component={ NotFound }/>
+                  ? <Dashboard setCollapse={setCollapse} />
+                  : <Welcome
+                    pending={pending}
+                    setMember={setMember}
+                    setPending={setPending}
+                  />
+            }} />
+            {isMember && !pending &&
+              <Switch>
+                <Route path="/perfil" component={Profile} />
+                <Route exact path="/tarefas" component={Tasks} />
+                <Route path="/tarefas/nova" component={TasksAdd} />
+                <Route path="/tarefas/:id" component={TasksAdd} />
+                <Route exact path="/financas" component={Expenses} />
+                <Route path="/financas/nova" component={ExpenseAdd} />
+                <Route path="/financas/:id" component={ExpenseAdd} />
+                <Route path="/membros" component={Members} />
+              </Switch>
+
+            }
+
+            <Route path="/nova-republica" render={(props) => <CreateHouse setMember={setMember} />} />
+            <Route component={NotFound} />
           </Switch>
         </div>
         {
           isMember && !pending
             ? (
-              <BottomNavigation 
-                className={ classes.bottomNavigation }
-                setCollapse={ setCollapse }
+              <BottomNavigation
+                className={classes.bottomNavigation}
+                setCollapse={setCollapse}
               />
             ) : ''
         }

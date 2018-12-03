@@ -25,7 +25,6 @@ class HouseInfo extends Component {
     document.execCommand( "copy" )
     document.body.removeChild( tempInput )
 
-    alert( "house id copied to clipboard" )
   }
 
   render() {
