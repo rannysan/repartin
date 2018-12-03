@@ -49,7 +49,7 @@ class Expenses extends Component {
   loadExpenses = async()=> {
     const user = await service.getById('user', this.props.firebase.auth().currentUser.uid);
     let expenses = await service.getByHouse('expense', user.houseID); 
-    debugger;
+    // debugger;
     this.setState({expenses})
   }
 
@@ -60,13 +60,13 @@ class Expenses extends Component {
     var spentValue = 0
     if (expenses != undefined) {
       for(let i = 0; i < expenses.expense.length; i++){
-        debugger
+        // debugger
         spentValue += parseInt(expenses.expense[i].value.$numberDecimal)
       }
 
       var card = this.state.card
       card.blocks[0].value = spentValue
-      debugger;
+      // debugger;
       this.setState({ card })
     }
   }

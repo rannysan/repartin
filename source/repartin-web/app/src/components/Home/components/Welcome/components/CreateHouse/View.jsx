@@ -10,6 +10,7 @@ import InputMask from 'react-input-mask';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Loading from "../../../../../Loading";
 import MessageDialog from '../../../../../MessageDialog';
+import { Link } from "react-router-dom"
 import styles from './styles';
 
 const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,  
@@ -147,6 +148,9 @@ const View = ({ classes, handleChange, handleSubmit, handleChangeComplete,
 
               </Grid>
               <div className={ classes.buttonInput }>
+                <Button component={ Link } to="/">
+                  Cancelar
+                </Button>
                 <Button variant="contained" type="submit" color="primary" className={ `${ classes.button } ${ classes.submit }` }>
                   Salvar
                 </Button>

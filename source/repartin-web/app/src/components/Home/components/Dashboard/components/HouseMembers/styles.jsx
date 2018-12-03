@@ -3,11 +3,17 @@ import { createStyles } from "@material-ui/core/";
 export default ( theme ) => {
 
   return createStyles( {
-    dialogStyle:{
-      width: 600
+    dialogPaper: {
+      margin: "0"
+    },
+    dialogStyle: {
+      padding: "0"
+    },
+    listItem: {
+      width: "338px"
     },
     icon: {
-        left: '270%'
+      fontSize: "1.14em"
     }
   } );
 }

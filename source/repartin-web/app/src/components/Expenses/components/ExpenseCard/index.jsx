@@ -22,7 +22,7 @@ class ListCard extends Component {
       var { user } = await service.getById('user', userId)
       name = user.name
     }
-    debugger;
+    // debugger;
     this.setState({ name })
   }
 

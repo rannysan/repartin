@@ -4,11 +4,8 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import PersonIcon from '@material-ui/icons/Person';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
@@ -33,63 +30,57 @@ function generate(element, array) {
 
 const View = ({ members, open, handleClose, classes, isAdmin, deleteMember, acceptMember }) => {
 
+    const dialogClasses = {
+        paper: classes.dialogPaper
+    }
+
     return (
-        <>
-            <div>
-                <Dialog
-                    fullScreen={false}
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="responsive-dialog-title"
-                >
-                    <DialogTitle id="responsive-dialog-title">Membros da República</DialogTitle>
-                    <DialogContent className={classes.dialogStyle}>
-                            <Grid item xs={12} md={6}>
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            classes={ dialogClasses }
+        >
+            <DialogTitle>Membros da República</DialogTitle>
+            <DialogContent className={classes.dialogStyle}>
+                <List dense={false}>
+                    {members && members.map(member => {
+                        return (
+                            <ListItem className={ classes.listItem } key={member.uid}>
+                                <ListItemAvatar>
+                                    <Avatar>
+                                        <PersonIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={member.name}
+                                    secondary={member.email}
+                                />
+                                {isAdmin ?
+                                    <ListItemSecondaryAction>
+                                        {!member.accepted ?
+                                            <IconButton onClick={() => acceptMember(member)} className={classes.icon} aria-label="Approve">
+                                                <CheckIcon className={ classes.icon }/>
+                                            </IconButton> : ''}
+                                        <IconButton onClick={() => deleteMember(member)} className={classes.icon} aria-label="Delete">
+                                            <DeleteIcon className={ classes.icon }/>
+                                        </IconButton>
+                                    </ListItemSecondaryAction>
+                                    :
+                                    ''
+                                }
 
-                                <div >
-                                    <List dense={false}>
-                                        {members && members.map(member => {
-                                            return (
-                                                <ListItem key={member.uid}>
-                                                    <ListItemAvatar>
-                                                        <Avatar>
-                                                            <PersonIcon />
-                                                        </Avatar>
-                                                    </ListItemAvatar>
-                                                    <ListItemText
-                                                        primary={member.name}
-                                                        secondary={member.email}
-                                                    />
-                                                    {isAdmin ?
-                                                        <ListItemSecondaryAction>
-                                                            <IconButton onClick={() => deleteMember(member)} className={classes.icon} aria-label="Delete">
-                                                                <DeleteIcon />
-                                                            </IconButton>
-                                                            {!member.accepted ?
-                                                                <IconButton onClick={() => acceptMember(member)} className={classes.icon} aria-label="Approve">
-                                                                    <CheckIcon />
-                                                                </IconButton> : ''}
-                                                        </ListItemSecondaryAction>
-                                                        :
-                                                        ''
-                                                    }
+                            </ListItem>
+                        );
+                    })}
 
-                                                </ListItem>
-                                            );
-                                        })}
-
-                                    </List>
-                                </div>
-                            </Grid>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary" autoFocus>
-                            Ok
-                    </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
-        </>
+                </List>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                    Ok
+                </Button>
+            </DialogActions>
+        </Dialog>
     );
 }
 View.propTypes = {

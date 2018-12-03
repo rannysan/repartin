@@ -25,9 +25,10 @@ export default (theme) => {
       marginLeft: 10
     },
     buttonInput: {
-      marginTop: 8,
+      marginTop: 26,
       display: "flex",
-      justifyContent: "flex-end"
+      justifyContent: "space-between",
+      alignItems: "center"
     },
     colorPicker: {
       marginTop: 8
@@ -35,9 +36,6 @@ export default (theme) => {
     label: {
       display: "block",
       marginTop: 8
-    },
-    submit: {
-      marginTop: 16
     }
   });
 }
