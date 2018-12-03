@@ -2,7 +2,7 @@ const modelUser = require('../schemas/User.js');
 
 module.exports = {
     create: (req, res) => {
-        var user = new modelUser({
+        var createUser = new modelUser({
             name: req.body.name,
             email: req.body.email,
             uid: req.body.uid,
@@ -11,11 +11,17 @@ module.exports = {
             accepted: false
         });
 
-
-        user.save((err, user) => {
-            if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao salvar novo usuário', error: err }) };
-            return res.json({ user: user, message: 'Usuário criado com sucesso!' });
+        modelUser.findOne({ uid: req.body.uid, removed: false }, (err, user) => {
+            if (user) {
+                return res.json({ user: user, message: 'Usuário ja existe!' });
+            } else {
+                createUser.save((err, user) => {
+                    if (err) { return res.status(500).json({ message: 'Ops! Ocorreu um erro ao salvar novo usuário', error: err }) };
+                    return res.json({ user: user, message: 'Usuário criado com sucesso!' });
+                });
+            }
         });
+
     },
 
     getByName: (req, res) => {

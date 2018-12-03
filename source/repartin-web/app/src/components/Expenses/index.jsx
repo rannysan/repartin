@@ -22,20 +22,18 @@ class Expenses extends Component {
         quickTip: "Quick Tip"
       }
     }
-    this.handleSearch   = this.handleSearch.bind( this );
-    this.handleFilter   = this.handleFilter.bind( this );
-    this.handleQuickTip = this.handleQuickTip.bind( this );
+
   }
 
-  handleSearch( value ) {
+  handleSearch = ( value ) => {
     // console.log( value );
   }
 
-  handleFilter( value ) {
+  handleFilter = ( value ) => {
     // console.log( value );
   }
 
-  handleQuickTip() {
+  handleQuickTip = () => {
     const card = { ...this.state.card };
     card.quickTip = "New Quick Tip";
     this.setState( { card } );

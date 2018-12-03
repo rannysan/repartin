@@ -19,16 +19,22 @@ class Home extends Component {
   }
 
   componentWillMount = async () => {
-    const { user } = await service.getById('user', this.props.firebase.auth().currentUser.uid);
-    if (user.houseID != null) {
-      if (user.accepted) {
-        this.setState({ isMember: true, loading: false })
+    const resp = await service.getById('user', this.props.firebase.auth().currentUser.uid);
+    if (resp && resp.user) {
+      const user = resp.user;
+      if (user.houseID != null) {
+        if (user.accepted) {
+          this.setState({ isMember: true, loading: false })
+        } else {
+          this.setState({ isMember: true, pending: true, loading: false });
+        }
       } else {
-        this.setState({ isMember: true, pending: true, loading: false });
+        this.setState( { loading: false } )
       }
     } else {
       this.setState( { loading: false } )
     }
+    
   }
 
   setMember = ( isMemeber ) => {
