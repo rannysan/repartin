@@ -9,7 +9,6 @@ import { Link } from "react-router-dom"
 import styles from "./styles"
 
 const View = ({ tasks, card, handleSearch, handleFilter, handleQuickTip, classes }) => {
-
   return (
 
       <div className={classes.body}>
@@ -18,7 +17,7 @@ const View = ({ tasks, card, handleSearch, handleFilter, handleQuickTip, classes
           handleFilter={ handleFilter }
         />
         <div className={ classes.wrapper }>
-          <TopCard card={ card } handleQuickTip={ handleQuickTip }/>
+          <TopCard card={ card } handleQuickTip={ handleQuickTip } tasks={tasks}/>
           <TaskList tasks={tasks}/>
           <Button component={ Link } to="/tarefas/nova" className={ classes.addButton } variant="fab" color="primary">
             <AddIcon></AddIcon>
