@@ -14,7 +14,7 @@ class Expenses extends Component {
       card: {
         blocks: [ {
           label: "GASTO",
-          value: "500,00"
+          value: 0
         }, {
           label: "PAGO",
           value: "200,00"
@@ -41,15 +41,39 @@ class Expenses extends Component {
     this.setState( { card } );
   }
 
-  // componentWillMount = () =>{
-  //   this.loadExpenses();
-  // }
+  componentWillMount = () =>{
+    this.loadExpenses()
+    this.myExpenses()
+  }
 
-  // loadExpenses = async()=> {
-  //   const user = await service.getById('user', this.props.firebase.auth().currentUser.uid);
-  //   let expenses = await service.getByHouseId('expense', user.houseID); 
-  //   this.setState({expenses})
-  // }
+  loadExpenses = async()=> {
+    const user = await service.getById('user', this.props.firebase.auth().currentUser.uid);
+    let expenses = await service.getByHouse('expense', user.houseID); 
+    debugger;
+    this.setState({expenses})
+  }
+
+  myExpenses = async () => {
+    var currentUser = this.props.firebase.auth().currentUser.uid
+    const { user } = await service.getById('user', currentUser)
+    let expenses = await service.getByHouse('expense', user.houseID)
+    var spentValue = 0
+    if (expenses != undefined) {
+      for(let i = 0; i < expenses.expense.length; i++){
+        debugger
+        spentValue += parseInt(expenses.expense[i].value.$numberDecimal)
+      }
+
+      var card = this.state.card
+      card.blocks[0].value = spentValue
+      debugger;
+      this.setState({ card })
+    }
+  }
+
+  sumValues = (total, num) => {
+    return total+num
+  }
 
   // filterExpenses = () => {
   //   let expenses = [...this.state.expenses];

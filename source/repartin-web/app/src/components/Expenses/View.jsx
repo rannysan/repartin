@@ -18,7 +18,7 @@ const View = ( { expenses, card, handleSearch, handleFilter, handleQuickTip, cla
       />
       <div className={ classes.wrapper }>
         <TopCard card={ card } handleQuickTip={ handleQuickTip }/>
-        <ExpenseList />
+        <ExpenseList expenses={expenses}/>
         <Button component={ Link } to="/financas/nova" className={ classes.addButton } variant="fab" color="primary">
           <AddIcon></AddIcon>
         </Button>

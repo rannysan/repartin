@@ -4,9 +4,8 @@ import View from "./View";
 class TaskList extends Component {
 
   render() {
-
     return (
-      <View />
+      <View expenses={this.props.expenses}/>
     );
   }
 }

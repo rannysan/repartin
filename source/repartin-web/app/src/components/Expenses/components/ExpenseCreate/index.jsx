@@ -32,7 +32,6 @@ class ExpenseCreate extends Component {
 
 
     handleSubmit = async (e) => {
-        debugger;
         const useId = this.props.firebase.auth().currentUser.uid;
         const { user } = await service.getById('user', useId);
         const form = this.state;

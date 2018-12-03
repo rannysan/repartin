@@ -4,14 +4,14 @@ import ExpenseCard from '../ExpenseCard';
 import styles from "./styles";
 import { CardContent, Typography, IconButton } from "@material-ui/core";
 
-const expenses = [ 1, 2, 3, 4, 5]
+const expensee = [ 1, 2, 3, 4, 5]
 
-const View = ( { classes } ) => {
+const View = ( { classes, expenses } ) => {
 
   return (
     <div>
-      {expenses.map((item, i) => 
-        <ExpenseCard key={i} />
+      {expenses.expense != undefined && expenses.expense.map((item, i) => 
+        <ExpenseCard key={i} expense={item}/>
       )}
     </div>
   );
