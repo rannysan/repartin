@@ -89,8 +89,6 @@ class CreateHouse extends Component {
       //this.loadDialog('Ops! Falta uma foto', 'Por favor, suba uma imagem para representar sua república!');
       this.setState({ loading: false })
     }
-    this.props.history.push('/');
-
   }
 
 

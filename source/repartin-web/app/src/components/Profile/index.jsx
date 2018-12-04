@@ -8,17 +8,18 @@ import service from './../../services/service';
 class Profile extends Component {
 
   state = {
+    loading: true,
     user: {
-      name: "Jesus Cristo",
-      email: "jesus@crist.com",
+      name: "",
+      email: "",
       isAdmin: false,
-      photoURL: "http://2.bp.blogspot.com/-dyzMaWaud6k/U0vtJ_abIgI/AAAAAAAAA-o/362iWi6-mKQ/s1600/137412279020.jpg"
+      photoURL: "http://wildworkoutsandwellness.com/wp-content/uploads/2013/07/Placeholder-Portrait.jpg"
     },
     house: {
-      id: "aa",
-      name: "Jerusarep",
-      address: "TKhelet Mordehai 7-3 Jerusalem, Israel",
-      image: "https://static1.i4u.com/sites/default/files/imagecache/main_image_large/images/2015/09/weed-smoking.jpg"
+      id: "",
+      name: "",
+      address: "",
+      image: ""
     }
   }
 
@@ -38,6 +39,7 @@ class Profile extends Component {
     }
 
     this.setState({
+      loading: false,
       user: {
         name: userFirebase.displayName,
         email: userFirebase.email,

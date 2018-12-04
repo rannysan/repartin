@@ -7,7 +7,7 @@ import { CardContent, Typography, IconButton } from "@material-ui/core";
 
 const View = ( { classes, tasks } ) => {
   return (
-    <div>
+    <div className={ classes.list }>
       {tasks.task!=undefined && tasks.task.map((item, i) => 
         <TaskCard key={i} task={item}/>
       )}

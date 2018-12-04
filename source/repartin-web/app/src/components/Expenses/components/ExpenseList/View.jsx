@@ -9,7 +9,7 @@ const expensee = [ 1, 2, 3, 4, 5]
 const View = ( { classes, expenses } ) => {
 
   return (
-    <div>
+    <div className={ classes.root }>
       {expenses.expense != undefined && expenses.expense.map((item, i) => 
         <ExpenseCard key={i} expense={item}/>
       )}
